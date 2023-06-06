@@ -1,4 +1,5 @@
 import { getPost } from "@/sanity/sanity-utils";
+import { PortableText } from "@portabletext/react";
 
 type Props = {
   params: {
@@ -14,7 +15,10 @@ export default async function Post({ params }: Props) {
 
   return (
     <div>
-      Post with category: {category} Post slug: {page.slug}
+      Post with category: {category} <br />
+      Post slug: {page.slug} <br />
+      Post title: {page.title} <br />
+      Post content: <PortableText value={page.body} />
     </div>
   );
 }
