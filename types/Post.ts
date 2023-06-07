@@ -7,7 +7,8 @@ export type Post = {
 
   // The rest of the properties are defined in the schema by us
   title: string;
-  slug: string;
+  postSlug: string;
+  categorySlug: string;
   author: string;
   mainImage: string;
   alt: string;
@@ -16,5 +17,5 @@ export type Post = {
   publishedAt: Date;
 
   // PortableTextBlock[] is how Sanity stores rich content
-  body: PortableTextBlock[];
+  content: PortableTextBlock[];
 };
