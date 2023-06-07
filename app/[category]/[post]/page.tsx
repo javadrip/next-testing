@@ -22,6 +22,8 @@ export default async function Post({ params }: Props) {
       Post slug: {page.postSlug} <br />
       Category: {page.category} <br />
       Category slug: {page.categorySlug} <br />
+      Author name: {page.authorName} <br />
+      Author slug: {page.authorSlug} <br />
       Post content: <PortableText value={page.content} /> <br />
       Post categories: {page.categories.map(category => category + " ")}
     </div>

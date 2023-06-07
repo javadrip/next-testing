@@ -9,7 +9,8 @@ export type Post = {
   title: string;
   postSlug: string;
   categorySlug: string;
-  author: string;
+  authorName: string;
+  authorSlug: string;
   mainImage: string;
   alt: string;
   category: string;
