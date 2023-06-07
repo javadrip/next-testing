@@ -11,7 +11,8 @@ type Props = {
 export default async function Post({ params }: Props) {
   const slug = params.slug;
   const category = params.category;
-  const page = await getPost(slug);
+  // const categorySlug = category + "/" + slug;
+  const page = await getPost(category, slug);
 
   return (
     <div>
