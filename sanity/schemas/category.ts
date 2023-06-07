@@ -1,28 +1,19 @@
-import { defineField, defineType } from "sanity";
+import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: "category",
-  title: "Category",
-  type: "document",
+  name: 'category',
+  title: 'Category',
+  type: 'document',
   fields: [
     defineField({
-      name: "category",
-      title: "Category",
-      type: "string",
+      name: 'title',
+      title: 'Title',
+      type: 'string',
     }),
     defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "title",
-        maxLength: 96,
-      },
-    }),
-    defineField({
-      name: "description",
-      title: "What should go into this category?",
-      type: "text",
+      name: 'description',
+      title: 'Description',
+      type: 'text',
     }),
   ],
-});
+})
