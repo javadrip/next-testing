@@ -9,6 +9,7 @@ type Props = {
 };
 
 export default async function Post({ params }: Props) {
+  console.log("params", params);
   const slug = params.slug;
   const category = params.category;
   // const categorySlug = category + "/" + slug;
