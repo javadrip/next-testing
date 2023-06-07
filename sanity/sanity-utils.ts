@@ -9,7 +9,7 @@ export async function getPost(category: string, slug: string): Promise<Post> {
     // [] filters down the data
     // {} specifies the projection aka the data we want to see
     // The query still returns an array, so we need to grab the first element, hence the [0]
-    groq`*[_type == "post" && slug.current == $slug && $category in categories[]->slug.current][0]{
+    groq`*[_type == "post" && slug.current == $slug && $category in categories[]->category][0]{
       _id,
       _createdAt,
       title,
