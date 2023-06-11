@@ -13,6 +13,7 @@ export async function getPost(category: string, post: string): Promise<Post> {
       _id,
       _createdAt,
       title,
+      "postMetaDescription": postMetaDescription,
       "postSlug": postSlug.current,
       "categorySlug": $category,
       "authorName": author->name,

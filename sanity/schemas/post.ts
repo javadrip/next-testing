@@ -11,10 +11,20 @@ export default defineType({
       type: "string",
       description: "Ideally between 15 and 70 characters",
       validation: Rule => [
-        Rule.required()
-          .min(15)
-          .error("A title of min. 15 characters is required"),
-        Rule.max(70).warning("Shorter titles are usually better"),
+        Rule.required().min(15).warning("The title is probably too short."),
+        Rule.max(70).warning("Shorter titles are usually better."),
+      ],
+    }),
+    defineField({
+      name: "postMetaDescription",
+      title: "Meta description",
+      type: "text",
+      description: "Ideally between 70 and 160 characters",
+      validation: Rule => [
+        Rule.required().min(70).warning("Add in more details."),
+        Rule.max(160).warning(
+          "Content beyond 160 characters might be truncated."
+        ),
       ],
     }),
     defineField({

@@ -7,6 +7,7 @@ export type Post = {
 
   // The rest of the properties are defined in the schema by us
   title: string;
+  postMetaDescription: string;
   postSlug: string;
   categorySlug: string;
   authorName: string;
