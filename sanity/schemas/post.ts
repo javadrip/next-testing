@@ -9,6 +9,13 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
+      description: "Ideally between 15 and 70 characters",
+      validation: Rule => [
+        Rule.required()
+          .min(15)
+          .error("A title of min. 15 characters is required"),
+        Rule.max(70).warning("Shorter titles are usually better"),
+      ],
     }),
     defineField({
       name: "postSlug",
