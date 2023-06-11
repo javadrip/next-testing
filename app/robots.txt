@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+// See robots file generation here: https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#generate-a-robots-file
