@@ -11,12 +11,10 @@ type Props = {
   };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = params.post;
-  const category = params.category;
+export async function generateMetadata({
+  params: { post, category },
+}: Props): Promise<Metadata> {
   const page = await getPost(category, post);
-
-  console.log(page);
 
   if (!page) notFound();
 
@@ -26,9 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Post({ params }: Props) {
-  const post = params.post;
-  const category = params.category;
+export default async function Post({ params: { post, category } }: Props) {
   const page = await getPost(category, post);
 
   if (!page) notFound();
