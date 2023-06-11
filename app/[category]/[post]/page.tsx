@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { getPost } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 
@@ -12,6 +13,8 @@ export default async function Post({ params }: Props) {
   const post = params.post;
   const category = params.category;
   const page = await getPost(category, post);
+
+  if (!page) notFound();
 
   return (
     <div>
