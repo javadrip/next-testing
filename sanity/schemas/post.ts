@@ -64,11 +64,6 @@ export default defineType({
       of: [{ type: "reference", to: { type: "category" } }],
     }),
     defineField({
-      name: "publishedAt",
-      title: "Published at",
-      type: "datetime",
-    }),
-    defineField({
       name: "content",
       title: "Content",
       type: "blockContent",

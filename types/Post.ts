@@ -16,7 +16,6 @@ export type Post = {
   alt: string;
   category: string;
   categories: string[];
-  publishedAt: Date;
 
   // PortableTextBlock[] is how Sanity stores rich content
   content: PortableTextBlock[];
