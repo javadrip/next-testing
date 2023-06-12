@@ -5,7 +5,10 @@ import { Author } from "../types/Author";
 import { Category } from "../types/Category";
 
 // Get a single post
-export async function getPost(category: string, post: string): Promise<Post> {
+export async function getPost(
+  categorySlug: string,
+  postSlug: string
+): Promise<Post> {
   // clientConfig is imported from sanity/config/client-config.ts
   return createClient(clientConfig).fetch(
     // * grabs everything in the dataset
@@ -30,12 +33,12 @@ export async function getPost(category: string, post: string): Promise<Post> {
     // Short hand for { slug: slug } and { category: category }
     // slug and category values are taken from the getPost parameter slug
     // Both slug and category are passed as variables
-    { post, category }
+    { categorySlug, postSlug }
   );
 }
 
 // Get a single category
-export async function getCategory(category: string): Promise<Category> {
+export async function getCategory(categorySlug: string): Promise<Category> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "category" && categorySlug.current == $category][0]{
       _id,
@@ -44,12 +47,12 @@ export async function getCategory(category: string): Promise<Category> {
       "categorySlug": categorySlug.current,
       description,
     }`,
-    { category }
+    { categorySlug }
   );
 }
 
 // Get all posts in a single category
-export async function getCategoryPosts(category: string): Promise<Post[]> {
+export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "post" && $category in categories[]->categorySlug.current]{
       _id,
@@ -61,7 +64,7 @@ export async function getCategoryPosts(category: string): Promise<Post[]> {
       "category": categories[0]->category,
       publishedAt,
     }`,
-    { category }
+    { categorySlug }
   );
 }
 
