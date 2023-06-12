@@ -15,7 +15,7 @@ export default defineType({
       title: "Category slug",
       type: "slug",
       options: {
-        source: "title",
+        source: "category",
         maxLength: 96,
       },
     }),
