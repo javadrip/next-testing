@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
 import { Metadata } from "next/types";
+import { notFound } from "next/navigation";
 
 import { getPost } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
