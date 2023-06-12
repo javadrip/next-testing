@@ -15,19 +15,19 @@ export async function getPost(
     // [] filters down the data
     // {} specifies the projection aka the data we want to see
     // The query still returns an array, so we need to grab the first element, hence the [0]
-    groq`*[_type == "post" && postSlug.current == $post && $category in categories[]->categorySlug.current][0]{
+    groq`*[_type == "post" && postSlug.current == $postSlug && $categorySlug in categories[]->categorySlug.current][0]{
       _id,
       _createdAt,
       _updatedAt,
       title,
       "postMetaDescription": postMetaDescription,
       "postSlug": postSlug.current,
-      "categorySlug": $category,
+      "categorySlug": $categorySlug,
       "authorName": author->name,
       "authorSlug": author->authorSlug.current,
       "mainImage": mainImage.asset->url,
       "categories": categories[]->category,
-      "category": *[_type == "category" && categorySlug.current == $category][0].category,
+      "category": *[_type == "category" && categorySlug.current == $categorySlug][0].category,
       content
     }`,
     // Short hand for { slug: slug } and { category: category }
@@ -40,7 +40,7 @@ export async function getPost(
 // Get a single category
 export async function getCategory(categorySlug: string): Promise<Category> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "category" && categorySlug.current == $category][0]{
+    groq`*[_type == "category" && categorySlug.current == $categorySlug][0]{
       _id,
       _createdAt,
       category,
@@ -54,7 +54,7 @@ export async function getCategory(categorySlug: string): Promise<Category> {
 // Get all posts in a single category
 export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "post" && $category in categories[]->categorySlug.current]{
+    groq`*[_type == "post" && $categorySlug in categories[]->categorySlug.current]{
       _id,
       _createdAt,
       title,
