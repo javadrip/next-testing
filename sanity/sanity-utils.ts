@@ -59,9 +59,9 @@ export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
       _createdAt,
       title,
       "postSlug": postSlug.current,
-      "categorySlug": categories[0]->categorySlug.current,
+      "categorySlug": $categorySlug,
       "mainImage": mainImage.asset->url,
-      "category": categories[0]->category,
+      "category": *[_type == "category" && categorySlug.current == $categorySlug][0].category,
       publishedAt,
     }`,
     { categorySlug }
