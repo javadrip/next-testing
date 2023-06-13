@@ -36,8 +36,6 @@ export default async function Category({ params: { categorySlug } }: Props) {
 
   if (!category) notFound();
 
-  console.log(category);
-
   return (
     <>
       Category name: {category.category} <br />
