@@ -22,7 +22,5 @@ export async function generateStaticParams() {
 
   const categories = await categoriesData;
 
-  console.log("categories: ", categories);
-
   return categories.map(category => ({ categorySlug: category.categorySlug }));
 }
