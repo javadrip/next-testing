@@ -70,12 +70,12 @@ export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
     groq`*[_type == "post" && $categorySlug in categories[]->categorySlug.current]{
       _id,
       _createdAt,
+      _updatedAt,
       title,
       "postSlug": postSlug.current,
       "categorySlug": $categorySlug,
       "mainImage": mainImage.asset->url,
       "category": *[_type == "category" && categorySlug.current == $categorySlug][0].category,
-      publishedAt,
     }`,
     { categorySlug }
   );
@@ -102,12 +102,12 @@ export async function getAuthorPosts(authorSlug: string): Promise<Post[]> {
     groq`*[_type == "post" && references(*[_type == "author" && authorSlug.current == $authorSlug][0]._id)]{
       _id,
       _createdAt,
+      _updatedAt,
       title,
       "postSlug": postSlug.current,
       "categorySlug": categories[0]->categorySlug.current,
       "mainImage": mainImage.asset->url,
       "category": categories[0]->category,
-      publishedAt,
     }`,
     { authorSlug }
   );
