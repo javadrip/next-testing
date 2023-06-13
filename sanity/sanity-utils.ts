@@ -51,6 +51,19 @@ export async function getCategory(categorySlug: string): Promise<Category> {
   );
 }
 
+// Get all categories
+export async function getAllCategories(): Promise<Category[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "category"]{
+      _id,
+      _createdAt,
+      category,
+      "categorySlug": categorySlug.current,
+      description,
+    }`
+  );
+}
+
 // Get all posts in a single category
 export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
   return createClient(clientConfig).fetch(
