@@ -1,8 +1,10 @@
 import { Metadata } from "next/types";
 import { notFound } from "next/navigation";
-
-import { getPost } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
+
+import { getPost, getCategoryPosts } from "@/sanity/sanity-utils";
+
+import { Post } from "@/types/Post";
 
 type Props = {
   params: {
@@ -43,4 +45,24 @@ export default async function Post({
       Post categories: {page.categories.map(category => category + " ")}
     </div>
   );
+}
+
+// Enables statically generating routes at build time instead of on-demand at request time
+// generateStaticParams can be placed in the page.tsx at the last route segment.
+export async function generateStaticParams({
+  params: { categorySlug },
+}: Props) {
+  const categoryPostsData: Promise<Post[]> = getCategoryPosts(categorySlug);
+
+  const categoryPostsDict = await categoryPostsData;
+
+  const categoryPosts = Object.values(categoryPostsDict);
+
+  console.log("categoryPosts: ", categoryPosts);
+
+  return categoryPosts.map(post => ({
+    params: {
+      postSlug: post.postSlug,
+    },
+  }));
 }
