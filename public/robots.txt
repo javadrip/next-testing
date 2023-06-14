@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: next-testing-bviwslodr-javadrip.vercel.app
+
+# Sitemaps
+Sitemap: next-testing-bviwslodr-javadrip.vercel.app/sitemap.xml
