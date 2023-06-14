@@ -37,6 +37,16 @@ export async function getPost(
   );
 }
 
+// Get slugs of all posts
+export async function getAllPostSlugs(): Promise<Post[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "post"]{
+      "postSlug": postSlug.current,
+      "categorySlug": categories[0]->categorySlug.current,
+    }`
+  );
+}
+
 // Get a single category
 export async function getCategory(categorySlug: string): Promise<Category> {
   return createClient(clientConfig).fetch(
@@ -142,6 +152,15 @@ export async function getAuthor(authorSlug: string): Promise<Author> {
       bio,
     }`,
     { authorSlug }
+  );
+}
+
+// Get slugs of all authors
+export async function getAllAuthorSlugs(): Promise<Author[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "author"]{
+      "authorSlug": authorSlug.current,
+    }`
   );
 }
 
