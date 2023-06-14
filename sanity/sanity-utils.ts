@@ -81,6 +81,54 @@ export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
   );
 }
 
+// Get the next 10 posts in a single category
+let lastPublishedAt = "";
+let lastId: string | null = "";
+
+export async function getNextTenPosts(categorySlug: string): Promise<Post[]> {
+  if (lastId === null) {
+    return [];
+  }
+
+  const query = groq`*[_type == "post" && (
+    _updatedAt > $lastPublishedAt
+    || (_updatedAt == $lastPublishedAt && _id > $lastId)
+  ) && $categorySlug in categories[]->categorySlug.current]
+  | order(_updatedAt)
+  [0...2]{
+    _id,
+    _createdAt,
+    _updatedAt,
+    title,
+    "postSlug": postSlug.current,
+    "categorySlug": $categorySlug,
+    "mainImage": mainImage.asset->url,
+    "category": *[_type == "category" && categorySlug.current == $categorySlug][0].category
+  }`;
+
+  const params = {
+    lastPublishedAt,
+    lastId,
+    categorySlug,
+  };
+
+  console.log("params before:", params);
+
+  const result = await createClient(clientConfig).fetch(query, params);
+
+  if (result.length > 0) {
+    lastPublishedAt = result[result.length - 1]._updatedAt;
+    lastId = result[result.length - 1]._id;
+  } else {
+    lastId = null; // Reached the end
+  }
+
+  console.log("params after:", params);
+  console.log(result);
+
+  return result;
+}
+
 // Get data of a single author
 export async function getAuthor(authorSlug: string): Promise<Author> {
   return createClient(clientConfig).fetch(
