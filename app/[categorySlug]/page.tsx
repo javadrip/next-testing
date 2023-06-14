@@ -2,8 +2,11 @@ import { Metadata } from "next/types";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-import { getCategory } from "@/sanity/sanity-utils";
-import { getCategoryPosts } from "@/sanity/sanity-utils";
+import {
+  getCategory,
+  getCategoryPosts,
+  getNextTenPosts,
+} from "@/sanity/sanity-utils";
 
 import CategoryPosts from "@/app/components/post/CategoryPosts";
 import type { Category } from "@/types/Category";
