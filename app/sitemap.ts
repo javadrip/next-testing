@@ -29,23 +29,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   return [...posts, ...categories, ...authors];
-
-  // return [
-  //   {
-  //     url: URL,
-  //     lastModified: new Date(),
-  //   },
-  //   {
-  //     url: URL + "/fiction",
-  //     lastModified: new Date(),
-  //   },
-  //   {
-  //     url: URL + "/cat",
-  //     lastModified: new Date(),
-  //   },
-  //   {
-  //     url: URL + "/dog",
-  //     lastModified: new Date(),
-  //   },
-  // ];
 }

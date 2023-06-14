@@ -1,12 +1,12 @@
 import { Metadata } from "next/types";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-
-import { getAuthor } from "@/sanity/sanity-utils";
-import { getAuthorPosts } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 
+import { getAuthor, getAuthorPosts } from "@/sanity/sanity-utils";
+
 import AuthorPosts from "@/app/components/post/AuthorPosts";
+
 import type { Author } from "@/types/Author";
 import type { Post } from "@/types/Post";
 
