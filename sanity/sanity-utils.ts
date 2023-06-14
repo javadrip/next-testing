@@ -82,6 +82,7 @@ export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
 }
 
 // Get the next 10 posts in a single category
+// TODO: Refine for pagination in app/[categorySlug]/page.tsx
 let lastPublishedAt = "";
 let lastId: string | null = "";
 
