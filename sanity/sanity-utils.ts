@@ -123,8 +123,6 @@ export async function getNextTenPosts(categorySlug: string): Promise<Post[]> {
     categorySlug,
   };
 
-  console.log("params before:", params);
-
   const result = await createClient(clientConfig).fetch(query, params);
 
   if (result.length > 0) {
@@ -134,7 +132,6 @@ export async function getNextTenPosts(categorySlug: string): Promise<Post[]> {
     lastId = null; // Reached the end
   }
 
-  console.log("params after:", params);
   console.log(result);
 
   return result;
