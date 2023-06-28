@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import {
   getCategory,
   getCategoryPosts,
-  getNextTenPosts,
+  getNextTwoPosts,
 } from "@/sanity/sanity-utils";
 
 import CategoryPosts from "@/app/components/post/CategoryPosts";
@@ -33,7 +33,7 @@ export async function generateMetadata({
 
 export default async function Category({ params: { categorySlug } }: Props) {
   const categoryData: Promise<Category> = getCategory(categorySlug);
-  const categoryPostsData: Promise<Post[]> = getCategoryPosts(categorySlug);
+  const categoryPostsData: Promise<Post[]> = getNextTwoPosts(categorySlug);
 
   const category = await categoryData;
 

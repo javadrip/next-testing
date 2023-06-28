@@ -96,7 +96,7 @@ export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
 let lastPublishedAt = "";
 let lastId: string | null = "";
 
-export async function getNextTenPosts(categorySlug: string): Promise<Post[]> {
+export async function getNextTwoPosts(categorySlug: string): Promise<Post[]> {
   if (lastId === null) {
     return [];
   }
