@@ -1,6 +1,16 @@
 import { getAllCategories } from "@/sanity/sanity-utils";
+import { Metadata } from "next/types";
+import { notFound } from "next/navigation";
 
 import type { Category } from "@/types/Category";
+
+import { getCategory } from "@/sanity/sanity-utils";
+
+type Props = {
+  params: {
+    categorySlug: string;
+  };
+};
 
 export default function Category({
   children,
@@ -12,6 +22,19 @@ export default function Category({
   };
 }) {
   return <>{children}</>;
+}
+
+export async function generateMetadata({
+  params: { categorySlug },
+}: Props): Promise<Metadata> {
+  const category = await getCategory(categorySlug);
+
+  if (!category) notFound();
+
+  return {
+    title: category.category,
+    description: `See all posts in ${category.category}`,
+  };
 }
 
 // Enables statically generating routes at build time instead of on-demand at request time

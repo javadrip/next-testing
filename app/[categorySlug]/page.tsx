@@ -1,6 +1,7 @@
-import { Metadata } from "next/types";
+"use client";
+
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 
 import {
   getCategory,
@@ -18,24 +19,33 @@ type Props = {
   };
 };
 
-export async function generateMetadata({
-  params: { categorySlug },
-}: Props): Promise<Metadata> {
-  const category = await getCategory(categorySlug);
-
-  if (!category) notFound();
-
-  return {
-    title: category.category,
-    description: `See all posts in ${category.category}`,
-  };
-}
-
 export default async function Category({ params: { categorySlug } }: Props) {
+  // // useState here to track latest _id (consider using _createdAt) of posts (starts with null)
+  // // Once page is loaded, calls loadPost
+  // const [lastId, setLastId] = useState(null);
+
   const categoryData: Promise<Category> = getCategory(categorySlug);
   const categoryPostsData: Promise<Post[]> = getNextTwoPosts(categorySlug);
 
   const category = await categoryData;
+
+  // // handleClick button
+  // // - calls loadPost
+  // const handleClick = () => {
+  //   console.log("handleClick");
+  //   loadPost();
+  // };
+
+  // // loadPost function to load more posts
+  // // - call the api and pass it lastId(fetch)
+  // // - update the dom with new posts
+  // // - update lastId state
+  // const loadPost = () => {
+  //   getNextTwoPosts(categorySlug);
+  //   console.log("lastId", lastId);
+  //   console.log("categoryPostsData", categoryPostsData);
+  //   setLastId(lastId);
+  // };
 
   if (!category) notFound();
 
@@ -48,6 +58,7 @@ export default async function Category({ params: { categorySlug } }: Props) {
       <Suspense fallback={<h2>Loading...</h2>}>
         <CategoryPosts promise={categoryPostsData} />
       </Suspense>
+      {/* <button onClick={handleClick}>Load more</button> */}
     </>
   );
 }
