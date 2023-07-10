@@ -15,20 +15,18 @@ export async function getPost(
     // [] filters down the data
     // {} specifies the projection aka the data we want to see
     // The query still returns an array, so we need to grab the first element, hence the [0]
-    groq`*[_type == "post" && postSlug.current == $postSlug && $categorySlug in categories[]->categorySlug.current][0]{
+    groq`*[_type == "post" && slug.current == $postSlug && $categorySlug in categories[]->slug.current][0]{
       _id,
       _createdAt,
       _updatedAt,
       title,
-      "postMetaDescription": postMetaDescription,
-      "postSlug": postSlug.current,
+      "postSlug": slug.current,
       "categorySlug": $categorySlug,
-      "authorName": author->name,
-      "authorSlug": author->authorSlug.current,
+      author->,
       "mainImage": mainImage.asset->url,
-      "categories": categories[]->category,
-      "category": *[_type == "category" && categorySlug.current == $categorySlug][0].category,
-      content
+      "categories": categories[]->,
+      "category": categories[0]->title,
+      body
     }`,
     // Short hand for { slug: slug } and { category: category }
     // slug and category values are taken from the getPost parameter slug
@@ -47,33 +45,31 @@ export async function getAllPostSlugs(): Promise<Post[]> {
   );
 }
 
+//TODO: Move to client and groq
 // Get a single category
 export async function getCategory(categorySlug: string): Promise<Category> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "category" && categorySlug.current == $categorySlug][0]{
-      _id,
-      _createdAt,
-      category,
-      "categorySlug": categorySlug.current,
-      description,
+    // slug.current edited from categorySlug.current to test if it works with the new schema
+    groq`*[_type == "category" && slug.current == $categorySlug][0]{
+      ...,
+      "categorySlug": slug.current,
     }`,
     { categorySlug }
   );
 }
 
+//TODO: Move to client and groq
 // Get all categories
 export async function getAllCategories(): Promise<Category[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "category"]{
-      _id,
-      _createdAt,
-      category,
-      "categorySlug": categorySlug.current,
-      description,
+      ...,
+      "categorySlug": slug.current,
     }`
   );
 }
 
+//TODO: Can remove this function
 // Get all posts in a single category
 export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
   return createClient(clientConfig).fetch(
@@ -131,8 +127,6 @@ export async function getNextTwoPosts(categorySlug: string): Promise<Post[]> {
   } else {
     lastId = null; // Reached the end
   }
-
-  console.log(result);
 
   return result;
 }
