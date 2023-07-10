@@ -17,12 +17,12 @@ export async function generateMetadata({
   params: { postSlug, categorySlug },
 }: Props): Promise<Metadata> {
   const page = await getPost(categorySlug, postSlug);
-
+  console.log("page", page.categories);
   if (!page) notFound();
 
   return {
     title: page.title,
-    description: page.postMetaDescription,
+    description: page.excerpt,
   };
 }
 
@@ -37,12 +37,12 @@ export default async function Post({
     <div>
       Post title: {page.title} <br />
       Post slug: {page.postSlug} <br />
-      Category: {page.category} <br />
+      Category: {page.categories[0].title} <br />
       Category slug: {page.categorySlug} <br />
-      Author name: {page.authorName} <br />
-      Author slug: {page.authorSlug} <br />
-      Post content: <PortableText value={page.content} /> <br />
-      Post categories: {page.categories.map(category => category + " ")}
+      Author name: {page.author.name} <br />
+      Author slug: {page.author.slug.current} <br />
+      Post content: <PortableText value={page.body} /> <br />
+      Post categories: {page.categories.map(category => category.title + " ")}
     </div>
   );
 }
@@ -60,7 +60,7 @@ export async function generateStaticParams({
 
   return categoryPosts.map(post => ({
     params: {
-      postSlug: post.postSlug,
+      postSlug: post.slug,
     },
   }));
 }

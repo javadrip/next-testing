@@ -32,8 +32,8 @@ export async function generateMetadata({
   if (!category) notFound();
 
   return {
-    title: category.category,
-    description: `See all posts in ${category.category}`,
+    title: category.title,
+    description: `See all posts in ${category.title}`,
   };
 }
 
@@ -45,5 +45,5 @@ export async function generateStaticParams() {
 
   const categories = await categoriesData;
 
-  return categories.map(category => ({ categorySlug: category.categorySlug }));
+  return categories.map(category => ({ categorySlug: category.slug.current }));
 }
