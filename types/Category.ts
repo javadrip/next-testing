@@ -4,7 +4,10 @@ export type Category = {
   _createdAt: Date;
 
   // The rest of the properties are defined in the schema by us
-  category: string;
-  categorySlug: string;
-  description: string;
+  title: string;
+  slug: {
+    current: string;
+  };
+  color: string;
+  description?: string;
 };
