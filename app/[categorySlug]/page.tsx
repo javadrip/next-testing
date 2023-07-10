@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { notFound } from "next/navigation";
 import { Suspense, useState } from "react";
@@ -8,6 +8,8 @@ import {
   getCategoryPosts,
   getNextTwoPosts,
 } from "@/sanity/sanity-utils";
+
+import { getPaginatedPostsByCategory } from "@/sanity/client";
 
 import CategoryPosts from "@/app/components/post/CategoryPosts";
 import type { Category } from "@/types/Category";
@@ -19,16 +21,20 @@ type Props = {
   };
 };
 
+const POSTS_PER_PAGE = 3;
+
 export default async function Category({ params: { categorySlug } }: Props) {
   // // useState here to track latest _id (consider using _createdAt) of posts (starts with null)
   // // Once page is loaded, calls loadPost
   // const [lastId, setLastId] = useState(null);
 
   const categoryData: Promise<Category> = getCategory(categorySlug);
-  const categoryPostsData: Promise<Post[]> = getNextTwoPosts(categorySlug);
+  const categoryPostsData: Promise<Post[]> = getPaginatedPostsByCategory(
+    categorySlug,
+    POSTS_PER_PAGE
+  );
 
   const category = await categoryData;
-
   // // handleClick button
   // // - calls loadPost
   // const handleClick = () => {
@@ -51,8 +57,8 @@ export default async function Category({ params: { categorySlug } }: Props) {
 
   return (
     <>
-      Category name: {category.category} <br />
-      Category slug: {category.categorySlug} <br />
+      Category title: {category.title} <br />
+      Category slug: {category.slug.current} <br />
       <br />
       Category posts: <br />
       <Suspense fallback={<h2>Loading...</h2>}>
