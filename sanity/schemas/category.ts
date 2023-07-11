@@ -6,17 +6,32 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
-      name: "category",
-      title: "Category",
+      name: "title",
+      title: "Title",
       type: "string",
     }),
     defineField({
-      name: "categorySlug",
-      title: "Category slug",
+      name: "slug",
+      title: "Slug",
       type: "slug",
       options: {
-        source: "category",
+        source: "title",
         maxLength: 96,
+      },
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: "color",
+      title: "Color",
+      type: "string",
+      description: "Color of the category",
+      options: {
+        list: [
+          { title: "Green", value: "green" },
+          { title: "Blue", value: "blue" },
+          { title: "Purple", value: "purple" },
+          { title: "Orange", value: "orange" },
+        ],
       },
     }),
     defineField({

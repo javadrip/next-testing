@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 
+// Shows up as an editor on the right panel after selecting a post
 export default defineType({
   name: "post",
   title: "Post",
@@ -16,7 +17,7 @@ export default defineType({
       ],
     }),
     defineField({
-      name: "postMetaDescription",
+      name: "metaDescription",
       title: "Meta description",
       type: "text",
       description: "Ideally between 70 and 160 characters",
@@ -28,13 +29,22 @@ export default defineType({
       ],
     }),
     defineField({
-      name: "postSlug",
+      name: "slug",
       title: "Slug",
       type: "slug",
       options: {
         source: "title",
         maxLength: 96,
       },
+    }),
+    defineField({
+      name: "excerpt",
+      title: "Excerpt",
+      description:
+        "The excerpt is used in blog feeds, and also for search results",
+      type: "text",
+      rows: 3,
+      validation: Rule => Rule.max(200),
     }),
     defineField({
       name: "author",
@@ -64,12 +74,23 @@ export default defineType({
       of: [{ type: "reference", to: { type: "category" } }],
     }),
     defineField({
-      name: "content",
-      title: "Content",
+      name: "publishedAt",
+      title: "Published at",
+      type: "datetime",
+    }),
+    defineField({
+      name: "featured",
+      title: "Mark as Featured",
+      type: "boolean",
+    }),
+    defineField({
+      name: "body",
+      title: "Body",
       type: "blockContent",
     }),
   ],
 
+  // Determines how the post list to the left of the editor looks
   preview: {
     select: {
       title: "title",
