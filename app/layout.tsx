@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/styles/tailwind.css";
 import { Inter } from "next/font/google";
 
 import GoogleAnalytics from "./components/GoogleAnalytics";
@@ -6,7 +6,7 @@ import GoogleAnalytics from "./components/GoogleAnalytics";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Welcome to Vin's Next App Playground",
+  title: "Vin's Next App Playground",
   description: "Here's the global default meta description of the website",
 };
 
