@@ -4,8 +4,9 @@ import { Suspense } from "react";
 import { PortableText } from "@portabletext/react";
 
 import { getAuthor, getAuthorPosts } from "@/sanity/sanity-utils";
+import { getAuthorPostsBySlug } from "@/sanity/client";
 
-import AuthorPosts from "@/app/components/post/AuthorPosts";
+import PostsList from "@/app/components/post/PostsList";
 
 import type { Author } from "@/types/Author";
 import type { Post } from "@/types/Post";
@@ -33,21 +34,22 @@ export async function generateMetadata({
 export default async function Author({ params: { authorSlug } }: Props) {
   // Both datasets are requested in parallel
   const authorData: Promise<Author> = getAuthor(authorSlug);
-  const authorPostsData: Promise<Post[]> = getAuthorPosts(authorSlug);
+  const authorPostsData: Promise<Post[]> = getAuthorPostsBySlug(authorSlug);
 
   const author = await authorData;
-
+  console.log("author", author);
   if (!author) notFound();
 
   return (
     <>
       Author name: {author.name} <br />
-      Author slug: {author.authorSlug} <br />
+      Author slug: {author.slug.current} <br />
       Author bio: <PortableText value={author.bio} /> <br />
       <br />
-      Author posts: <br />
+      Author posts! <br />
+      <br />
       <Suspense fallback={<h2>Loading...</h2>}>
-        <AuthorPosts promise={authorPostsData} />
+        <PostsList promise={authorPostsData} />
       </Suspense>
     </>
   );

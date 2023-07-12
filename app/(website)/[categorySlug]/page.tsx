@@ -8,10 +8,10 @@ import {
   getCategoryPosts,
   getNextTwoPosts,
 } from "@/sanity/sanity-utils";
-
 import { getPaginatedPostsByCategory } from "@/sanity/client";
 
-import CategoryPosts from "@/app/components/post/CategoryPosts";
+import PostsList from "@/app/components/post/PostsList";
+
 import type { Category } from "@/types/Category";
 import type { Post } from "@/types/Post";
 
@@ -62,7 +62,7 @@ export default async function Category({ params: { categorySlug } }: Props) {
       <br />
       Category posts: <br />
       <Suspense fallback={<h2>Loading...</h2>}>
-        <CategoryPosts promise={categoryPostsData} />
+        <PostsList promise={categoryPostsData} />
       </Suspense>
       {/* <button onClick={handleClick}>Load more</button> */}
     </>
