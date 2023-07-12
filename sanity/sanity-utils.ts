@@ -65,7 +65,6 @@ export async function getAllCategories(): Promise<Category[]> {
   return createClient(config).fetch(
     groq`*[_type == "category"]{
       ...,
-      "categorySlug": slug.current,
     }`
   );
 }
@@ -135,11 +134,11 @@ export async function getNextTwoPosts(categorySlug: string): Promise<Post[]> {
 // Get data of a single author
 export async function getAuthor(authorSlug: string): Promise<Author> {
   return createClient(config).fetch(
-    groq`*[_type == "author" && authorSlug.current == $authorSlug][0]{
+    groq`*[_type == "author" && slug.current == $authorSlug][0]{
       _id,
       _createdAt,
       name,
-      "authorSlug": authorSlug.current,
+      slug,
       "image": image.asset->url,
       bio,
     }`,
