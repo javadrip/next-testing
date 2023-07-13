@@ -1,12 +1,14 @@
 import { Metadata } from "next/types";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { PortableText } from "@portabletext/react";
 
-import { getAuthor, getAuthorPosts } from "@/sanity/sanity-utils";
+import { getAuthor } from "@/sanity/sanity-utils";
 import { getAuthorPostsBySlug } from "@/sanity/client";
 
-import PostsList from "@/app/components/post/PostsList";
+import PostListing from "@/app/components/post/PostListing";
+import Container from "@/app/components/container";
 
 import type { Author } from "@/types/Author";
 import type { Post } from "@/types/Post";
@@ -40,18 +42,32 @@ export default async function Author({ params: { authorSlug } }: Props) {
   console.log("author", author);
   if (!author) notFound();
 
+  const posts = await authorPostsData;
+
   return (
-    <>
+    <Container>
       Author name: {author.name} <br />
       Author slug: {author.slug.current} <br />
       Author bio: <PortableText value={author.bio} /> <br />
       <br />
       Author posts! <br />
       <br />
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <PostsList promise={authorPostsData} />
-      </Suspense>
-    </>
+      <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
+        <Suspense fallback={<h2>Loading...</h2>}>
+          {posts.map(post => (
+            <PostListing key={post._id} post={post} aspect="square" />
+          ))}
+        </Suspense>
+      </div>
+      <div className="mt-10 flex justify-center">
+        <Link
+          href="/archive"
+          className="relative inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-2 pl-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 dark:border-gray-500 dark:bg-gray-800 dark:text-gray-300"
+        >
+          <span>View all Posts</span>
+        </Link>
+      </div>
+    </Container>
   );
 }
 
