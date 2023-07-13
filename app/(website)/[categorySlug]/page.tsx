@@ -10,7 +10,8 @@ import {
 } from "@/sanity/sanity-utils";
 import { getPaginatedPostsByCategory } from "@/sanity/client";
 
-import PostsList from "@/app/components/post/PostsList";
+import PostListing from "@/app/components/post/PostListing";
+import Container from "@/app/components/container";
 
 import type { Category } from "@/types/Category";
 import type { Post } from "@/types/Post";
@@ -21,7 +22,7 @@ type Props = {
   };
 };
 
-const POSTS_PER_PAGE = 3;
+const POSTS_PER_PAGE = 6;
 
 export default async function Category({ params: { categorySlug } }: Props) {
   // // useState here to track latest _id (consider using _createdAt) of posts (starts with null)
@@ -55,16 +56,22 @@ export default async function Category({ params: { categorySlug } }: Props) {
 
   if (!category) notFound();
 
+  const posts = await categoryPostsData;
+
   return (
-    <>
+    <Container>
       Category title: {category.title} <br />
       Category slug: {category.slug.current} <br />
       <br />
       Category posts: <br />
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <PostsList promise={categoryPostsData} />
-      </Suspense>
+      <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3 ">
+        <Suspense fallback={<h2>Loading...</h2>}>
+          {posts.map(post => (
+            <PostListing key={post._id} post={post} />
+          ))}
+        </Suspense>
+      </div>
       {/* <button onClick={handleClick}>Load more</button> */}
-    </>
+    </Container>
   );
 }
