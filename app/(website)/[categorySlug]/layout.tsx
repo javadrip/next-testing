@@ -37,7 +37,7 @@ export async function generateMetadata({
   };
 }
 
-// Enables statically generating routes at build time instead of on-demand at request time
+// Enables statically generating routes (i.e. SSG) at build time instead of on-demand at request time
 // Intermediate dynamic route segments need to be placed in layout.tsx
 // Passes categorySlug params down to child [postSlug]/page.tsx for use in generateStaticParams
 export async function generateStaticParams() {
