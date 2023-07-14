@@ -48,7 +48,9 @@ export async function getAllPostSlugs(): Promise<Post[]> {
 
 //TODO: Move to client and groq
 // Get a single category
-export async function getCategory(categorySlug: string): Promise<Category> {
+export async function getCategory(
+  categorySlug: string | ""
+): Promise<Category> {
   return createClient(config).fetch(
     // slug.current edited from categorySlug.current to test if it works with the new schema
     groq`*[_type == "category" && slug.current == $categorySlug][0]{
