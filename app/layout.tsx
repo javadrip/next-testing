@@ -1,5 +1,6 @@
 import "@/styles/tailwind.css";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 
 import GoogleAnalytics from "./components/GoogleAnalytics";
 
@@ -17,7 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleAnalytics GA_MEASUREMENT_ID="G-ZR0JGWPLQ6" />
+      {/* Google Analytics is wrapped in Suspense boundary to prevent "Entire page /[categorySlug] deopted into client-side rendering." warning   */}
+      <Suspense>
+        <GoogleAnalytics GA_MEASUREMENT_ID="G-ZR0JGWPLQ6" />
+      </Suspense>
       <body className={inter.className}>{children}</body>
     </html>
   );
