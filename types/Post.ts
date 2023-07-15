@@ -20,6 +20,7 @@ export type Post = {
     alt?: string;
     asset: {
       _ref: string;
+      url: string;
     };
   };
   categories: Category[];
