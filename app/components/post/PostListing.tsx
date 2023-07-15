@@ -26,6 +26,8 @@ export default function PostListing({
   fontSize,
   fontWeight,
 }: Props) {
+  const imageProps = post?.mainImage ? post?.mainImage : null;
+
   return (
     <div
       className={clsx(
@@ -51,20 +53,20 @@ export default function PostListing({
             post.slug.current
           }`}
         >
-          {/* {imageProps ? (
-              <Image
-                src={imageProps.src}
-                alt={post.mainImage.alt || "Thumbnail"}
-                priority={preloadImage ? true : false}
-                className="object-cover transition-all"
-                fill
-                sizes="(max-width: 768px) 30vw, 33vw"
-              />
-            ) : (
-              <span className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-gray-200">
-                <PhotoIcon />
-              </span>
-            )} */}
+          {imageProps ? (
+            <Image
+              src={post.mainImage.asset.url}
+              alt={post.mainImage.alt || "Thumbnail"}
+              priority={preloadImage ? true : false}
+              className="object-cover transition-all"
+              fill
+              sizes="(max-width: 768px) 30vw, 33vw"
+            />
+          ) : (
+            <span className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-gray-200">
+              <PhotoIcon />
+            </span>
+          )}
         </Link>
       </div>
 
