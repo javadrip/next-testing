@@ -10,6 +10,9 @@ export const postquery = groq`
   publishedAt,
   mainImage {
     ...,
+    asset-> {
+      url
+    }
   },
   featured,
   excerpt,
