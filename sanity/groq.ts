@@ -8,12 +8,7 @@ export const postquery = groq`
   _id,
   _createdAt,
   publishedAt,
-  mainImage {
-    ...,
-    asset-> {
-      url
-    }
-  },
+  mainImage,
   featured,
   excerpt,
   slug,
