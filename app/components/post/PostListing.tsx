@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { parseISO, format } from "date-fns";
 
+import { parseISO, format } from "date-fns";
 import clsx from "clsx";
 
+import { urlForImage } from "../../../lib/urlFor";
+
 import type { Post } from "@/types/Post";
+
 import { PhotoIcon } from "@heroicons/react/24/outline";
 
 type Props = {
@@ -26,7 +29,7 @@ export default function PostListing({
   fontSize,
   fontWeight,
 }: Props) {
-  const imageProps = post?.mainImage ? post?.mainImage : null;
+  const imageProps = post?.mainImage ? urlForImage(post?.mainImage) : null;
 
   return (
     <div
@@ -55,7 +58,7 @@ export default function PostListing({
         >
           {imageProps ? (
             <Image
-              src={post.mainImage.asset.url}
+              src={imageProps.src}
               alt={post.mainImage.alt || "Thumbnail"}
               priority={preloadImage ? true : false}
               className="object-cover transition-all"
