@@ -1,4 +1,7 @@
+import { createClient } from "next-sanity";
+
 import config from "./client-config";
+
 import {
   postquery,
   limitquery,
@@ -16,7 +19,6 @@ import {
   getAll,
   searchquery,
 } from "./groq";
-import { createClient } from "next-sanity";
 
 import { Post } from "@/types/Post";
 import { Category } from "@/types/Category";
