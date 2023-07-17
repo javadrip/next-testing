@@ -1,0 +1,30 @@
+import { createClient } from "next-sanity";
+import imageUrlBuilder from "@sanity/image-url";
+
+import config from "../sanity/client-config";
+
+const client = createClient(config);
+
+const builder = imageUrlBuilder(client);
+
+// TODO: Give source a type
+export const urlForImage = (source: any) => {
+  if (!source || !source.asset) return;
+  const dimensions = source?.asset?._ref.split("-")[2];
+
+  const [width, height] = dimensions
+    .split("x")
+    .map((num: string) => parseInt(num, 10));
+
+  const url = builder
+    .image(source)
+    .auto("format")
+    .width(Math.min(width, 2000))
+    .url();
+
+  return {
+    src: url,
+    width: width,
+    height: height,
+  };
+};
