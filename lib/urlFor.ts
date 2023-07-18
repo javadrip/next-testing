@@ -3,16 +3,23 @@ import imageUrlBuilder from "@sanity/image-url";
 
 import config from "../sanity/client-config";
 
+type ImageData = {
+  src: string;
+  width: number;
+  height: number;
+};
+
 const client = createClient(config);
 
 const builder = imageUrlBuilder(client);
 
 // TODO: Give source a type
-export const urlForImage = (source: any) => {
+export const urlForImage = (source: any): ImageData | undefined => {
   if (!source || !source.asset) return;
+
   const dimensions = source?.asset?._ref.split("-")[2];
 
-  const [width, height] = dimensions
+  const [width, height]: number[] = dimensions
     .split("x")
     .map((num: string) => parseInt(num, 10));
 
