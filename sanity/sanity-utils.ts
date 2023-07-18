@@ -5,6 +5,7 @@ import { Post } from "../types/Post";
 import { Author } from "../types/Author";
 import { Category } from "../types/Category";
 
+// TODO: Move to client and groq
 // Get a single post
 export async function getPost(
   categorySlug: string,
@@ -24,7 +25,7 @@ export async function getPost(
       "postSlug": slug.current,
       "categorySlug": $categorySlug,
       author->,
-      "mainImage": mainImage.asset->url,
+      mainImage,
       "categories": categories[]->,
       "category": categories[0]->title,
       body
