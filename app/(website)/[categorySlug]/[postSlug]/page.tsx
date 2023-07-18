@@ -1,6 +1,6 @@
 import { Metadata } from "next/types";
 import { notFound } from "next/navigation";
-import { PortableText } from "@portabletext/react";
+import { PortableText } from "@/sanity/plugins/portabletext";
 
 import { getPost, getCategoryPosts } from "@/sanity/sanity-utils";
 
@@ -17,7 +17,7 @@ export async function generateMetadata({
   params: { postSlug, categorySlug },
 }: Props): Promise<Metadata> {
   const page = await getPost(categorySlug, postSlug);
-  console.log("page", page.categories);
+
   if (!page) notFound();
 
   return {
