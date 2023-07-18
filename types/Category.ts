@@ -1,3 +1,5 @@
+import { Color } from "./Color";
+
 export type Category = {
   // All properties with an underscore are generated automatically by Sanity
   _id: string;
@@ -8,6 +10,6 @@ export type Category = {
   slug: {
     current: string;
   };
-  color: string;
+  color: Color;
   description?: string;
 };
