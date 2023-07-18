@@ -1,8 +1,8 @@
-import { Metadata } from "next/types";
 import { notFound } from "next/navigation";
 import { PortableText } from "@/sanity/plugins/portabletext";
 
-import { getPost, getCategoryPosts } from "@/sanity/sanity-utils";
+import { getPost } from "@/sanity/sanity-utils";
+import Container from "@/app/components/container";
 
 import { Post } from "@/types/Post";
 
@@ -13,19 +13,6 @@ type Props = {
   };
 };
 
-export async function generateMetadata({
-  params: { postSlug, categorySlug },
-}: Props): Promise<Metadata> {
-  const page = await getPost(categorySlug, postSlug);
-
-  if (!page) notFound();
-
-  return {
-    title: page.title,
-    description: page.excerpt,
-  };
-}
-
 export default async function Post({
   params: { postSlug, categorySlug },
 }: Props) {
@@ -34,7 +21,7 @@ export default async function Post({
   if (!page) notFound();
 
   return (
-    <div>
+    <Container>
       Post title: {page.title} <br />
       Post slug: {page.postSlug} <br />
       Category: {page.categories[0].title} <br />
@@ -43,24 +30,9 @@ export default async function Post({
       Author slug: {page.author.slug.current} <br />
       Post content: <PortableText value={page.body} /> <br />
       Post categories: {page.categories.map(category => category.title + " ")}
-    </div>
+    </Container>
   );
 }
 
 // Enables statically generating routes at build time instead of on-demand at request time
 // generateStaticParams can be placed in the page.tsx at the last route segment.
-export async function generateStaticParams({
-  params: { categorySlug },
-}: Props) {
-  const categoryPostsData: Promise<Post[]> = getCategoryPosts(categorySlug);
-
-  const categoryPostsDict = await categoryPostsData;
-
-  const categoryPosts = Object.values(categoryPostsDict);
-
-  return categoryPosts.map(post => ({
-    params: {
-      postSlug: post.slug,
-    },
-  }));
-}
