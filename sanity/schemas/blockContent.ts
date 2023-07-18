@@ -1,3 +1,4 @@
+// Reference: https://www.sanity.io/docs/portable-text-editor-configuration, https://www.sanity.io/docs/customizing-the-portable-text-editor
 import { defineField, defineType, defineArrayMember } from "sanity";
 
 import IframePreview from "../plugins/previews/iframe";
