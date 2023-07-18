@@ -1,28 +1,15 @@
-import { getAllCategories } from "@/sanity/sanity-utils";
-import { Metadata } from "next/types";
 import { notFound } from "next/navigation";
+import { Metadata } from "next/types";
 
 import type { Category } from "@/types/Category";
 
-import { getCategory } from "@/sanity/sanity-utils";
+import { getCategory, getAllCategories } from "@/sanity/sanity-utils";
 
 type Props = {
   params: {
     categorySlug: string;
   };
 };
-
-export default function Category({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: {
-    category: string;
-  };
-}) {
-  return <>{children}</>;
-}
 
 export async function generateMetadata({
   params: { categorySlug },
@@ -46,4 +33,16 @@ export async function generateStaticParams() {
   const categories = await categoriesData;
 
   return categories.map(category => ({ categorySlug: category.slug.current }));
+}
+
+export default function Category({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: {
+    category: string;
+  };
+}) {
+  return <>{children}</>;
 }
