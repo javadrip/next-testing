@@ -5,6 +5,7 @@ import { parseISO, format } from "date-fns";
 import clsx from "clsx";
 
 import { urlForImage } from "@/lib/urlFor";
+import CategoryLabel from "../ui/CategoryLabel";
 
 import type { Post } from "@/types/Post";
 
@@ -42,6 +43,7 @@ export default function PostListing({
         minimal && "grid gap-10 md:grid-cols-2"
       )}
     >
+      {/* FEATURED IMAGE */}
       <div
         className={clsx(
           " overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105   dark:bg-gray-800"
@@ -79,7 +81,9 @@ export default function PostListing({
 
       <div className={clsx(minimal && "flex items-center")}>
         <div>
-          {/* <CategoryLabel categories={post.categories} nomargin={minimal} /> */}
+          {/* CATEGORIES */}
+          <CategoryLabel categories={post.categories} nomargin={minimal} />
+          {/* ARTICLE TITLE */}
           <h2
             className={clsx(
               fontSize === "large"
@@ -99,7 +103,7 @@ export default function PostListing({
               }${post.slug.current}`}
             >
               <span
-                className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom
+                className="bg-gradient-to-r from-green-300 to-green-100 bg-[length:0px_10px] bg-left-bottom
       bg-no-repeat
       transition-[background-size]
       duration-500
@@ -112,6 +116,7 @@ export default function PostListing({
             </Link>
           </h2>
 
+          {/* EXCERPT: currently hidden */}
           <div className="hidden">
             {post.excerpt && (
               <p className="mt-2 line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
@@ -127,6 +132,7 @@ export default function PostListing({
             )}
           </div>
 
+          {/* AUTHOR AND DATE */}
           <div className="mt-3 flex items-center space-x-3 text-gray-500 dark:text-gray-400">
             <Link href={`/author/${post.author.slug.current}`} legacyBehavior>
               <div className="flex items-center gap-3">
