@@ -4,7 +4,7 @@ import Image from "next/image";
 import { parseISO, format } from "date-fns";
 import clsx from "clsx";
 
-import { urlForImage } from "../../../lib/urlFor";
+import { urlForImage } from "@/lib/urlFor";
 
 import type { Post } from "@/types/Post";
 
@@ -30,6 +30,10 @@ export default function PostListing({
   fontWeight,
 }: Props) {
   const imageProps = post?.mainImage ? urlForImage(post?.mainImage) : null;
+
+  const AuthorimageProps = post?.author?.image
+    ? urlForImage(post.author.image)
+    : null;
 
   return (
     <div
@@ -127,15 +131,15 @@ export default function PostListing({
             <Link href={`/author/${post.author.slug.current}`} legacyBehavior>
               <div className="flex items-center gap-3">
                 <div className="relative h-5 w-5 flex-shrink-0">
-                  {/* {AuthorimageProps && (
-                      <Image
-                        src={AuthorimageProps.src}
-                        alt={post?.author?.name}
-                        className="rounded-full object-cover"
-                        fill
-                        sizes="20px"
-                      />
-                    )} */}
+                  {AuthorimageProps && (
+                    <Image
+                      src={AuthorimageProps.src}
+                      alt={post?.author?.name}
+                      className="rounded-full object-cover"
+                      fill
+                      sizes="20px"
+                    />
+                  )}
                 </div>
                 <span className="truncate text-sm">{post.author.name}</span>
               </div>
