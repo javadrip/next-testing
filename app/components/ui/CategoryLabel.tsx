@@ -13,7 +13,7 @@ export default function CategoryLabel({ categories, nomargin = false }: Props) {
     <div className="flex gap-3">
       {categories?.length &&
         categories.slice(0).map((category, index) => (
-          <Link href={`/category/${category.slug.current}`} key={index}>
+          <Link href={`/${category.slug.current}`} key={index}>
             <CategoryLabelStyles nomargin={nomargin} color={category.color}>
               {category.title}
             </CategoryLabelStyles>
