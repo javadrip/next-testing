@@ -84,6 +84,7 @@ export const postsbyauthorquery = groq`
   ...,
   author->,
   categories[]->,
+  "categorySlug": categories[0]->slug.current,
 }
 `;
 
