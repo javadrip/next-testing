@@ -35,6 +35,7 @@ export async function generateStaticParams({
   const categoryPosts = await categoryPostsData;
 
   return categoryPosts.map(post => ({
+    categorySlug: categorySlug,
     postSlug: post.slug.current,
   }));
 }
