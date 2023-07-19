@@ -18,6 +18,7 @@ import {
   catquery,
   getAll,
   searchquery,
+  categorytitlebyslugquery,
 } from "./groq";
 
 import { Post } from "@/types/Post";
@@ -107,6 +108,15 @@ export async function getAllCategories() {
     return slugs.map(slug => ({ category: slug }));
   }
   return [];
+}
+
+export async function getCategoryTitleBySlug(categorySlug: string) {
+  if (client) {
+    return (
+      (await client.fetch(categorytitlebyslugquery, { categorySlug })) || {}
+    );
+  }
+  return {};
 }
 
 export async function getPostsByCategory(
