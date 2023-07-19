@@ -69,11 +69,29 @@ export default function CategoryArchive({
     router.push(`/${categorySlug}?page=${pageIndex - 1}`);
   };
 
+  // =========================== QUERIES CATEGORY TITLE =========================== //
+
+  const matchingPost = posts.find((post: Post) =>
+    post.categories.some(category => category.slug.current === categorySlug)
+  );
+
+  const matchingCategory = matchingPost
+    ? matchingPost.categories.find(
+        (category: any) => category.slug.current === categorySlug
+      )
+    : null;
+
+  const categoryTitle = matchingCategory
+    ? matchingCategory.title
+    : "Category not found";
+
+  // =========================== QUERIES CATEGORY TITLE =========================== //
+
   return (
     <>
       <Container>
         <h1 className="text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
-          Archive
+          {categoryTitle}
         </h1>
         <div className="text-center">
           <p className="mt-2 text-lg">See all posts we have ever written.</p>
