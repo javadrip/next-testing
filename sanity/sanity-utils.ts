@@ -70,19 +70,19 @@ export async function getAllCategories(): Promise<Category[]> {
   );
 }
 
-//TODO: Can remove this function
+//TODO: Move to client and groq
 // Get all posts in a single category
 export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
   return createClient(config).fetch(
-    groq`*[_type == "post" && $categorySlug in categories[]->categorySlug.current]{
+    groq`*[_type == "post" && $categorySlug in categories[]->slug.current]{
       _id,
       _createdAt,
       _updatedAt,
       title,
-      "postSlug": postSlug.current,
+      slug,
       "categorySlug": $categorySlug,
-      "mainImage": mainImage.asset->url,
-      "category": *[_type == "category" && categorySlug.current == $categorySlug][0].category,
+      mainImage,
+      "category": *[_type == "category" && slug.current == $categorySlug][0].title,
     }`,
     { categorySlug }
   );
