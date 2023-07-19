@@ -1,10 +1,10 @@
 import CategoryArchive from "./CategoryArchive";
 
-import type { Category } from "@/types/Category";
-
+import Container from "@/app/components/container";
 import { getPaginatedPostsByCategory } from "@/sanity/client";
 import { getCategoryTitleBySlug } from "@/sanity/client";
 
+import type { Category } from "@/types/Category";
 type Props = {
   params: {
     categorySlug: string;
@@ -19,10 +19,12 @@ export default async function Category({ params: { categorySlug } }: Props) {
   const categoryTitle = await getCategoryTitleBySlug(categorySlug);
 
   return (
-    <CategoryArchive
-      posts={posts}
-      categorySlug={categorySlug}
-      categoryTitle={categoryTitle}
-    />
+    <Container>
+      <CategoryArchive
+        posts={posts}
+        categorySlug={categorySlug}
+        categoryTitle={categoryTitle}
+      />
+    </Container>
   );
 }

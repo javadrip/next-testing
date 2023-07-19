@@ -1,6 +1,5 @@
 "use client";
 
-import Container from "@/app/components/container";
 import { useRouter, useSearchParams } from "next/navigation";
 import { paginatedpostsbycatquery } from "@/sanity/groq";
 import PostListing from "@/app/components/post/PostListing";
@@ -73,60 +72,58 @@ export default function CategoryArchive({
 
   return (
     <>
-      <Container>
-        <h1 className="text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
-          {categoryTitle}
-        </h1>
-        <div className="text-center">
-          <p className="mt-2 text-lg">See all posts we have ever written.</p>
+      <h1 className="text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
+        {categoryTitle}
+      </h1>
+      <div className="text-center">
+        <p className="mt-2 text-lg">See all posts we have ever written.</p>
+      </div>
+      {posts && posts?.length === 0 && (
+        <div className="flex h-40 items-center justify-center">
+          <span className="text-lg text-gray-500">End of the result!</span>
         </div>
-        {posts && posts?.length === 0 && (
-          <div className="flex h-40 items-center justify-center">
-            <span className="text-lg text-gray-500">End of the result!</span>
-          </div>
-        )}
+      )}
 
-        {isValidating && (
-          <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-            {/* TODO: Is it okay to use null in fill()? */}
-            {new Array(6).fill(null).map((item, index) => (
-              <div key={index}>
-                <SkeletonImg />
-              </div>
-            ))}
-          </div>
-        )}
-        {posts && !isLoading && !isValidating && (
-          <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-            {posts.map((post: Post) => (
-              <PostListing key={post._id} post={post} aspect="square" />
-            ))}
-          </div>
-        )}
-        <div className="mt-10 flex items-center justify-center">
-          <nav
-            className="isolate inline-flex -space-x-px rounded-md shadow-sm"
-            aria-label="Pagination"
-          >
-            <button
-              disabled={isFirstPage}
-              onClick={handlePrevPage}
-              className="relative inline-flex items-center gap-1 rounded-l-md border border-gray-300 bg-white px-3 py-2 pr-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 dark:border-gray-500 dark:bg-gray-800 dark:text-gray-300"
-            >
-              <ChevronLeftIcon className="h-3 w-3" aria-hidden="true" />
-              <span>Previous</span>
-            </button>
-            <button
-              onClick={handleNextPage}
-              disabled={isLastPage}
-              className="relative inline-flex items-center gap-1 rounded-r-md border border-gray-300 bg-white px-3 py-2 pl-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 dark:border-gray-500 dark:bg-gray-800 dark:text-gray-300"
-            >
-              <span>Next</span>
-              <ChevronRightIcon className="h-3 w-3" aria-hidden="true" />
-            </button>
-          </nav>
+      {isValidating && (
+        <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+          {/* TODO: Is it okay to use null in fill()? */}
+          {new Array(6).fill(null).map((item, index) => (
+            <div key={index}>
+              <SkeletonImg />
+            </div>
+          ))}
         </div>
-      </Container>
+      )}
+      {posts && !isLoading && !isValidating && (
+        <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+          {posts.map((post: Post) => (
+            <PostListing key={post._id} post={post} aspect="square" />
+          ))}
+        </div>
+      )}
+      <div className="mt-10 flex items-center justify-center">
+        <nav
+          className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+          aria-label="Pagination"
+        >
+          <button
+            disabled={isFirstPage}
+            onClick={handlePrevPage}
+            className="relative inline-flex items-center gap-1 rounded-l-md border border-gray-300 bg-white px-3 py-2 pr-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 dark:border-gray-500 dark:bg-gray-800 dark:text-gray-300"
+          >
+            <ChevronLeftIcon className="h-3 w-3" aria-hidden="true" />
+            <span>Previous</span>
+          </button>
+          <button
+            onClick={handleNextPage}
+            disabled={isLastPage}
+            className="relative inline-flex items-center gap-1 rounded-r-md border border-gray-300 bg-white px-3 py-2 pl-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 dark:border-gray-500 dark:bg-gray-800 dark:text-gray-300"
+          >
+            <span>Next</span>
+            <ChevronRightIcon className="h-3 w-3" aria-hidden="true" />
+          </button>
+        </nav>
+      </div>
     </>
   );
 }
