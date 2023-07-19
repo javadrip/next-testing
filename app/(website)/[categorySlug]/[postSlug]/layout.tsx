@@ -27,9 +27,7 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams({
-  params: { categorySlug },
-}: Props) {
+export async function generateStaticParams({ params: { categorySlug } }: any) {
   const categoryPostsData: Promise<Post[]> = getCategoryPosts(categorySlug);
 
   const categoryPosts = await categoryPostsData;
