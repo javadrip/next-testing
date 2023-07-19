@@ -97,6 +97,12 @@ export const postsbycatquery = groq`
 }
 `;
 
+// ============================== CATEGORY QUERIES ============================== //
+
+export const categorytitlebyslugquery = groq`
+*[_type == "category" && slug.current == $categorySlug][0].title
+`;
+
 // ============================== SETTINGS QUERIES ============================== //
 
 // Get Site Config
