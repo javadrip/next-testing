@@ -5,6 +5,7 @@ import { getPost, getCategoryPosts } from "@/sanity/sanity-utils";
 import { PortableText } from "@/sanity/plugins/portabletext";
 
 import { Post } from "@/types/Post";
+import category from "@/sanity/schemas/category";
 
 type Props = {
   params: {
@@ -37,7 +38,7 @@ export async function generateStaticParams({
 
   return categoryPosts.map(post => ({
     params: {
-      postSlug: post.slug,
+      postSlug: post.slug.current,
     },
   }));
 }
