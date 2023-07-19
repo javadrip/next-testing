@@ -75,14 +75,15 @@ export async function getAllCategories(): Promise<Category[]> {
 export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
   return createClient(config).fetch(
     groq`*[_type == "post" && $categorySlug in categories[]->slug.current]{
-      _id,
-      _createdAt,
-      _updatedAt,
-      title,
-      slug,
-      "categorySlug": $categorySlug,
-      mainImage,
-      "category": *[_type == "category" && slug.current == $categorySlug][0].title,
+      ...,
+      // _id,
+      // _createdAt,
+      // _updatedAt,
+      // title,
+      // slug,
+      // "categorySlug": $categorySlug,
+      // mainImage,
+      // "category": *[_type == "category" && slug.current == $categorySlug][0].title,
     }`,
     { categorySlug }
   );
