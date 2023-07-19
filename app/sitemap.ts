@@ -43,12 +43,12 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const categories = categoriesData.map(route => ({
-    url: `${URL}/${route.slug}`,
+    url: `${URL}/${route.slug.current}`,
     lastModified: new Date().toISOString(),
   }));
 
   const authors = authorsData.map(route => ({
-    url: `${URL}/authors/${route.slug}`,
+    url: `${URL}/authors/${route.slug.current}`,
     lastModified: new Date().toISOString(),
   }));
 
