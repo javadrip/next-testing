@@ -9,6 +9,7 @@ import { DropdownMenu } from "./dropdownmenu";
 import Container from "../container";
 
 import Search from "../ui/search";
+import { Fragment } from "react";
 
 export interface Props {
   logo: {
@@ -85,7 +86,7 @@ export default function NavbarAlt(props: Props) {
                 <div className="flex items-center gap-3">
                   <div className="hidden w-full flex-col items-center lg:flex lg:w-auto lg:flex-row ">
                     {menu.map((item, index) => (
-                      <>
+                      <Fragment key={index + item.label}>
                         {item.children && item.children.length > 0 ? (
                           <DropdownMenu
                             menu={item}
@@ -104,7 +105,7 @@ export default function NavbarAlt(props: Props) {
                             {item.label}
                           </Link>
                         )}
-                      </>
+                      </Fragment>
                     ))}
                   </div>
                   <div className="hidden lg:block">
@@ -117,7 +118,7 @@ export default function NavbarAlt(props: Props) {
               <Disclosure.Panel>
                 <div className="order-2 -ml-5 mt-5 flex w-full flex-col items-start justify-start lg:hidden">
                   {menu.map((item, index) => (
-                    <>
+                    <Fragment key={index + item.label}>
                       {item.children && item.children.length > 0 ? (
                         <DropdownMenu
                           menu={item}
@@ -136,7 +137,7 @@ export default function NavbarAlt(props: Props) {
                           {item.label}
                         </Link>
                       )}
-                    </>
+                    </Fragment>
                   ))}
                   <div className="mt-2 px-5">
                     <form action="/search" method="GET">
