@@ -132,6 +132,7 @@ export async function getNextTwoPosts(categorySlug: string): Promise<Post[]> {
   return result;
 }
 
+// TODO: Move to client and groq
 // Get data of a single author
 export async function getAuthor(authorSlug: string): Promise<Author> {
   return createClient(config).fetch(
@@ -140,7 +141,7 @@ export async function getAuthor(authorSlug: string): Promise<Author> {
       _createdAt,
       name,
       slug,
-      "image": image.asset->url,
+      image,
       bio,
     }`,
     { authorSlug }
