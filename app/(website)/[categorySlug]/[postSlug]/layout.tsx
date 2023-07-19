@@ -37,9 +37,7 @@ export async function generateStaticParams({
   const categoryPosts = Object.values(categoryPostsDict);
 
   return categoryPosts.map(post => ({
-    params: {
-      postSlug: post.slug.current,
-    },
+    postSlug: post.slug.current,
   }));
 }
 
