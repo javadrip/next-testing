@@ -14,11 +14,13 @@ import { Post } from "@/types/Post";
 interface Props {
   posts: Post[];
   categorySlug: string;
+  categoryTitle: string;
 }
 
 export default function CategoryArchive({
   posts: initialposts,
   categorySlug,
+  categoryTitle,
 }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -68,24 +70,6 @@ export default function CategoryArchive({
   const handlePrevPage = () => {
     router.push(`/${categorySlug}?page=${pageIndex - 1}`);
   };
-
-  // =========================== QUERIES CATEGORY TITLE =========================== //
-
-  const matchingPost = posts.find((post: Post) =>
-    post.categories.some(category => category.slug.current === categorySlug)
-  );
-
-  const matchingCategory = matchingPost
-    ? matchingPost.categories.find(
-        (category: any) => category.slug.current === categorySlug
-      )
-    : null;
-
-  const categoryTitle = matchingCategory
-    ? matchingCategory.title
-    : "Category not found";
-
-  // =========================== QUERIES CATEGORY TITLE =========================== //
 
   return (
     <>
