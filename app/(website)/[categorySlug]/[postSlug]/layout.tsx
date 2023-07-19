@@ -27,17 +27,17 @@ export async function generateMetadata({
   };
 }
 
-// export async function generateStaticParams({
-//   params: { categorySlug },
-// }: Props) {
-//   const categoryPostsData: Promise<Post[]> = getCategoryPosts(categorySlug);
+export async function generateStaticParams({
+  params: { categorySlug },
+}: Props) {
+  const categoryPostsData: Promise<Post[]> = getCategoryPosts(categorySlug);
 
-//   const categoryPosts = await categoryPostsData;
+  const categoryPosts = await categoryPostsData;
 
-//   return categoryPosts.map(post => ({
-//     postSlug: post.slug.current,
-//   }));
-// }
+  return categoryPosts.map(post => ({
+    postSlug: post.slug.current,
+  }));
+}
 
 export default async function Post({
   children,
