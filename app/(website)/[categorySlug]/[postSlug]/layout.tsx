@@ -32,9 +32,7 @@ export async function generateStaticParams({
 }: Props) {
   const categoryPostsData: Promise<Post[]> = getCategoryPosts(categorySlug);
 
-  const categoryPostsDict = await categoryPostsData;
-
-  const categoryPosts = Object.values(categoryPostsDict);
+  const categoryPosts = await categoryPostsData;
 
   return categoryPosts.map(post => ({
     postSlug: post.slug.current,
