@@ -5,7 +5,7 @@ import { PortableText } from "@/sanity/plugins/portabletext";
 
 import { parseISO, format } from "date-fns";
 
-import { getPost } from "@/sanity/sanity-utils";
+import { getPost, getCategoryPosts } from "@/sanity/sanity-utils";
 import { urlForImage } from "@/lib/urlFor";
 
 import Container from "@/app/components/container";
@@ -13,6 +13,7 @@ import CategoryLabel from "@/app/components/ui/CategoryLabel";
 import AuthorCard from "@/app/components/post/AuthorCard";
 
 import { Post } from "@/types/Post";
+import CategoryPostTest from "./CategoryPostTest";
 
 type Props = {
   params: {
@@ -20,6 +21,19 @@ type Props = {
     categorySlug: string;
   };
 };
+
+export async function generateStaticParams({
+  params: { categorySlug },
+}: Props) {
+  const categoryPostsData: Promise<Post[]> = getCategoryPosts(categorySlug);
+
+  const categoryPosts = await categoryPostsData;
+
+  return categoryPosts.map(post => ({
+    categorySlug: categorySlug,
+    postSlug: post.slug.current,
+  }));
+}
 
 export default async function Post({
   params: { postSlug, categorySlug },
@@ -37,6 +51,7 @@ export default async function Post({
   return (
     <>
       <Container className="!pt-0">
+        {/* <CategoryPostTest categorySlug={categorySlug} /> */}
         <div className="mx-auto max-w-screen-md ">
           <div className="flex justify-center">
             <CategoryLabel categories={post.categories} />
