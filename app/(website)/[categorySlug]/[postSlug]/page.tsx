@@ -13,7 +13,6 @@ import CategoryLabel from "@/app/components/ui/CategoryLabel";
 import AuthorCard from "@/app/components/post/AuthorCard";
 
 import { Post } from "@/types/Post";
-import CategoryPostTest from "./CategoryPostTest";
 
 type Props = {
   params: {
