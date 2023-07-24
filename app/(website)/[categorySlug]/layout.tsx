@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
-import { Metadata } from "next/types";
-import type { Category } from "@/types/Category";
 
 import { getCategory, getAllCategories } from "@/sanity/sanity-utils";
+
+import { Metadata } from "next/types";
+import type { Category } from "@/types/Category";
 
 type Props = {
   params: {
