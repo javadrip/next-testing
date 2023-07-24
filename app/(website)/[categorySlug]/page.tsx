@@ -5,6 +5,7 @@ import { getPaginatedPostsByCategory } from "@/sanity/client";
 import { getCategoryTitleBySlug } from "@/sanity/client";
 
 import type { Category } from "@/types/Category";
+
 type Props = {
   params: {
     categorySlug: string;
