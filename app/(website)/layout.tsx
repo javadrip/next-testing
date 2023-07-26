@@ -1,5 +1,7 @@
 import { getSettings } from "@/sanity/client";
-import Navbar from "../components/navigation/navbar";
+
+import Navbar from "@/app/components/navigation/navbar";
+import Footer from "@/app/components/footer";
 
 interface Props {
   children: React.ReactNode;
@@ -24,13 +26,14 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Layout({ children }: Props) {
+export default async function RootLayout({ children }: Props) {
   const settings = await getSettings();
 
   return (
     <>
       <Navbar {...settings} />
       <div>{children}</div>
+      <Footer {...settings} />
     </>
   );
 }
