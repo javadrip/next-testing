@@ -17,14 +17,27 @@ type Props = {
 export async function generateMetadata({
   params: { postSlug, categorySlug },
 }: Props): Promise<Metadata> {
-  const page = await getPost(categorySlug, postSlug);
+  try {
+    const post = await getPost(categorySlug, postSlug);
 
-  if (!page) notFound();
+    if (!post)
+      return {
+        title: "Not found",
+        description: "The post you are looking for does not exist.",
+      };
 
-  return {
-    title: page.title,
-    description: page.excerpt,
-  };
+    return {
+      title: post.title,
+      description: post.excerpt,
+    };
+  } catch (error) {
+    console.error(error);
+
+    return {
+      title: "Not found",
+      description: "The post you are looking for does not exist.",
+    };
+  }
 }
 
 export async function generateStaticParams({
