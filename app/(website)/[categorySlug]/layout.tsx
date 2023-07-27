@@ -19,7 +19,10 @@ export async function generateMetadata({
   if (!category) notFound();
 
   return {
-    title: category.title,
+    title: {
+      default: category.title,
+      template: "%s | TEMPLATE",
+    },
     description: `See all posts in ${category.title}`,
   };
 }
