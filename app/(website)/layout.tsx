@@ -1,6 +1,6 @@
 import { getSettings } from "@/sanity/client";
 
-import Navbar from "@/app/components/navigation/navbar";
+import Navbar from "@/app/components/navigation/Navbar";
 import Footer from "@/app/components/footer";
 
 interface Props {
@@ -13,6 +13,7 @@ export async function generateMetadata() {
   return {
     title: {
       default: settings?.title || "TEMPLATE",
+      // NOTE: Template only applies to direct child route
       template: "%s | TEMPLATE",
     },
     description: settings?.description || "DESCRIPTION",
