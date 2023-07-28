@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Links } from "./Links";
 
 const NavbarMenu = () => {
@@ -52,7 +52,7 @@ const NavbarMenu = () => {
                             key={index}
                           >
                             <Link
-                              to={slink.link}
+                              href={slink.link}
                               className="hover:text-primary"
                             >
                               {slink.name}
@@ -103,7 +103,7 @@ const NavbarMenu = () => {
                   >
                     {slinks.sublink.map((slink, index) => (
                       <li className="py-3 pl-14" key={index}>
-                        <Link to={slink.link}>{slink.name}</Link>
+                        <Link href={slink.link}>{slink.name}</Link>
                       </li>
                     ))}
                   </div>
