@@ -22,11 +22,6 @@ const Navbar = () => {
             {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
           </div>
           <ul className="md:flex hidden items-center gap-16">
-            <li>
-              <Link href="/" className="inline-block">
-                Home
-              </Link>
-            </li>
             <NavbarMenu />
           </ul>
           {/* Mobile nav */}

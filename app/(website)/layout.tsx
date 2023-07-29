@@ -1,6 +1,6 @@
 import { getSettings } from "@/sanity/client";
 
-import Navbar from "@/app/components/navigation/navbar";
+import Navbar from "@/app/components/navigation/Navbar";
 import Footer from "@/app/components/footer";
 
 interface Props {
