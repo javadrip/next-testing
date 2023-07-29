@@ -26,6 +26,11 @@ const NavbarMenu = () => {
             >
               {link.name}
               <span className="text-xl md:hidden inline">
+                {heading === link.name ? (
+                  <ChevronUpIcon className="h-8" />
+                ) : (
+                  <ChevronDownIcon className="h-8" />
+                )}
                 {/* <ion-icon
                   name={`${
                     heading === link.name ? "chevron-up" : "chevron-down"
