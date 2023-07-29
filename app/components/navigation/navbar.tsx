@@ -32,15 +32,10 @@ const Navbar = () => {
           {/* Mobile nav */}
           <ul
             className={`
-        md:hidden bg-red-100 top-16 fixed w-full overflow-y-auto bottom-0 py-24 pl-4
+        md:hidden bg-red-100 top-16 fixed w-full overflow-y-auto bottom-0 py-8 px-4
         duration-500 ${open ? "right-0" : "right-[-100%]"}
         `}
           >
-            <li>
-              <Link href="/" className="inline-block">
-                Home
-              </Link>
-            </li>
             <NavbarMenu />
           </ul>
         </div>

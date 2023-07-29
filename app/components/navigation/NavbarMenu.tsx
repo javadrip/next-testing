@@ -14,6 +14,11 @@ const NavbarMenu = () => {
   const [subHeading, setSubHeading] = useState("");
   return (
     <>
+      <li>
+        <Link href="/" className="inline-block py-4">
+          Home
+        </Link>
+      </li>
       {Links.map((link, index) => (
         <div key={index}>
           <div className="text-left md:cursor-pointer group">
