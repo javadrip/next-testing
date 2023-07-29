@@ -12,7 +12,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-100 fixed top-0 z-50 w-full py-4">
+    <nav className="py-4 fixed md:top-0 bottom-0 h-16 z-50 w-full bg-blue-100">
       <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
         <div>Next Testing</div>
         <div>
@@ -27,7 +27,7 @@ const Navbar = () => {
           {/* Mobile nav */}
           <ul
             className={`
-        md:hidden bg-red-100 top-16 fixed w-full overflow-y-auto bottom-0 py-8 px-4
+        md:hidden bg-red-100 md:top-16 bottom-16 pt-16 fixed w-full h-full overflow-y-auto py-8 px-4
         duration-500 ${open ? "right-0" : "right-[-100%]"}
         `}
           >
