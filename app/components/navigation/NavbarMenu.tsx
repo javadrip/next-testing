@@ -3,7 +3,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Links } from "./Links";
-import { Bars3Icon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/24/outline";
 
 const NavbarMenu = () => {
   const [heading, setHeading] = useState("");
@@ -12,9 +16,9 @@ const NavbarMenu = () => {
     <>
       {Links.map((link, index) => (
         <div key={index}>
-          <div className="px-3 text-left md:cursor-pointer group">
+          <div className="text-left md:cursor-pointer group">
             <h1
-              className="py-4 flex justify-between items-center md:pr-0 pr-5 group"
+              className="flex justify-between items-center md:pr-0 group"
               onClick={() => {
                 heading !== link.name ? setHeading(link.name) : setHeading("");
                 setSubHeading("");
@@ -41,7 +45,7 @@ const NavbarMenu = () => {
                     mt-1 bg-white rotate-45"
                     ></div>
                   </div>
-                  <div className="bg-white p-5 grid grid-cols-3 gap-10">
+                  <div className="bg-white p-5 grid grid-cols-3 gap-8">
                     {link.sublinks.map((mysublinks, index) => (
                       <div key={index}>
                         <h1 className="text-lg font-semibold">
@@ -83,7 +87,7 @@ const NavbarMenu = () => {
                         ? setSubHeading(slinks.Head)
                         : setSubHeading("")
                     }
-                    className="py-4 pl-7 font-semibold md:pr-0 pr-5 flex justify-between items-center"
+                    className="pl-7 font-semibold md:pr-0 flex justify-between items-center"
                   >
                     {slinks.Head}
 
