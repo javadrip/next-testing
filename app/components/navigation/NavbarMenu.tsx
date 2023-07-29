@@ -15,7 +15,7 @@ const NavbarMenu = () => {
   return (
     <>
       <li>
-        <Link href="/" className="inline-block py-4">
+        <Link href="/" className="inline-block">
           Home
         </Link>
       </li>
