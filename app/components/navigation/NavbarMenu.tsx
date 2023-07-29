@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Links } from "./Links";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 const NavbarMenu = () => {
   const [heading, setHeading] = useState("");
@@ -13,7 +14,7 @@ const NavbarMenu = () => {
         <div key={index}>
           <div className="px-3 text-left md:cursor-pointer group">
             <h1
-              className="py-7 flex justify-between items-center md:pr-0 pr-5 group"
+              className="py-4 flex justify-between items-center md:pr-0 pr-5 group"
               onClick={() => {
                 heading !== link.name ? setHeading(link.name) : setHeading("");
                 setSubHeading("");
