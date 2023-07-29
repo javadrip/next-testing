@@ -12,7 +12,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-100 fixed top-0 z-50 w-full">
+    <nav className="bg-blue-100 fixed top-0 z-50 w-full py-4">
       <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
         <div>Next Testing</div>
         <div>
@@ -21,9 +21,9 @@ const Navbar = () => {
             {open && <XMarkIcon className="h-8" />}
             {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
           </div>
-          <ul className="md:flex hidden items-center gap-8">
+          <ul className="md:flex hidden items-center gap-16">
             <li>
-              <Link href="/" className="px-3 inline-block">
+              <Link href="/" className="inline-block">
                 Home
               </Link>
             </li>
@@ -37,7 +37,7 @@ const Navbar = () => {
         `}
           >
             <li>
-              <Link href="/" className="px-3 inline-block">
+              <Link href="/" className="inline-block">
                 Home
               </Link>
             </li>
