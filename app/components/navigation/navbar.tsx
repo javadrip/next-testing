@@ -16,15 +16,16 @@ const Navbar = () => {
       <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
         <div>Next Testing</div>
         <div>
+          {/* Desktop nav */}
+          <ul className="md:flex hidden items-center gap-16">
+            <NavbarMenu />
+          </ul>
+          {/* Mobile nav */}
           <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
             {!open && <Bars3Icon className="h-8" />}
             {open && <XMarkIcon className="h-8" />}
             {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
           </div>
-          <ul className="md:flex hidden items-center gap-16">
-            <NavbarMenu />
-          </ul>
-          {/* Mobile nav */}
           <ul
             className={`
         md:hidden bg-red-100 md:top-16 bottom-16 pt-16 fixed w-full h-full overflow-y-auto py-8 px-4
@@ -103,6 +104,7 @@ export default Navbar;
 //                       <span className="block text-center">Stablo</span>
 //                     )} */}
 //                   </Link>
+
 //                   <Disclosure.Button
 //                     aria-label="Toggle Menu"
 //                     className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none dark:text-gray-300 lg:hidden "
@@ -128,6 +130,7 @@ export default Navbar;
 //                     </svg>
 //                   </Disclosure.Button>
 //                 </div>
+
 //                 <div className="flex items-center gap-3">
 //                   <div className="hidden w-full flex-col items-center lg:flex lg:w-auto lg:flex-row ">
 //                     {menu.map((item, index) => (
