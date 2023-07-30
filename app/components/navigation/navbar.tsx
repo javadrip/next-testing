@@ -12,23 +12,23 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="py-4 fixed md:top-0 bottom-0 h-16 z-50 w-full bg-blue-100">
-      <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
+    <nav className="py-3 fixed top-0 h-12 z-50 w-full bg-blue-100">
+      <div className="flex items-start justify-between max-w-5xl mx-auto px-6">
         <div>Next Testing</div>
         <div>
           {/* Desktop nav */}
-          <ul className="md:flex hidden items-center gap-16">
+          <ul className="md:flex hidden items-start gap-16">
             <NavbarMenu />
           </ul>
           {/* Mobile nav */}
           <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
-            {!open && <Bars3Icon className="h-8" />}
-            {open && <XMarkIcon className="h-8" />}
+            {open && <XMarkIcon className="h-8 -mt-1" />}
+            {!open && <Bars3Icon className="h-8 -mt-1" />}
             {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
           </div>
           <ul
             className={`
-        md:hidden bg-red-100 md:top-16 bottom-16 pt-16 fixed w-full h-full overflow-y-auto py-8 px-4
+        md:hidden bg-red-100 top-12 pt-16 fixed w-full h-full overflow-y-auto py-8 px-4
         duration-500 ${open ? "right-0" : "right-[-100%]"}
         `}
           >
