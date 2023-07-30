@@ -1,7 +1,13 @@
 export const Links = [
   {
+    name: "Home",
+    href: "/",
+    external: false,
+  },
+  {
     name: "Men",
-    submenu: true,
+    href: "/men",
+    external: false,
     sublinks: [
       {
         Head: "Topwear",
@@ -25,27 +31,6 @@ export const Links = [
       },
       {
         Head: "innerwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-
-      {
-        Head: "sleepwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-      {
-        Head: "footwear",
         sublink: [
           { name: "T-shirt", link: "/" },
           { name: "Casual shirts", link: "/" },
@@ -58,7 +43,8 @@ export const Links = [
   },
   {
     name: "Women",
-    submenu: true,
+    href: "/men",
+    external: false,
     sublinks: [
       {
         Head: "Topwear",
@@ -82,84 +68,6 @@ export const Links = [
       },
       {
         Head: "innerwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-
-      {
-        Head: "sleepwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-      {
-        Head: "footwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Kid's",
-    submenu: true,
-    sublinks: [
-      {
-        Head: "Topwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-      {
-        Head: "Bottomwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-      {
-        Head: "innerwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-
-      {
-        Head: "sleepwear",
-        sublink: [
-          { name: "T-shirt", link: "/" },
-          { name: "Casual shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-          { name: "formal shirts", link: "/" },
-        ],
-      },
-      {
-        Head: "footwear",
         sublink: [
           { name: "T-shirt", link: "/" },
           { name: "Casual shirts", link: "/" },
