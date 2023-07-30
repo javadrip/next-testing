@@ -14,8 +14,8 @@ const NavbarMenu = () => {
   return (
     <>
       {Links.map((link, index) => (
-        <li key={index}>
-          <div className="text-left md:cursor-pointer group">
+        <div key={index}>
+          <div className="md:cursor-pointer md:hover:border-b-4 md:hover:border-pink-300 pb-2  group">
             {link.sublinks && link.sublinks.length > 0 ? (
               // Displays when there are submenu
               <Fragment>
@@ -43,7 +43,7 @@ const NavbarMenu = () => {
                 </h1>
 
                 {/* ================================= DESKTOP SUBMENU ================================= */}
-                <div className="absolute top-10 hidden group-hover:md:block hover:md:block">
+                <div className="absolute top-6 hidden group-hover:md:block hover:md:block">
                   <div className="py-3"></div>
                   <div className="bg-purple-300 p-4 gap-8">
                     {/* ============================= DESKTOP SUBMENU ITEMS ============================= */}
@@ -126,7 +126,7 @@ const NavbarMenu = () => {
               </Link>
             )}
           </div>
-        </li>
+        </div>
       ))}
     </>
   );
