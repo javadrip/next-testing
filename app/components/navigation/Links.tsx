@@ -78,6 +78,11 @@ export const Links = [
       },
     ],
   },
+  {
+    name: "Contact",
+    href: "/contact",
+    external: false,
+  },
 ];
 
 // ============================= ORIGINAL LINKS ============================= //
