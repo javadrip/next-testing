@@ -14,7 +14,7 @@ const NavbarMenu = () => {
   return (
     <>
       {Links.map((link, index) => (
-        <div key={index}>
+        <li key={index}>
           <div className="text-left md:cursor-pointer group">
             {link.sublinks && link.sublinks.length > 0 ? (
               // Displays when there are submenu
@@ -126,7 +126,7 @@ const NavbarMenu = () => {
               </Link>
             )}
           </div>
-        </div>
+        </li>
       ))}
     </>
   );
