@@ -6,8 +6,10 @@ import { Links } from "./Links";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const NavbarMenu = () => {
-  const [heading, setHeading] = useState("");
-  const [subHeading, setSubHeading] = useState("");
+  // Using strings (such as link labels and sublink names) instead of boolean to control each individual menu's open/close state.
+  // If boolean was used instead, then clicking on one menu would open or close all other menus on the same level.
+  const [parentMenu, setParentMenu] = useState("");
+  const [childMenu, setChildMenu] = useState("");
 
   return (
     <>
@@ -24,15 +26,15 @@ const NavbarMenu = () => {
                 <h1
                   className="bg-yellow-100 py-4 md:py-0 flex justify-between items-center group"
                   onClick={() => {
-                    heading !== link.name
-                      ? setHeading(link.name)
-                      : setHeading("");
-                    setSubHeading("");
+                    parentMenu !== link.name
+                      ? setParentMenu(link.name)
+                      : setParentMenu("");
+                    setChildMenu("");
                   }}
                 >
                   {link.name}
                   <span className="text-xl md:hidden inline">
-                    {heading === link.name ? (
+                    {parentMenu === link.name ? (
                       <ChevronUpIcon className="h-8" />
                     ) : (
                       <ChevronDownIcon className="h-8" />
@@ -74,7 +76,7 @@ const NavbarMenu = () => {
                 </div>
                 <div
                   className={` ${
-                    heading === link.name ? "md:hidden" : "hidden"
+                    parentMenu === link.name ? "md:hidden" : "hidden"
                   }`}
                 >
                   {/* ================================= MOBILE SUBMENU ================================= */}
@@ -83,15 +85,15 @@ const NavbarMenu = () => {
                       <div>
                         <h1
                           onClick={() =>
-                            subHeading !== slinks.Head
-                              ? setSubHeading(slinks.Head)
-                              : setSubHeading("")
+                            childMenu !== slinks.Head
+                              ? setChildMenu(slinks.Head)
+                              : setChildMenu("")
                           }
                           className="px-8 py-2 flex justify-between items-center"
                         >
                           {slinks.Head}
                           <span className="text-xl inline">
-                            {subHeading === link.name ? (
+                            {childMenu === link.name ? (
                               <ChevronUpIcon className="h-8" />
                             ) : (
                               <ChevronDownIcon className="h-8" />
@@ -100,7 +102,7 @@ const NavbarMenu = () => {
                         </h1>
                         <div
                           className={`${
-                            subHeading === slinks.Head ? "md:hidden" : "hidden"
+                            childMenu === slinks.Head ? "md:hidden" : "hidden"
                           }`}
                         >
                           {/* ============================= MOBILE SUBLINKS ============================= */}
