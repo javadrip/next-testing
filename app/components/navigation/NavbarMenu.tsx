@@ -13,15 +13,11 @@ const NavbarMenu = () => {
 
   return (
     <>
-      <li>
-        <Link href="/" className="inline-block py-4 md:py-0">
-          Home
-        </Link>
-      </li>
       {Links.map((link, index) => (
         <div key={index}>
           <div className="text-left md:cursor-pointer group">
             {link.sublinks && link.sublinks.length > 0 ? (
+              // Displays when there are submenu
               <Fragment>
                 <h1
                   className="bg-yellow-100 py-4 md:py-0 flex justify-between items-center group"
@@ -118,6 +114,7 @@ const NavbarMenu = () => {
                 </div>
               </Fragment>
             ) : (
+              // Displays when there are no submenu
               <Link
                 href={link.href}
                 key={index + link.name}
