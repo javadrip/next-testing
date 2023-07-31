@@ -67,7 +67,7 @@ const NavbarMenu = () => {
                             href={slink.link}
                             className="hover:text-primary"
                           >
-                            {slink.name}
+                            {slink.sublinkLabel}
                           </Link>
                         </li>
                       ))}
@@ -118,7 +118,7 @@ const NavbarMenu = () => {
                             className="py-3 pl-12 text-gray-600 hover:text-current"
                             key={index}
                           >
-                            <Link href={slink.link}>{slink.name}</Link>
+                            <Link href={slink.link}>{slink.sublinkLabel}</Link>
                           </li>
                         ))}
                       </div>
