@@ -8,7 +8,7 @@ export const Links = [
     label: "Men",
     href: "/men",
     external: false,
-    sublinks: [
+    submenu: [
       {
         Head: "Topwear",
         sublink: [
@@ -45,7 +45,7 @@ export const Links = [
     label: "Women",
     href: "/men",
     external: false,
-    sublinks: [
+    submenu: [
       {
         Head: "Topwear",
         sublink: [

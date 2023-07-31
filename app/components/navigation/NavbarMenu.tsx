@@ -18,7 +18,7 @@ const NavbarMenu = () => {
           className="navbar-link hover:bg-gradient-to-r from-cyan-500 to-blue-500 group md:cursor-pointer"
           key={index}
         >
-          {link.sublinks && link.sublinks.length > 0 ? (
+          {link.submenu && link.submenu.length > 0 ? (
             // Displays when there are submenu
             <Fragment>
               {/* <div className="bg-yellow-300 w-[0%] hover:w-[100%] duration-300"> */}
@@ -55,7 +55,7 @@ const NavbarMenu = () => {
               <div className="absolute top-14 hidden group-hover:md:block hover:md:block">
                 <div className="bg-purple-300 py-2 px-6">
                   {/* ============================= DESKTOP SUBMENU ITEMS ============================= */}
-                  {link.sublinks.map((mysublinks, index) => (
+                  {link.submenu.map((mysublinks, index) => (
                     <div key={index}>
                       <h1 className="text-lg font-semibold">
                         {mysublinks.Head}
@@ -81,7 +81,7 @@ const NavbarMenu = () => {
                 }`}
               >
                 {/* ================================= MOBILE SUBMENU ================================= */}
-                {link.sublinks.map((slinks, index) => (
+                {link.submenu.map((slinks, index) => (
                   <div key={index}>
                     <div>
                       <h1
