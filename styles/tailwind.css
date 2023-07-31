@@ -7,3 +7,17 @@
 /*! purgecss end ignore */
 
 /*Custom Styles Here*/
+.navbar-link:hover {
+  background: linear-gradient(to right, var(--tw-gradient-stops));
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 100% 4px;
+  padding: 16px 0px;
+  transition: 300ms;
+}
+
+.navbar-link {
+  background-position: bottom left;
+  background-size: 0% 4px;
+  padding: 16px 0px;
+}
