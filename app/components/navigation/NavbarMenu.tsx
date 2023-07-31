@@ -25,20 +25,20 @@ const NavbarMenu = () => {
               <h1
                 // Make sure the classNames are consistent with Link in the false part of this ternary operator.
                 className={`text-gray-600 hover:text-current flex justify-between items-center ${
-                  parentMenu === link.name
+                  parentMenu === link.label
                     ? "text-current font-semibold md:font-normal"
                     : ""
                 }`}
                 onClick={() => {
-                  parentMenu !== link.name
-                    ? setParentMenu(link.name)
+                  parentMenu !== link.label
+                    ? setParentMenu(link.label)
                     : setParentMenu("");
                   setChildMenu("");
                 }}
               >
-                {link.name}
+                {link.label}
                 <span className="text-xl md:hidden inline">
-                  {parentMenu === link.name ? (
+                  {parentMenu === link.label ? (
                     <ChevronUpIcon className="h-8" />
                   ) : (
                     <ChevronDownIcon className="h-8" />
@@ -77,7 +77,7 @@ const NavbarMenu = () => {
               </div>
               <div
                 className={` ${
-                  parentMenu === link.name ? "md:hidden" : "hidden"
+                  parentMenu === link.label ? "md:hidden" : "hidden"
                 }`}
               >
                 {/* ================================= MOBILE SUBMENU ================================= */}
@@ -129,12 +129,12 @@ const NavbarMenu = () => {
             // Displays when there are no submenu
             <Link
               href={link.href}
-              key={index + link.name}
+              key={index + link.label}
               className="text-gray-600 hover:text-current flex"
               target={link.external ? "_blank" : ""}
               rel={link.external ? "noopener" : ""}
             >
-              {link.name}
+              {link.label}
             </Link>
           )}
         </div>

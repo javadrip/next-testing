@@ -1,11 +1,11 @@
 export const Links = [
   {
-    name: "Home",
+    label: "Home",
     href: "/",
     external: false,
   },
   {
-    name: "Men",
+    label: "Men",
     href: "/men",
     external: false,
     sublinks: [
@@ -42,7 +42,7 @@ export const Links = [
     ],
   },
   {
-    name: "Women",
+    label: "Women",
     href: "/men",
     external: false,
     sublinks: [
@@ -79,7 +79,7 @@ export const Links = [
     ],
   },
   {
-    name: "Contact",
+    label: "Contact",
     href: "/contact",
     external: false,
   },
