@@ -12,12 +12,12 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="py-3 fixed top-0 h-12 z-50 w-full bg-blue-100">
-      <div className="flex items-start justify-between max-w-5xl mx-auto px-6">
-        <div>Next Testing</div>
+    <nav className="fixed top-0 z-50 w-full bg-blue-100">
+      <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
+        <div className="py-4">Next Testing</div>
         <div>
           {/* Desktop nav */}
-          <ul className="md:flex hidden items-start gap-16">
+          <ul className="md:flex hidden items-center gap-16">
             <NavbarMenu />
           </ul>
           {/* Mobile nav */}
