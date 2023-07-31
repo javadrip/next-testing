@@ -64,7 +64,7 @@ const NavbarMenu = () => {
                       {mysublinks.sublinks.map((slink, index) => (
                         <li className="text-sm text-gray-600 my-2" key={index}>
                           <Link
-                            href={slink.link}
+                            href={slink.sublinkHref}
                             className="hover:text-primary"
                           >
                             {slink.sublinkLabel}
@@ -118,7 +118,9 @@ const NavbarMenu = () => {
                             className="py-3 pl-12 text-gray-600 hover:text-current"
                             key={index}
                           >
-                            <Link href={slink.link}>{slink.sublinkLabel}</Link>
+                            <Link href={slink.sublinkHref}>
+                              {slink.sublinkLabel}
+                            </Link>
                           </li>
                         ))}
                       </div>
