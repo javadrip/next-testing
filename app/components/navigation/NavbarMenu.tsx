@@ -61,7 +61,7 @@ const NavbarMenu = () => {
                         {mysublinks.submenuLabel}
                       </h1>
                       {/* ============================= DESKTOP SUBLINKS ============================= */}
-                      {mysublinks.sublink.map((slink, index) => (
+                      {mysublinks.sublinks.map((slink, index) => (
                         <li className="text-sm text-gray-600 my-2" key={index}>
                           <Link
                             href={slink.link}
@@ -113,7 +113,7 @@ const NavbarMenu = () => {
                         }`}
                       >
                         {/* ============================= MOBILE SUBLINKS ============================= */}
-                        {slinks.sublink.map((slink, index) => (
+                        {slinks.sublinks.map((slink, index) => (
                           <li
                             className="py-3 pl-12 text-gray-600 hover:text-current"
                             key={index}
