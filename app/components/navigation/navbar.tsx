@@ -22,14 +22,14 @@ const Navbar = () => {
           </ul>
           {/* Mobile nav */}
           <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
-            {open && <XMarkIcon className="h-8 -mt-1" />}
-            {!open && <Bars3Icon className="h-8 -mt-1" />}
+            {open && <XMarkIcon className="h-8" />}
+            {!open && <Bars3Icon className="h-8" />}
             {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
           </div>
           <ul
             className={`
-        md:hidden bg-red-100 top-12 pt-16 fixed w-full h-full overflow-y-auto py-8 px-4
-        duration-500 ${open ? "right-0" : "right-[-100%]"}
+        md:hidden bg-red-100 top-14 pt-4 fixed w-full h-full overflow-y-auto py-8 px-4
+        duration-500 z-40 ${open ? "right-0" : "right-[-100%]"}
         `}
           >
             <NavbarMenu />
