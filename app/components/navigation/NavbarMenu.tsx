@@ -58,7 +58,7 @@ const NavbarMenu = () => {
                   {link.submenu.map((mysublinks, index) => (
                     <div key={index}>
                       <h1 className="text-lg font-semibold">
-                        {mysublinks.Head}
+                        {mysublinks.submenuLabel}
                       </h1>
                       {/* ============================= DESKTOP SUBLINKS ============================= */}
                       {mysublinks.sublink.map((slink, index) => (
@@ -86,19 +86,19 @@ const NavbarMenu = () => {
                     <div>
                       <h1
                         onClick={() =>
-                          childMenu !== slinks.Head
-                            ? setChildMenu(slinks.Head)
+                          childMenu !== slinks.submenuLabel
+                            ? setChildMenu(slinks.submenuLabel)
                             : setChildMenu("")
                         }
                         className={`text-gray-600 hover:text-current px-8 py-2 flex justify-between items-center ${
-                          childMenu === slinks.Head
+                          childMenu === slinks.submenuLabel
                             ? "text-current font-semibold md:font-normal"
                             : ""
                         }`}
                       >
-                        {slinks.Head}
+                        {slinks.submenuLabel}
                         <span className="text-xl inline">
-                          {childMenu === slinks.Head ? (
+                          {childMenu === slinks.submenuLabel ? (
                             <ChevronUpIcon className="h-8" />
                           ) : (
                             <ChevronDownIcon className="h-8" />
@@ -107,7 +107,9 @@ const NavbarMenu = () => {
                       </h1>
                       <div
                         className={`${
-                          childMenu === slinks.Head ? "md:hidden" : "hidden"
+                          childMenu === slinks.submenuLabel
+                            ? "md:hidden"
+                            : "hidden"
                         }`}
                       >
                         {/* ============================= MOBILE SUBLINKS ============================= */}

@@ -10,7 +10,7 @@ export const Links = [
     external: false,
     submenu: [
       {
-        Head: "Topwear",
+        submenuLabel: "Topwear",
         sublink: [
           { name: "T-shirt", link: "/" },
           { name: "Casual shirts", link: "/" },
@@ -20,7 +20,7 @@ export const Links = [
         ],
       },
       {
-        Head: "Bottomwear",
+        submenuLabel: "Bottomwear",
         sublink: [
           { name: "T-shirt", link: "/" },
           { name: "Casual shirts", link: "/" },
@@ -30,7 +30,7 @@ export const Links = [
         ],
       },
       {
-        Head: "innerwear",
+        submenuLabel: "innerwear",
         sublink: [
           { name: "T-shirt", link: "/" },
           { name: "Casual shirts", link: "/" },
@@ -47,7 +47,7 @@ export const Links = [
     external: false,
     submenu: [
       {
-        Head: "Topwear",
+        submenuLabel: "Topwear",
         sublink: [
           { name: "T-shirt", link: "/" },
           { name: "Casual shirts", link: "/" },
@@ -57,7 +57,7 @@ export const Links = [
         ],
       },
       {
-        Head: "Bottomwear",
+        submenuLabel: "Bottomwear",
         sublink: [
           { name: "T-shirt", link: "/" },
           { name: "Casual shirts", link: "/" },
@@ -67,7 +67,7 @@ export const Links = [
         ],
       },
       {
-        Head: "innerwear",
+        submenuLabel: "innerwear",
         sublink: [
           { name: "T-shirt", link: "/" },
           { name: "Casual shirts", link: "/" },
