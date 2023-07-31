@@ -24,7 +24,11 @@ const NavbarMenu = () => {
               {/* <div className="bg-yellow-300 w-[0%] hover:w-[100%] duration-300"> */}
               <h1
                 // Make sure the classNames are consistent with Link in the false part of this ternary operator.
-                className="text-gray-600 hover:text-current flex justify-between items-center"
+                className={`text-gray-600 hover:text-current flex justify-between items-center ${
+                  parentMenu === link.name
+                    ? "text-current font-semibold md:font-normal"
+                    : ""
+                }`}
                 onClick={() => {
                   parentMenu !== link.name
                     ? setParentMenu(link.name)
@@ -86,11 +90,15 @@ const NavbarMenu = () => {
                             ? setChildMenu(slinks.Head)
                             : setChildMenu("")
                         }
-                        className="px-8 py-2 flex justify-between items-center"
+                        className={`text-gray-600 hover:text-current px-8 py-2 flex justify-between items-center ${
+                          childMenu === slinks.Head
+                            ? "text-current font-semibold md:font-normal"
+                            : ""
+                        }`}
                       >
                         {slinks.Head}
                         <span className="text-xl inline">
-                          {childMenu === link.name ? (
+                          {childMenu === slinks.Head ? (
                             <ChevronUpIcon className="h-8" />
                           ) : (
                             <ChevronDownIcon className="h-8" />
@@ -104,7 +112,10 @@ const NavbarMenu = () => {
                       >
                         {/* ============================= MOBILE SUBLINKS ============================= */}
                         {slinks.sublink.map((slink, index) => (
-                          <li className="py-3 pl-14" key={index}>
+                          <li
+                            className="py-3 pl-12 text-gray-600 hover:text-current"
+                            key={index}
+                          >
                             <Link href={slink.link}>{slink.name}</Link>
                           </li>
                         ))}
