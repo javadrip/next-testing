@@ -14,13 +14,17 @@ const NavbarMenu = () => {
   return (
     <>
       {Links.map((link, index) => (
-        <div key={index}>
-          <div className="md:cursor-pointer md:hover:border-b-4 md:hover:border-pink-300 pb-2  group">
+        <div
+          className="navbar-link hover:bg-gradient-to-r from-cyan-500 to-blue-500"
+          key={index}
+        >
+          <div className="md:cursor-pointer group">
             {link.sublinks && link.sublinks.length > 0 ? (
               // Displays when there are submenu
               <Fragment>
+                {/* <div className="bg-yellow-300 w-[0%] hover:w-[100%] duration-300"> */}
                 <h1
-                  className="bg-yellow-100 py-4 md:py-0 flex justify-between items-center group"
+                  className="md:py-0 py-4 flex justify-between items-center"
                   onClick={() => {
                     parentMenu !== link.name
                       ? setParentMenu(link.name)
@@ -41,10 +45,10 @@ const NavbarMenu = () => {
                     {/* <ion-icon name="chevron-down"></ion-icon> */}
                   </span>
                 </h1>
+                {/* </div> */}
 
                 {/* ================================= DESKTOP SUBMENU ================================= */}
-                <div className="absolute top-6 hidden group-hover:md:block hover:md:block">
-                  <div className="py-3"></div>
+                <div className="absolute top-14 hidden group-hover:md:block hover:md:block">
                   <div className="bg-purple-300 p-4 gap-8">
                     {/* ============================= DESKTOP SUBMENU ITEMS ============================= */}
                     {link.sublinks.map((mysublinks, index) => (
