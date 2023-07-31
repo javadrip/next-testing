@@ -15,122 +15,117 @@ const NavbarMenu = () => {
     <>
       {Links.map((link, index) => (
         <div
-          className="navbar-link hover:bg-gradient-to-r from-cyan-500 to-blue-500"
+          className="navbar-link hover:bg-gradient-to-r from-cyan-500 to-blue-500 group md:cursor-pointer"
           key={index}
         >
-          <div className="md:cursor-pointer group">
-            {link.sublinks && link.sublinks.length > 0 ? (
-              // Displays when there are submenu
-              <Fragment>
-                {/* <div className="bg-yellow-300 w-[0%] hover:w-[100%] duration-300"> */}
-                <h1
-                  // Make sure the classNames are consistent with Link in the false part of this ternary operator.
-                  className="py-4 md:py-0 text-gray-600 hover:text-current flex justify-between items-center "
-                  onClick={() => {
-                    parentMenu !== link.name
-                      ? setParentMenu(link.name)
-                      : setParentMenu("");
-                    setChildMenu("");
-                  }}
-                >
-                  {link.name}
-                  <span className="text-xl md:hidden inline">
-                    {parentMenu === link.name ? (
-                      <ChevronUpIcon className="h-8" />
-                    ) : (
-                      <ChevronDownIcon className="h-8" />
-                    )}
-                  </span>
-                  <span className="md:ml-1 md:block hidden">
-                    <ChevronDownIcon className="h-4" />
-                    {/* <ion-icon name="chevron-down"></ion-icon> */}
-                  </span>
-                </h1>
-                {/* </div> */}
+          {link.sublinks && link.sublinks.length > 0 ? (
+            // Displays when there are submenu
+            <Fragment>
+              {/* <div className="bg-yellow-300 w-[0%] hover:w-[100%] duration-300"> */}
+              <h1
+                // Make sure the classNames are consistent with Link in the false part of this ternary operator.
+                className="text-gray-600 hover:text-current flex justify-between items-center"
+                onClick={() => {
+                  parentMenu !== link.name
+                    ? setParentMenu(link.name)
+                    : setParentMenu("");
+                  setChildMenu("");
+                }}
+              >
+                {link.name}
+                <span className="text-xl md:hidden inline">
+                  {parentMenu === link.name ? (
+                    <ChevronUpIcon className="h-8" />
+                  ) : (
+                    <ChevronDownIcon className="h-8" />
+                  )}
+                </span>
+                <span className="md:ml-1 md:block hidden">
+                  <ChevronDownIcon className="h-4" />
+                  {/* <ion-icon name="chevron-down"></ion-icon> */}
+                </span>
+              </h1>
+              {/* </div> */}
 
-                {/* ================================= DESKTOP SUBMENU ================================= */}
-                <div className="absolute top-14 hidden group-hover:md:block hover:md:block">
-                  <div className="bg-purple-300 p-4 gap-8">
-                    {/* ============================= DESKTOP SUBMENU ITEMS ============================= */}
-                    {link.sublinks.map((mysublinks, index) => (
-                      <div key={index}>
-                        <h1 className="text-lg font-semibold">
-                          {mysublinks.Head}
-                        </h1>
-                        {/* ============================= DESKTOP SUBLINKS ============================= */}
-                        {mysublinks.sublink.map((slink, index) => (
-                          <li
-                            className="text-sm text-gray-600 my-2.5"
-                            key={index}
-                          >
-                            <Link
-                              href={slink.link}
-                              className="hover:text-primary"
-                            >
-                              {slink.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div
-                  className={` ${
-                    parentMenu === link.name ? "md:hidden" : "hidden"
-                  }`}
-                >
-                  {/* ================================= MOBILE SUBMENU ================================= */}
-                  {link.sublinks.map((slinks, index) => (
+              {/* ================================= DESKTOP SUBMENU ================================= */}
+              <div className="absolute top-14 hidden group-hover:md:block hover:md:block">
+                <div className="bg-purple-300 py-2 px-6">
+                  {/* ============================= DESKTOP SUBMENU ITEMS ============================= */}
+                  {link.sublinks.map((mysublinks, index) => (
                     <div key={index}>
-                      <div>
-                        <h1
-                          onClick={() =>
-                            childMenu !== slinks.Head
-                              ? setChildMenu(slinks.Head)
-                              : setChildMenu("")
-                          }
-                          className="px-8 py-2 flex justify-between items-center"
-                        >
-                          {slinks.Head}
-                          <span className="text-xl inline">
-                            {childMenu === link.name ? (
-                              <ChevronUpIcon className="h-8" />
-                            ) : (
-                              <ChevronDownIcon className="h-8" />
-                            )}
-                          </span>
-                        </h1>
-                        <div
-                          className={`${
-                            childMenu === slinks.Head ? "md:hidden" : "hidden"
-                          }`}
-                        >
-                          {/* ============================= MOBILE SUBLINKS ============================= */}
-                          {slinks.sublink.map((slink, index) => (
-                            <li className="py-3 pl-14" key={index}>
-                              <Link href={slink.link}>{slink.name}</Link>
-                            </li>
-                          ))}
-                        </div>
-                      </div>
+                      <h1 className="text-lg font-semibold">
+                        {mysublinks.Head}
+                      </h1>
+                      {/* ============================= DESKTOP SUBLINKS ============================= */}
+                      {mysublinks.sublink.map((slink, index) => (
+                        <li className="text-sm text-gray-600 my-2" key={index}>
+                          <Link
+                            href={slink.link}
+                            className="hover:text-primary"
+                          >
+                            {slink.name}
+                          </Link>
+                        </li>
+                      ))}
                     </div>
                   ))}
                 </div>
-              </Fragment>
-            ) : (
-              // Displays when there are no submenu
-              <Link
-                href={link.href}
-                key={index + link.name}
-                className="py-4 md:py-0 text-gray-600 hover:text-current flex"
-                target={link.external ? "_blank" : ""}
-                rel={link.external ? "noopener" : ""}
+              </div>
+              <div
+                className={` ${
+                  parentMenu === link.name ? "md:hidden" : "hidden"
+                }`}
               >
-                {link.name}
-              </Link>
-            )}
-          </div>
+                {/* ================================= MOBILE SUBMENU ================================= */}
+                {link.sublinks.map((slinks, index) => (
+                  <div key={index}>
+                    <div>
+                      <h1
+                        onClick={() =>
+                          childMenu !== slinks.Head
+                            ? setChildMenu(slinks.Head)
+                            : setChildMenu("")
+                        }
+                        className="px-8 py-2 flex justify-between items-center"
+                      >
+                        {slinks.Head}
+                        <span className="text-xl inline">
+                          {childMenu === link.name ? (
+                            <ChevronUpIcon className="h-8" />
+                          ) : (
+                            <ChevronDownIcon className="h-8" />
+                          )}
+                        </span>
+                      </h1>
+                      <div
+                        className={`${
+                          childMenu === slinks.Head ? "md:hidden" : "hidden"
+                        }`}
+                      >
+                        {/* ============================= MOBILE SUBLINKS ============================= */}
+                        {slinks.sublink.map((slink, index) => (
+                          <li className="py-3 pl-14" key={index}>
+                            <Link href={slink.link}>{slink.name}</Link>
+                          </li>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Fragment>
+          ) : (
+            // Displays when there are no submenu
+            <Link
+              href={link.href}
+              key={index + link.name}
+              className="text-gray-600 hover:text-current flex"
+              target={link.external ? "_blank" : ""}
+              rel={link.external ? "noopener" : ""}
+            >
+              {link.name}
+            </Link>
+          )}
         </div>
       ))}
     </>
