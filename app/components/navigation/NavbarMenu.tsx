@@ -24,7 +24,8 @@ const NavbarMenu = () => {
               <Fragment>
                 {/* <div className="bg-yellow-300 w-[0%] hover:w-[100%] duration-300"> */}
                 <h1
-                  className="md:py-0 py-4 flex justify-between items-center"
+                  // Make sure the classNames are consistent with Link in the false part of this ternary operator.
+                  className="py-4 md:py-0 text-gray-600 hover:text-current flex justify-between items-center "
                   onClick={() => {
                     parentMenu !== link.name
                       ? setParentMenu(link.name)
@@ -122,7 +123,7 @@ const NavbarMenu = () => {
               <Link
                 href={link.href}
                 key={index + link.name}
-                className="bg-yellow-100 py-4 md:py-0 flex"
+                className="py-4 md:py-0 text-gray-600 hover:text-current flex"
                 target={link.external ? "_blank" : ""}
                 rel={link.external ? "noopener" : ""}
               >
