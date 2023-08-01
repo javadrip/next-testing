@@ -14,7 +14,9 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 z-50 w-full bg-white shadow">
       <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
-        <div className="py-4">Next Testing</div>
+        <Link className="py-4" href="/">
+          Next Testing
+        </Link>
         <div>
           {/* Desktop nav */}
           <ul className="md:flex hidden items-center gap-10">
