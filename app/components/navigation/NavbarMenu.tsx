@@ -57,7 +57,7 @@ const NavbarMenu = () => {
                   {/* ============================= DESKTOP SUBMENU ITEMS ============================= */}
                   {link.submenu.map((submenu, index) => (
                     <div key={index}>
-                      <h1 className="text-lg font-semibold">
+                      <h1 className="text-gray-600 hover:text-current">
                         {submenu.submenuLabel}
                       </h1>
                       {/* ============================= DESKTOP SUBLINKS ============================= */}
@@ -69,7 +69,7 @@ const NavbarMenu = () => {
                             >
                               <Link
                                 href={sublink.sublinkPath}
-                                className="hover:text-primary"
+                                className="hover:text-current"
                               >
                                 {sublink.sublinkLabel}
                               </Link>

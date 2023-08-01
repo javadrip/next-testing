@@ -30,7 +30,7 @@ export const Links = [
         ],
       },
       {
-        submenuLabel: "innerwear",
+        submenuLabel: "Innerwear",
       },
     ],
   },
