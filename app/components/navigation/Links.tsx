@@ -14,9 +14,8 @@ interface Props {
 
 export const Links: Props[] = [
   {
-    label: "Home",
-    href: "/",
-    external: false,
+    label: "Travel",
+    href: "/travel",
   },
   {
     label: "Lifestyle",
@@ -26,6 +25,16 @@ export const Links: Props[] = [
   {
     label: "Technology",
     href: "/technology",
+    external: false,
+  },
+  {
+    label: "Design",
+    href: "/design",
+    external: false,
+  },
+  {
+    label: "Personal Growth",
+    href: "/personal-growth",
     external: false,
   },
   {
