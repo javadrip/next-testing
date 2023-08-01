@@ -1,81 +1,72 @@
-export const Links = [
+interface Props {
+  label: string;
+  href: string;
+  external?: boolean;
+  submenu?: {
+    submenuLabel: string;
+    submenuHref: string;
+    sublinks?: {
+      sublinkLabel: string;
+      sublinkPath: string;
+    }[];
+  }[];
+}
+
+export const Links: Props[] = [
   {
     label: "Home",
     href: "/",
     external: false,
   },
   {
-    label: "Men",
-    href: "/men",
+    label: "Lifestyle",
+    href: "/lifestyle",
     external: false,
-    submenu: [
-      {
-        submenuLabel: "Topwear",
-        sublinks: [
-          { sublinkLabel: "T-shirt", sublinkPath: "/" },
-          { sublinkLabel: "Casual shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-        ],
-      },
-      {
-        submenuLabel: "Bottomwear",
-        sublinks: [
-          { sublinkLabel: "T-shirt", sublinkPath: "/" },
-          { sublinkLabel: "Casual shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-        ],
-      },
-      {
-        submenuLabel: "Innerwear",
-      },
-    ],
   },
   {
-    label: "Women",
-    href: "/men",
+    label: "Technology",
+    href: "/technology",
     external: false,
-    submenu: [
-      {
-        submenuLabel: "Topwear",
-        sublinks: [
-          { sublinkLabel: "T-shirt", sublinkPath: "/" },
-          { sublinkLabel: "Casual shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-        ],
-      },
-      {
-        submenuLabel: "Bottomwear",
-        sublinks: [
-          { sublinkLabel: "T-shirt", sublinkPath: "/" },
-          { sublinkLabel: "Casual shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-        ],
-      },
-      {
-        submenuLabel: "innerwear",
-        sublinks: [
-          { sublinkLabel: "T-shirt", sublinkPath: "/" },
-          { sublinkLabel: "Casual shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-          { sublinkLabel: "formal shirts", sublinkPath: "/" },
-        ],
-      },
-    ],
   },
   {
     label: "Contact",
     href: "/contact",
     external: false,
   },
+  // Example of a full menu with submenus
+  // {
+  //   label: "Men",
+  //   href: "/men",
+  //   external: false,
+  //   submenu: [
+  //     {
+  //       submenuLabel: "Topwear",
+  //       submenuHref: "/",
+  //       sublinks: [
+  //         { sublinkLabel: "T-shirt", sublinkPath: "/" },
+  //         { sublinkLabel: "Casual shirts", sublinkPath: "/" },
+  //         { sublinkLabel: "formal shirts", sublinkPath: "/" },
+  //         { sublinkLabel: "formal shirts", sublinkPath: "/" },
+  //         { sublinkLabel: "formal shirts", sublinkPath: "/" },
+  //       ],
+  //     },
+  //     {
+  //       submenuLabel: "Bottomwear",
+  //       submenuHref: "/",
+  //       sublinks: [
+  //         { sublinkLabel: "T-shirt", sublinkPath: "/" },
+  //         { sublinkLabel: "Casual shirts", sublinkPath: "/" },
+  //         { sublinkLabel: "formal shirts", sublinkPath: "/" },
+  //         { sublinkLabel: "formal shirts", sublinkPath: "/" },
+  //         { sublinkLabel: "formal shirts", sublinkPath: "/" },
+  //       ],
+  //     },
+  //     {
+  //       submenuLabel: "Innerwear",
+  //       submenuHref: "/",
+  //     },
+  //   ],
+  // },
 ];
 
 // ============================= ORIGINAL LINKS ============================= //
