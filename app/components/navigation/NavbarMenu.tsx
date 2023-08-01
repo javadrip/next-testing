@@ -55,19 +55,19 @@ const NavbarMenu = () => {
               <div className="absolute top-14 hidden group-hover:md:block hover:md:block">
                 <div className="bg-purple-300 py-2 px-6">
                   {/* ============================= DESKTOP SUBMENU ITEMS ============================= */}
-                  {link.submenu.map((mysublinks, index) => (
+                  {link.submenu.map((submenu, index) => (
                     <div key={index}>
                       <h1 className="text-lg font-semibold">
-                        {mysublinks.submenuLabel}
+                        {submenu.submenuLabel}
                       </h1>
                       {/* ============================= DESKTOP SUBLINKS ============================= */}
-                      {mysublinks.sublinks.map((slink, index) => (
+                      {submenu.sublinks.map((sublink, index) => (
                         <li className="text-sm text-gray-600 my-2" key={index}>
                           <Link
-                            href={slink.sublinkHref}
+                            href={sublink.sublinkHref}
                             className="hover:text-primary"
                           >
-                            {slink.sublinkLabel}
+                            {sublink.sublinkLabel}
                           </Link>
                         </li>
                       ))}
@@ -81,24 +81,24 @@ const NavbarMenu = () => {
                 }`}
               >
                 {/* ================================= MOBILE SUBMENU ================================= */}
-                {link.submenu.map((slinks, index) => (
+                {link.submenu.map((submenu, index) => (
                   <div key={index}>
                     <div>
                       <h1
                         onClick={() =>
-                          childMenu !== slinks.submenuLabel
-                            ? setChildMenu(slinks.submenuLabel)
+                          childMenu !== submenu.submenuLabel
+                            ? setChildMenu(submenu.submenuLabel)
                             : setChildMenu("")
                         }
                         className={`text-gray-600 hover:text-current px-8 py-2 flex justify-between items-center ${
-                          childMenu === slinks.submenuLabel
+                          childMenu === submenu.submenuLabel
                             ? "text-current font-semibold md:font-normal"
                             : ""
                         }`}
                       >
-                        {slinks.submenuLabel}
+                        {submenu.submenuLabel}
                         <span className="text-xl inline">
-                          {childMenu === slinks.submenuLabel ? (
+                          {childMenu === submenu.submenuLabel ? (
                             <ChevronUpIcon className="h-8" />
                           ) : (
                             <ChevronDownIcon className="h-8" />
@@ -107,19 +107,19 @@ const NavbarMenu = () => {
                       </h1>
                       <div
                         className={`${
-                          childMenu === slinks.submenuLabel
+                          childMenu === submenu.submenuLabel
                             ? "md:hidden"
                             : "hidden"
                         }`}
                       >
                         {/* ============================= MOBILE SUBLINKS ============================= */}
-                        {slinks.sublinks.map((slink, index) => (
+                        {submenu.sublinks.map((sublink, index) => (
                           <li
                             className="py-3 pl-12 text-gray-600 hover:text-current"
                             key={index}
                           >
-                            <Link href={slink.sublinkHref}>
-                              {slink.sublinkLabel}
+                            <Link href={sublink.sublinkHref}>
+                              {sublink.sublinkLabel}
                             </Link>
                           </li>
                         ))}
