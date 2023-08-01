@@ -13,7 +13,7 @@ export default function Container(props: Props) {
       className={clsx(
         "container mx-auto px-8 xl:px-4",
         props.large ? " max-w-screen-xl" : " max-w-screen-lg",
-        !props.alt && "py-4 lg:py-8",
+        !props.alt && "py-8 mt-14",
         props.className
       )}
     >

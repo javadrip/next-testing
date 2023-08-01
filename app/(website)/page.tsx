@@ -53,7 +53,7 @@ export default async function Home() {
             </Suspense>
           </div> */}
 
-      <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
+      <div className="grid gap-10 md:grid-cols-2 lg:gap-10">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.slice(0, 2).map(post => (
             <PostListing
