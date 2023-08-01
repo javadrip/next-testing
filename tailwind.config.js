@@ -32,5 +32,6 @@ module.exports = {
   variants: {
     extend: {},
   },
+  // Applies default Tailwind styles to block content. See https://tailwindcss.com/docs/typography-plugin
   plugins: [require("@tailwindcss/typography")],
 };
