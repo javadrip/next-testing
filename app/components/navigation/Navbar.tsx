@@ -17,7 +17,7 @@ const Navbar = () => {
         <div className="py-4">Next Testing</div>
         <div>
           {/* Desktop nav */}
-          <ul className="md:flex hidden items-center gap-16">
+          <ul className="md:flex hidden items-center gap-10">
             <NavbarMenu />
           </ul>
           {/* Mobile nav */}
