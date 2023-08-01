@@ -53,6 +53,79 @@ export default async function Home() {
             </Suspense>
           </div> */}
 
+      {/* ABOVE THE FOLD FEATURED POST AREA */}
+      <div className="flex">
+        {/* PICKS POSTS TO THE LEFT DESKTOP */}
+        <div className="hidden md:block md:w-[33%] lg:w-[25%]">
+          <Suspense fallback={<h2>Loading...</h2>}>
+            {posts.slice(0, 2).map(post => (
+              <PostListing
+                key={post._id}
+                post={post}
+                aspect="landscape"
+                preloadImage={true}
+              />
+            ))}
+          </Suspense>
+        </div>
+
+        {/* FEATURED POST IN THE MIDDLE DESKTOP AND MOBILE*/}
+        <div className="w-full md:w-[67%] lg:w-[50%] md:pl-8 lg:px-8">
+          <Suspense fallback={<h2>Loading...</h2>}>
+            {posts.slice(2, 3).map(post => (
+              <PostListing
+                key={post._id}
+                post={post}
+                aspect="landscape"
+                preloadImage={true}
+              />
+            ))}
+          </Suspense>
+        </div>
+
+        {/* POPULAR POSTS TO THE RIGHT DESKTOP */}
+        <div className="hidden lg:block lg:flex-col lg:w-[25%] ">
+          <Suspense fallback={<h2>Loading...</h2>}>
+            {posts.slice(3, 5).map(post => (
+              <PostListing
+                key={post._id}
+                post={post}
+                aspect="landscape"
+                preloadImage={true}
+              />
+            ))}
+          </Suspense>
+        </div>
+      </div>
+      {/* PICKS POSTS TO THE LEFT MOBILE */}
+      <div className="flex flex-col md:hidden md:w-[33%] lg:w-[25%]">
+        <Suspense fallback={<h2>Loading...</h2>}>
+          {posts.slice(0, 2).map(post => (
+            <PostListing
+              key={post._id}
+              post={post}
+              aspect="landscape"
+              preloadImage={true}
+            />
+          ))}
+        </Suspense>
+      </div>
+
+      {/* PICKS POSTS TO THE LEFT MOBILE */}
+      <div className="flex flex-col md:flex-row lg:hidden py-4">
+        <Suspense fallback={<h2>Loading...</h2>}>
+          {posts.slice(3, 5).map(post => (
+            <PostListing
+              key={post._id}
+              post={post}
+              aspect="landscape"
+              preloadImage={true}
+            />
+          ))}
+        </Suspense>
+      </div>
+
+      {/* Featured posts */}
       <div className="grid gap-8 md:grid-cols-2">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.slice(0, 2).map(post => (
@@ -65,6 +138,8 @@ export default async function Home() {
           ))}
         </Suspense>
       </div>
+
+      {/* Latest posts */}
       <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3 ">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.slice(2, 14).map(post => (
