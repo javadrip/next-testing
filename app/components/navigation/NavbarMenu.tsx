@@ -53,7 +53,7 @@ const NavbarMenu = () => {
 
               {/* ================================= DESKTOP SUBMENU ================================= */}
               <div className="absolute top-14 hidden group-hover:md:block hover:md:block">
-                <div className="bg-purple-300 py-2 px-6">
+                <div className="bg-white shadow py-2 px-6">
                   {/* ============================= DESKTOP SUBMENU ITEMS ============================= */}
                   {link.submenu.map((submenu, index) => (
                     <div key={index}>
@@ -61,16 +61,21 @@ const NavbarMenu = () => {
                         {submenu.submenuLabel}
                       </h1>
                       {/* ============================= DESKTOP SUBLINKS ============================= */}
-                      {submenu.sublinks.map((sublink, index) => (
-                        <li className="text-sm text-gray-600 my-2" key={index}>
-                          <Link
-                            href={sublink.sublinkHref}
-                            className="hover:text-primary"
-                          >
-                            {sublink.sublinkLabel}
-                          </Link>
-                        </li>
-                      ))}
+                      {submenu.sublinks && submenu.sublinks.length > 0
+                        ? submenu.sublinks.map((sublink, index) => (
+                            <li
+                              className="text-sm text-gray-600 my-2"
+                              key={index}
+                            >
+                              <Link
+                                href={sublink.sublinkPath}
+                                className="hover:text-primary"
+                              >
+                                {sublink.sublinkLabel}
+                              </Link>
+                            </li>
+                          ))
+                        : ""}
                     </div>
                   ))}
                 </div>
@@ -113,16 +118,18 @@ const NavbarMenu = () => {
                         }`}
                       >
                         {/* ============================= MOBILE SUBLINKS ============================= */}
-                        {submenu.sublinks.map((sublink, index) => (
-                          <li
-                            className="py-3 pl-12 text-gray-600 hover:text-current"
-                            key={index}
-                          >
-                            <Link href={sublink.sublinkHref}>
-                              {sublink.sublinkLabel}
-                            </Link>
-                          </li>
-                        ))}
+                        {submenu.sublinks && submenu.sublinks.length > 0
+                          ? submenu.sublinks.map((sublink, index) => (
+                              <li
+                                className="py-3 pl-12 text-gray-600 hover:text-current"
+                                key={index}
+                              >
+                                <Link href={sublink.sublinkPath}>
+                                  {sublink.sublinkLabel}
+                                </Link>
+                              </li>
+                            ))
+                          : ""}
                       </div>
                     </div>
                   </div>
