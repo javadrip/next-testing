@@ -1,10 +1,11 @@
+import Container from "@/app/components/container";
+import CategoryPageBanner from "./CategoryPageBanner";
 import CategoryArchive from "./CategoryArchive";
 
-import Container from "@/app/components/container";
 import { getPaginatedPostsByCategory } from "@/sanity/client";
 
 import type { Category } from "@/types/Category";
-import CategoryPageBanner from "./CategoryPageBanner";
+import type { Post } from "@/types/Post";
 
 type Props = {
   params: {
@@ -15,7 +16,12 @@ type Props = {
 const POSTS_PER_PAGE = 3;
 
 export default async function Category({ params: { categorySlug } }: Props) {
-  const posts = await getPaginatedPostsByCategory(categorySlug, POSTS_PER_PAGE);
+  const categoryPostsData: Promise<Post[]> = getPaginatedPostsByCategory(
+    categorySlug,
+    POSTS_PER_PAGE
+  );
+
+  const posts = await categoryPostsData;
 
   return (
     <Container>
