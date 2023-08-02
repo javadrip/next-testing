@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { paginatedpostsbycatquery } from "@/sanity/groq";
+import { paginatedpostsbyauthorquery } from "@/sanity/groq";
 import PostListing from "@/app/components/post/PostListing";
 import useSWR, { SWRConfig } from "swr";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -12,12 +12,12 @@ import { Post } from "@/types/Post";
 
 interface Props {
   posts: Post[];
-  categorySlug: string;
+  authorSlug: string;
 }
 
-export default function CategoryArchive({
+export default function AuthorPosts({
   posts: initialposts,
-  categorySlug,
+  authorSlug,
 }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -35,7 +35,7 @@ export default function CategoryArchive({
   const paramsForQuery = {
     pageIndex: (pageIndex - 1) * POSTS_PER_PAGE,
     limit: pageIndex * POSTS_PER_PAGE,
-    categorySlug: categorySlug,
+    authorSlug: authorSlug,
   };
 
   // const fetcher = (query, params) =>
@@ -45,7 +45,7 @@ export default function CategoryArchive({
     data: posts,
     error,
     isValidating,
-  } = useSWR([paginatedpostsbycatquery, paramsForQuery], fetcher, {
+  } = useSWR([paginatedpostsbyauthorquery, paramsForQuery], fetcher, {
     fallbackData: initialposts,
     onSuccess: () => {
       setIsLoading(false);
@@ -61,11 +61,11 @@ export default function CategoryArchive({
   }, [posts]);
 
   const handleNextPage = () => {
-    router.push(`/${categorySlug}?page=${pageIndex + 1}`);
+    router.push(`/author/${authorSlug}?page=${pageIndex + 1}`);
   };
 
   const handlePrevPage = () => {
-    router.push(`/${categorySlug}?page=${pageIndex - 1}`);
+    router.push(`/author/${authorSlug}?page=${pageIndex - 1}`);
   };
 
   return (
