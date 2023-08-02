@@ -8,6 +8,7 @@ import { getAuthorPostsBySlug } from "@/sanity/client";
 import PostListing from "@/app/components/post/PostListing";
 import Container from "@/app/components/container";
 import AuthorProfile from "./AuthorProfile";
+import AuthorPosts from "./AuthorPosts";
 
 import type { Author } from "@/types/Author";
 import type { Post } from "@/types/Post";
@@ -34,6 +35,9 @@ export default async function Author({ params: { authorSlug } }: Props) {
     <Container>
       <AuthorProfile authorSlug={authorSlug} />
       <br />
+      <AuthorPosts posts={posts} categorySlug={authorSlug} />
+
+      {/* AUTHOR POSTS ORIGINAL */}
       <div className="grid gap-10 md:grid-cols-3 lg:gap-10 ">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.map(post => (
