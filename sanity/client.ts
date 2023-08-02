@@ -12,6 +12,7 @@ import {
   allauthorsquery,
   authorsquery,
   postsbyauthorquery,
+  paginatedpostsbyauthorquery,
   postsbycatquery,
   paginatedpostsbycatquery,
   catpathquery,
@@ -89,6 +90,22 @@ export async function getAllAuthorsSlugs() {
 export async function getAuthorPostsBySlug(slug: string) {
   if (client) {
     return (await client.fetch(postsbyauthorquery, { slug })) || {};
+  }
+  return {};
+}
+
+export async function getPaginatedAuthorPostsBySlug(
+  authorSlug: string,
+  limit: number
+) {
+  if (client) {
+    return (
+      (await client.fetch(paginatedpostsbyauthorquery, {
+        authorSlug,
+        pageIndex: 0,
+        limit: limit,
+      })) || {}
+    );
   }
   return {};
 }
