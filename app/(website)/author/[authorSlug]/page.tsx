@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { getAuthor } from "@/sanity/sanity-utils";
-import { getAuthorPostsBySlug } from "@/sanity/client";
+import { getPaginatedAuthorPostsBySlug } from "@/sanity/client";
 
 import PostListing from "@/app/components/post/PostListing";
 import Container from "@/app/components/container";
@@ -19,11 +19,16 @@ type Props = {
   };
 };
 
+const POSTS_PER_PAGE = 3;
+
 // Using suspense to progressively render the page while the rest of the page loads
 export default async function Author({ params: { authorSlug } }: Props) {
   // Both datasets are requested in parallel
   // const authorData: Promise<Author> = getAuthor(authorSlug);
-  const authorPostsData: Promise<Post[]> = getAuthorPostsBySlug(authorSlug);
+  const authorPostsData: Promise<Post[]> = getPaginatedAuthorPostsBySlug(
+    authorSlug,
+    POSTS_PER_PAGE
+  );
 
   // const author = await authorData;
   // console.log("author", author);
@@ -35,10 +40,10 @@ export default async function Author({ params: { authorSlug } }: Props) {
     <Container>
       <AuthorProfile authorSlug={authorSlug} />
       <br />
-      <AuthorPosts posts={posts} categorySlug={authorSlug} />
+      <AuthorPosts posts={posts} authorSlug={authorSlug} />
 
       {/* AUTHOR POSTS ORIGINAL */}
-      <div className="grid gap-10 md:grid-cols-3 lg:gap-10 ">
+      {/* <div className="grid gap-10 md:grid-cols-3 lg:gap-10 ">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.map(post => (
             <PostListing key={post._id} post={post} aspect="square" />
@@ -52,7 +57,7 @@ export default async function Author({ params: { authorSlug } }: Props) {
         >
           <span>View all Posts</span>
         </Link>
-      </div>
+      </div> */}
     </Container>
   );
 }
