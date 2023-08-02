@@ -88,6 +88,15 @@ export const postsbyauthorquery = groq`
 }
 `;
 
+export const paginatedpostsbyauthorquery = groq`
+*[_type == "post" && $authorSlug match author->slug.current ] | order(publishedAt desc, _createdAt desc) [$pageIndex...$limit] {
+  ...,
+  author->,
+  categories[]->,
+  "categorySlug": categories[0]->slug.current,
+}
+`;
+
 // Get Posts by Category
 export const postsbycatquery = groq`
 *[_type == "post" && $categorySlug in categories[]->slug.current ] {
