@@ -13,13 +13,11 @@ import { Post } from "@/types/Post";
 interface Props {
   posts: Post[];
   categorySlug: string;
-  categoryTitle: string;
 }
 
 export default function CategoryArchive({
   posts: initialposts,
   categorySlug,
-  categoryTitle,
 }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -72,12 +70,6 @@ export default function CategoryArchive({
 
   return (
     <>
-      <h1 className="text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
-        {categoryTitle}
-      </h1>
-      <div className="text-center">
-        <p className="mt-2 text-lg">See all posts we have ever written.</p>
-      </div>
       {posts && posts?.length === 0 && (
         <div className="flex h-40 items-center justify-center">
           <span className="text-lg text-gray-500">End of the result!</span>
