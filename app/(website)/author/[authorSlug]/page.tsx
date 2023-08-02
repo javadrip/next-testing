@@ -39,7 +39,6 @@ export default async function Author({ params: { authorSlug } }: Props) {
   return (
     <Container>
       <AuthorProfile authorSlug={authorSlug} />
-      <br />
       <AuthorPosts posts={posts} authorSlug={authorSlug} />
 
       {/* AUTHOR POSTS ORIGINAL */}
