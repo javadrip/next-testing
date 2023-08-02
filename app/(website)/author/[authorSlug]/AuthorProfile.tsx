@@ -15,7 +15,7 @@ export default async function AuthorProfile({ authorSlug }: Props) {
   const authorData: Promise<Author> = getAuthor(authorSlug);
 
   const author = await authorData;
-  console.log("author", author);
+
   if (!author) notFound();
 
   const imageProps = author?.image ? urlForImage(author.image) : null;
