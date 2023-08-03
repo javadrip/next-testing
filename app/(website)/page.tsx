@@ -5,6 +5,8 @@ import type { Post } from "@/types/Post";
 
 import { getAllPosts } from "@/sanity/client";
 import PostListing from "../components/post/PostListing";
+import PostBlockLeft from "../components/post/PostsBlockLeft";
+
 import Container from "../components/container";
 
 export default async function Home() {
@@ -56,12 +58,12 @@ export default async function Home() {
       {/* ===================================== GRID COLUMN ONLY ===================================== */}
 
       {/* ABOVE THE FOLD FEATURED POST AREA */}
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
         {/* PICKS POSTS TO THE LEFT DESKTOP */}
-        <div className="col-span-2 md:col-span-3 lg:col-span-1 lg:row-span-1 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
+        <div className="col-span-2 md:col-span-3 lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
           <Suspense fallback={<h2>Loading...</h2>}>
             {posts.slice(0, 2).map(post => (
-              <PostListing
+              <PostBlockLeft
                 key={post._id}
                 post={post}
                 aspect="landscape"
@@ -86,7 +88,7 @@ export default async function Home() {
         </div>
 
         {/* POPULAR POSTS TO THE RIGHT DESKTOP */}
-        <div className="col-span-2 md:col-span-3 xl:col-span-1 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-1 gap-4">
+        <div className="col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
           <Suspense fallback={<h2>Loading...</h2>}>
             {posts.slice(3, 7).map(post => (
               <PostListing
