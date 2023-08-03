@@ -117,7 +117,7 @@ export default async function Home() {
       </div>
 
       {/* Latest posts */}
-      <div className="mt-8 grid gap-8 sm:grid-cols-2 xl:grid-cols-3 ">
+      <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.slice(2, 14).map(post => (
             <PostListing key={post._id} post={post} aspect="square" />
