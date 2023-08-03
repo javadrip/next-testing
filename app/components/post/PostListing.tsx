@@ -14,6 +14,7 @@ import { PhotoIcon } from "@heroicons/react/24/outline";
 type Props = {
   post: Post;
   aspect?: "landscape" | "square" | "custom";
+  aspectLg?: "landscape" | "square" | "custom";
   minimal?: boolean;
   pathPrefix?: string;
   preloadImage?: boolean;
@@ -24,6 +25,7 @@ type Props = {
 export default function PostListing({
   post,
   aspect,
+  aspectLg,
   minimal,
   pathPrefix,
   preloadImage,
@@ -55,9 +57,14 @@ export default function PostListing({
               "relative block",
               aspect === "landscape"
                 ? "aspect-video"
-                : aspect === "custom"
-                ? "aspect-[5/4]"
-                : "aspect-square"
+                : aspect === "square"
+                ? "aspect-square"
+                : "aspect-4/3",
+              aspectLg === "landscape"
+                ? "lg:aspect-video"
+                : aspectLg === "square"
+                ? "lg:aspect-square"
+                : "lg:aspect-4/3"
             )}
             href={`/${post.categorySlug}/${pathPrefix ? `${pathPrefix}/` : ""}${
               post.slug.current
