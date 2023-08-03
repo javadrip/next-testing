@@ -47,7 +47,7 @@ export default function PostListing({
         {/* FEATURED IMAGE */}
         <div
           className={clsx(
-            " overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105   dark:bg-gray-800"
+            " overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105 dark:bg-gray-800"
           )}
         >
           <Link
