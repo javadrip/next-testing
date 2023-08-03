@@ -11,9 +11,9 @@ export default function Container(props: Props) {
   return (
     <div
       className={clsx(
-        "container mx-auto px-8 xl:px-4",
+        "container mx-auto px-4",
         props.large ? " max-w-screen-xl" : " max-w-screen-lg",
-        !props.alt && "py-8 mt-14",
+        !props.alt && "py-8 mt-10",
         props.className
       )}
     >
