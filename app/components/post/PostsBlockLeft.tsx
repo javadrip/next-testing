@@ -86,14 +86,10 @@ export default function PostsBlockLeft({
           {/* ARTICLE TITLE */}
           <h2
             className={clsx(
-              fontSize === "large"
-                ? "text-2xl"
-                : minimal
-                ? "text-3xl"
-                : "text-sm",
+              fontSize === "large" ? "text-2xl" : minimal ? "text-3xl" : "",
               fontWeight === "normal"
                 ? "line-clamp-2 font-medium  tracking-normal text-black"
-                : "font-semibold leading-snug tracking-tight",
+                : "font-semibold text-lg lg:font-normal lg:text-base leading-tight tracking-tight",
               "mt-2 dark:text-white"
             )}
           >
