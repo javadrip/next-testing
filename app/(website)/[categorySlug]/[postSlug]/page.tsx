@@ -50,7 +50,6 @@ export default async function Post({
   return (
     <>
       <Container className="!pt-0">
-        {/* <CategoryPostTest categorySlug={categorySlug} /> */}
         <div className="mx-auto max-w-screen-md ">
           <div className="flex justify-center">
             <CategoryLabel categories={post.categories} />
