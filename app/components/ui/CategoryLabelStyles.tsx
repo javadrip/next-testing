@@ -20,14 +20,11 @@ const bgcolor = {
 
 interface Props {
   color: Color;
-  nomargin: boolean;
   pill?: boolean;
   children: React.ReactNode;
 }
 
 export default function CategoryLabelStyles(props: Props) {
-  const margin = props.nomargin;
-
   if (props.pill) {
     return (
       <div
@@ -43,8 +40,7 @@ export default function CategoryLabelStyles(props: Props) {
   return (
     <span
       className={clsx(
-        "inline-block text-xs font-medium tracking-wider uppercase ",
-        !margin && " mt-5",
+        "inline-block text-xs font-medium tracking-wider uppercase pt-4",
         color[props.color] || color["pink"]
       )}
     >
