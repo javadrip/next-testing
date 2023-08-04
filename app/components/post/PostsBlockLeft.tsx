@@ -82,7 +82,7 @@ export default function PostsBlockLeft({
 
         <div className={clsx(minimal && "flex items-center")}>
           {/* CATEGORIES */}
-          <CategoryLabel categories={post.categories} nomargin={minimal} />
+          <CategoryLabel categories={post.categories} />
           {/* ARTICLE TITLE */}
           <h2
             className={clsx(
