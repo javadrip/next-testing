@@ -20,6 +20,7 @@ type Props = {
   preloadImage?: boolean;
   fontSize?: "large" | "normal";
   fontWeight?: "normal" | "bold";
+  hideCategoryLabel?: boolean;
 };
 
 export default function PostListing({
@@ -31,6 +32,7 @@ export default function PostListing({
   preloadImage,
   fontSize,
   fontWeight,
+  hideCategoryLabel,
 }: Props) {
   const imageProps = post?.mainImage ? urlForImage(post?.mainImage) : null;
 
@@ -89,7 +91,11 @@ export default function PostListing({
 
         <div className={clsx(minimal && "flex items-center")}>
           {/* CATEGORIES */}
-          <CategoryLabel categories={post.categories} nomargin={minimal} />
+          <CategoryLabel
+            categories={post.categories}
+            nomargin={minimal}
+            hideCategoryLabel={true}
+          />
           {/* ARTICLE TITLE */}
           <h2
             className={clsx(
