@@ -5,7 +5,6 @@ import type { Post } from "@/types/Post";
 
 import { getAllPosts } from "@/sanity/client";
 import PostListing from "../components/post/PostListing";
-import PostBlockLeft from "../components/post/PostsBlockLeft";
 
 import Container from "../components/container";
 
@@ -58,22 +57,26 @@ export default async function Home() {
       {/* ===================================== GRID COLUMN ONLY ===================================== */}
 
       {/* ABOVE THE FOLD FEATURED POST AREA */}
+      <h1>Latest</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-        {/* PICKS POSTS TO THE LEFT DESKTOP */}
+        {/* PICKS POSTS TO THE LEFT */}
         <div className="col-span-2 md:col-span-3 lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
           <Suspense fallback={<h2>Loading...</h2>}>
             {posts.slice(0, 2).map(post => (
-              <PostBlockLeft
+              <PostListing
                 key={post._id}
                 post={post}
                 aspect="landscape"
+                fontSize="small"
+                hideAuthor={true}
+                hideDate={true}
                 preloadImage={true}
               />
             ))}
           </Suspense>
         </div>
 
-        {/* FEATURED POST IN THE MIDDLE DESKTOP AND MOBILE*/}
+        {/* FEATURED POST ON THE RIGHT*/}
         <div className="col-span-2 md:col-span-3 lg:col-span-2 row-start-1 md:col-start-1 lg:row-auto">
           <Suspense fallback={<h2>Loading...</h2>}>
             {posts.slice(2, 3).map(post => (
@@ -88,28 +91,29 @@ export default async function Home() {
             ))}
           </Suspense>
         </div>
+      </div>
 
-        {/* POPULAR POSTS TO THE RIGHT DESKTOP */}
-        <div className="col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Suspense fallback={<h2>Loading...</h2>}>
-            {posts.slice(3, 7).map(post => (
-              <PostListing
-                key={post._id}
-                post={post}
-                aspect="landscape"
-                preloadImage={true}
-                hideCategoryLabel={true}
-                hideAuthor={true}
-                fontSize="small"
-                fontWeight="normal"
-              />
-            ))}
-          </Suspense>
-        </div>
+      {/* POPULAR POSTS TO THE BOTTOM */}
+      <div className="mt-8 col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Suspense fallback={<h2>Loading...</h2>}>
+          {posts.slice(3, 7).map(post => (
+            <PostListing
+              key={post._id}
+              post={post}
+              aspect="4/3"
+              preloadImage={true}
+              hideCategoryLabel={true}
+              hideAuthor={true}
+              hideDate={true}
+              fontSize="small"
+              fontWeight="normal"
+            />
+          ))}
+        </Suspense>
       </div>
 
       {/* Featured posts */}
-      <div className="grid gap-8 md:grid-cols-2 mt-8">
+      {/* <div className="grid gap-8 md:grid-cols-2 mt-8">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.slice(0, 2).map(post => (
             <PostListing
@@ -120,7 +124,7 @@ export default async function Home() {
             />
           ))}
         </Suspense>
-      </div>
+      </div> */}
 
       {/* Latest posts */}
       <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
