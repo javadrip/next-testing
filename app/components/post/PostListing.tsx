@@ -23,6 +23,7 @@ type Props = {
   hideCategoryLabel?: boolean;
   hideAuthor?: boolean;
   hideDate?: boolean;
+  hidePostImage?: boolean;
 };
 
 export default function PostListing({
@@ -37,6 +38,7 @@ export default function PostListing({
   hideCategoryLabel,
   hideAuthor,
   hideDate,
+  hidePostImage,
 }: Props) {
   const imageProps = post?.mainImage ? urlForImage(post?.mainImage) : null;
 
@@ -55,7 +57,8 @@ export default function PostListing({
         {/* FEATURED IMAGE */}
         <div
           className={clsx(
-            " overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105 dark:bg-gray-800"
+            "overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105 dark:bg-gray-800",
+            hidePostImage && "hidden"
           )}
         >
           <Link

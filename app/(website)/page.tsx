@@ -99,6 +99,7 @@ export default async function Home() {
                 hideCategoryLabel={true}
                 hideAuthor={false}
                 hideDate={false}
+                hidePostImage={true}
               />
             ))}
           </Suspense>
