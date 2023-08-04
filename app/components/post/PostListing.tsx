@@ -152,7 +152,7 @@ export default function PostListing({
           {/* AUTHOR AND DATE */}
         </div>
       </div>
-      <div className="mt-3 flex items-center space-x-3 text-gray-500 dark:text-gray-400">
+      <div className="mt-3 flex items-center text-gray-500 dark:text-gray-400">
         <Link
           href={`/author/${post.author.slug.current}`}
           className={clsx(hideAuthor && "hidden")}
@@ -172,7 +172,11 @@ export default function PostListing({
             <span className="truncate text-sm">{post.author.name}</span>
           </div>
         </Link>
-        <span className="text-xs text-gray-300 dark:text-gray-600">&bull;</span>
+        {!hideAuthor && !hideDate && (
+          <span className="text-xs text-gray-300 dark:text-gray-600 px-2">
+            &bull;
+          </span>
+        )}
         <time
           className={clsx("truncate text-sm", hideDate && "hidden")}
           dateTime={post?.publishedAt || post._createdAt}
