@@ -102,13 +102,11 @@ export default function PostListing({
           <h2
             className={clsx(
               fontSize === "large"
-                ? "text-2xl"
+                ? "text-2xl line-clamp-2 font-medium tracking-tight"
                 : fontSize === "small"
-                ? "text-base"
-                : "text-lg",
-              fontWeight === "normal"
-                ? "line-clamp-2 font-medium leading-snug tracking-tight text-black"
-                : "font-semibold leading-snug tracking-tight",
+                ? "text-base line-clamp-3 font-medium leading-snug tracking-tight text-black"
+                : "text-lg line-clamp-3 font-medium leading-snug tracking-tight",
+              // fontWeight === "normal" ? "" : "",
               "mt-2"
             )}
           >
