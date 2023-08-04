@@ -98,6 +98,7 @@ export default async function Home() {
                 preloadImage={true}
                 hideCategoryLabel={true}
                 hideAuthor={true}
+                hideDate={true}
               />
             ))}
           </Suspense>

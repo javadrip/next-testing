@@ -22,6 +22,7 @@ type Props = {
   fontWeight?: "normal" | "bold";
   hideCategoryLabel?: boolean;
   hideAuthor?: boolean;
+  hideDate?: boolean;
 };
 
 export default function PostListing({
@@ -35,6 +36,7 @@ export default function PostListing({
   fontWeight,
   hideCategoryLabel,
   hideAuthor,
+  hideDate,
 }: Props) {
   const imageProps = post?.mainImage ? urlForImage(post?.mainImage) : null;
 
@@ -172,7 +174,7 @@ export default function PostListing({
         </Link>
         <span className="text-xs text-gray-300 dark:text-gray-600">&bull;</span>
         <time
-          className="truncate text-sm"
+          className={clsx("truncate text-sm", hideDate && "hidden")}
           dateTime={post?.publishedAt || post._createdAt}
         >
           {format(
