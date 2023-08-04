@@ -103,7 +103,7 @@ export default function PostListing({
               fontSize === "large"
                 ? "text-2xl line-clamp-2 font-medium tracking-tight"
                 : fontSize === "small"
-                ? "text-base line-clamp-3 font-medium leading-snug tracking-tight text-black"
+                ? "text-base line-clamp-3 font-medium leading-snug text-black"
                 : "text-lg line-clamp-3 font-medium leading-snug tracking-tight",
               // fontWeight === "normal" ? "" : "",
               "mt-2"
