@@ -95,8 +95,7 @@ export default function PostListing({
           {/* CATEGORIES */}
           <CategoryLabel
             categories={post.categories}
-            nomargin={minimal}
-            hideCategoryLabel={true}
+            hideCategoryLabel={hideCategoryLabel}
           />
           {/* ARTICLE TITLE */}
           <h2
@@ -148,7 +147,12 @@ export default function PostListing({
           {/* AUTHOR AND DATE */}
         </div>
       </div>
-      <div className="mt-3 flex items-center text-gray-500 dark:text-gray-400">
+      <div
+        className={clsx(
+          "flex items-center text-gray-500 dark:text-gray-400",
+          !hideAuthor && !hideDate && "mt-3"
+        )}
+      >
         <Link
           href={`/author/${post.author.slug.current}`}
           className={clsx(hideAuthor && "hidden")}
