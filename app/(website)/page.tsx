@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Post } from "@/types/Post";
 
 import { getAllPosts } from "@/sanity/client";
+import SectionHeader from "../components/ui/SectionHeader";
 import PostListing from "../components/post/PostListing";
 
 import Container from "../components/container";
@@ -57,7 +58,7 @@ export default async function Home() {
       {/* ===================================== GRID COLUMN ONLY ===================================== */}
 
       {/* ABOVE THE FOLD FEATURED POST AREA */}
-      <h1>Latest</h1>
+      <SectionHeader text="Featured" style="large" />
       <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
         {/* PICKS POSTS TO THE LEFT */}
         <div className="col-span-2 md:col-span-3 lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
@@ -93,8 +94,9 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* POPULAR POSTS TO THE BOTTOM */}
-      <div className="mt-8 col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* RECENT POSTS TO THE BOTTOM */}
+      <SectionHeader text="Latest" />
+      <div className="col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.slice(3, 7).map(post => (
             <PostListing
