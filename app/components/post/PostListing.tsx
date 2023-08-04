@@ -115,7 +115,7 @@ export default function PostListing({
               }${post.slug.current}`}
             >
               <span
-                className="bg-gradient-to-r from-green-300 to-green-100 bg-[length:0px_10px] bg-left-bottom
+                className="bg-gradient-to-r from-cyan-100 to-blue-300 bg-[length:0px_10px] bg-left-bottom
                 bg-no-repeat
                 transition-[background-size]
                 duration-500
