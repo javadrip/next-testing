@@ -21,7 +21,7 @@ export default function SectionHeader({ text, style }: Props) {
       </h1>
       <hr
         className={clsx(
-          "my-2 bg-gray-700",
+          "mt-2 mb-4 bg-gray-700",
           style === "small" ? "h-0.5" : "h-1"
         )}
       />
