@@ -13,12 +13,12 @@ import { PhotoIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   post: Post;
-  aspect?: "landscape" | "square" | "custom";
-  aspectLg?: "landscape" | "square" | "custom";
+  aspect?: "landscape" | "square" | "4/3";
+  aspectLg?: "landscape" | "square" | "4/3";
   minimal?: boolean;
   pathPrefix?: string;
   preloadImage?: boolean;
-  fontSize?: "large" | "normal";
+  fontSize?: "large" | "normal" | "small";
   fontWeight?: "normal" | "bold";
   hideCategoryLabel?: boolean;
   hideAuthor?: boolean;
@@ -64,16 +64,11 @@ export default function PostListing({
           <Link
             className={clsx(
               "relative block",
-              aspect === "landscape"
-                ? "aspect-video"
+              aspect === "4/3"
+                ? "aspect-video lg:aspect-4/3"
                 : aspect === "square"
-                ? "aspect-square"
-                : "aspect-4/3",
-              aspectLg === "landscape"
-                ? "lg:aspect-video"
-                : aspectLg === "square"
-                ? "lg:aspect-square"
-                : "lg:aspect-4/3"
+                ? "aspect-video lg:aspect-square"
+                : "aspect-video"
             )}
             href={`/${post.categorySlug}/${pathPrefix ? `${pathPrefix}/` : ""}${
               post.slug.current
@@ -108,13 +103,13 @@ export default function PostListing({
             className={clsx(
               fontSize === "large"
                 ? "text-2xl"
-                : minimal
-                ? "text-3xl"
+                : fontSize === "small"
+                ? "text-base"
                 : "text-lg",
               fontWeight === "normal"
-                ? "line-clamp-2 font-medium  tracking-normal text-black"
+                ? "line-clamp-2 font-medium leading-snug tracking-tight text-black"
                 : "font-semibold leading-snug tracking-tight",
-              "mt-2    dark:text-white"
+              "mt-2"
             )}
           >
             <Link

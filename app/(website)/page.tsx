@@ -80,8 +80,10 @@ export default async function Home() {
               <PostListing
                 key={post._id}
                 post={post}
-                aspect="landscape"
+                aspect="4/3"
                 preloadImage={true}
+                fontSize="large"
+                fontWeight="normal"
               />
             ))}
           </Suspense>
@@ -97,9 +99,9 @@ export default async function Home() {
                 aspect="landscape"
                 preloadImage={true}
                 hideCategoryLabel={true}
-                hideAuthor={false}
-                hideDate={false}
-                hidePostImage={true}
+                hideAuthor={true}
+                fontSize="small"
+                fontWeight="normal"
               />
             ))}
           </Suspense>
