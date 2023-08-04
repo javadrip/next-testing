@@ -96,6 +96,7 @@ export default async function Home() {
                 post={post}
                 aspect="landscape"
                 preloadImage={true}
+                hideCategoryLabel={true}
               />
             ))}
           </Suspense>
