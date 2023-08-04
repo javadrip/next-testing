@@ -97,6 +97,7 @@ export default async function Home() {
                 aspect="landscape"
                 preloadImage={true}
                 hideCategoryLabel={true}
+                hideAuthor={true}
               />
             ))}
           </Suspense>

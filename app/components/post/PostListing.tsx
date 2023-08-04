@@ -21,6 +21,7 @@ type Props = {
   fontSize?: "large" | "normal";
   fontWeight?: "normal" | "bold";
   hideCategoryLabel?: boolean;
+  hideAuthor?: boolean;
 };
 
 export default function PostListing({
@@ -33,6 +34,7 @@ export default function PostListing({
   fontSize,
   fontWeight,
   hideCategoryLabel,
+  hideAuthor,
 }: Props) {
   const imageProps = post?.mainImage ? urlForImage(post?.mainImage) : null;
 
@@ -149,7 +151,10 @@ export default function PostListing({
         </div>
       </div>
       <div className="mt-3 flex items-center space-x-3 text-gray-500 dark:text-gray-400">
-        <Link href={`/author/${post.author.slug.current}`} legacyBehavior>
+        <Link
+          href={`/author/${post.author.slug.current}`}
+          className={clsx(hideAuthor && "hidden")}
+        >
           <div className="flex items-center gap-3">
             <div className="relative h-5 w-5 flex-shrink-0">
               {AuthorimageProps && (
