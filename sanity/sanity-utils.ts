@@ -89,50 +89,6 @@ export async function getCategoryPosts(categorySlug: string): Promise<Post[]> {
   );
 }
 
-// Get the next 10 posts in a single category
-// TODO: Refine for pagination in app/[categorySlug]/page.tsx
-let lastPublishedAt = "";
-let lastId: string | null = "";
-
-export async function getNextTwoPosts(categorySlug: string): Promise<Post[]> {
-  if (lastId === null) {
-    return [];
-  }
-
-  const query = groq`*[_type == "post" && (
-    _updatedAt > $lastPublishedAt
-    || (_updatedAt == $lastPublishedAt && _id > $lastId)
-  ) && $categorySlug in categories[]->categorySlug.current]
-  | order(_updatedAt)
-  [0...2]{
-    _id,
-    _createdAt,
-    _updatedAt,
-    title,
-    "postSlug": postSlug.current,
-    "categorySlug": $categorySlug,
-    "mainImage": mainImage.asset->url,
-    "category": *[_type == "category" && categorySlug.current == $categorySlug][0].category
-  }`;
-
-  const params = {
-    lastPublishedAt,
-    lastId,
-    categorySlug,
-  };
-
-  const result = await createClient(config).fetch(query, params);
-
-  if (result.length > 0) {
-    lastPublishedAt = result[result.length - 1]._updatedAt;
-    lastId = result[result.length - 1]._id;
-  } else {
-    lastId = null; // Reached the end
-  }
-
-  return result;
-}
-
 // TODO: Move to client and groq
 // Get data of a single author
 export async function getAuthor(authorSlug: string): Promise<Author> {
@@ -174,28 +130,3 @@ export async function getAuthorPosts(authorSlug: string): Promise<Post[]> {
     { authorSlug }
   );
 }
-
-// This function returns information about an author and all of their posts in one GROQ query
-// export async function getAuthor(authorSlug: string): Promise<Author> {
-//   return createClient(config).fetch(
-//     groq`*[_type == "author" && authorSlug.current == $authorSlug][0]{
-//       _id,
-//       _createdAt,
-//       name,
-//       "authorSlug": authorSlug.current,
-//       "image": image.asset->url,
-//       bio,
-//       "posts": *[_type == "post" && references(^._id)]{
-//         _id,
-//         _createdAt,
-//         title,
-//         "postSlug": postSlug.current,
-//         "categorySlug": categories[0]->categorySlug.current,
-//         "mainImage": mainImage.asset->url,
-//         "category": *[_type == "category" && categorySlug.current == categories[0]->categorySlug.current][0].category,
-//         publishedAt,
-//       }
-//     }`,
-//     { authorSlug }
-//   );
-// }
