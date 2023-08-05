@@ -3,23 +3,23 @@ import { createClient } from "next-sanity";
 import config from "./client-config";
 
 import {
-  postquery,
-  limitquery,
-  paginatedquery,
+  getAll,
   configQuery,
   singlequery,
+  postquery,
   pathquery,
+  paginatedpostsquery,
   allauthorsquery,
   authorsquery,
   postsbyauthorquery,
   paginatedpostsbyauthorquery,
+  catpathquery,
+  categorytitlebyslugquery,
   postsbycatquery,
   paginatedpostsbycatquery,
-  catpathquery,
   catquery,
-  getAll,
   searchquery,
-  categorytitlebyslugquery,
+  limitquery,
 } from "./groq";
 
 import { Post } from "@/types/Post";
@@ -46,19 +46,14 @@ export const fetcher = async ([query, params]: [string, object]) => {
   }
 })();
 
-export async function getAllPosts(): Promise<Post[]> {
-  if (client) {
-    return (await client.fetch(postquery)) || [];
-  }
-  return [];
-}
-
 export async function getSettings() {
   if (client) {
     return (await client.fetch(configQuery)) || [];
   }
   return [];
 }
+
+// ==================================== POST ==================================== //
 
 // UPDATED AND FUNCTIONAL
 export async function getPostBySlug(
@@ -71,6 +66,13 @@ export async function getPostBySlug(
   return <Post>{};
 }
 
+export async function getAllPosts(): Promise<Post[]> {
+  if (client) {
+    return (await client.fetch(postquery)) || [];
+  }
+  return [];
+}
+
 export async function getAllPostsSlugs(): Promise<{ slug: string }[]> {
   if (client) {
     const slugs: string[] = (await client.fetch(pathquery)) || [];
@@ -78,7 +80,29 @@ export async function getAllPostsSlugs(): Promise<{ slug: string }[]> {
   }
   return [];
 }
-// Author
+
+// Currently not in use, possibly to be used in archive
+export async function getPaginatedPosts(limit: number) {
+  if (client) {
+    return (
+      (await client.fetch(paginatedpostsquery, {
+        pageIndex: 0,
+        limit: limit,
+      })) || {}
+    );
+  }
+  return {};
+}
+
+// ==================================== AUTHOR ==================================== //
+
+export async function getAllAuthors() {
+  if (client) {
+    return (await client.fetch(allauthorsquery)) || [];
+  }
+  return [];
+}
+
 export async function getAllAuthorsSlugs() {
   if (client) {
     const slugs: string[] = (await client.fetch(authorsquery)) || [];
@@ -87,6 +111,7 @@ export async function getAllAuthorsSlugs() {
   return [];
 }
 
+// Get all posts by a single author
 export async function getAuthorPostsBySlug(slug: string) {
   if (client) {
     return (await client.fetch(postsbyauthorquery, { slug })) || {};
@@ -110,14 +135,7 @@ export async function getPaginatedAuthorPostsBySlug(
   return {};
 }
 
-export async function getAllAuthors() {
-  if (client) {
-    return (await client.fetch(allauthorsquery)) || [];
-  }
-  return [];
-}
-
-// Category
+// ==================================== CATEGORY ==================================== //
 
 export async function getAllCategories() {
   if (client) {
@@ -168,16 +186,4 @@ export async function getTopCategories() {
     return (await client.fetch(postsbycatquery)) || [];
   }
   return [];
-}
-
-export async function getPaginatedPosts(limit: number) {
-  if (client) {
-    return (
-      (await client.fetch(paginatedquery, {
-        pageIndex: 0,
-        limit: limit,
-      })) || {}
-    );
-  }
-  return {};
 }
