@@ -78,6 +78,12 @@ export const singlepostquery = groq`
 }
 `;
 
+export const postheadingsquery = groq`
+*[_type == "post" && slug.current == $postSlug && $categorySlug in categories[]->slug.current][0] {
+  title,
+  "headings": body[length(style) == 2 && string::startsWith(style, "h")]
+}`;
+
 // Get Posts by Authors
 export const postsbyauthorquery = groq`
 *[_type == "post" && $slug match author->slug.current ] {
