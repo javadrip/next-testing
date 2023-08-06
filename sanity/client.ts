@@ -9,6 +9,7 @@ import {
   postsquery,
   pathquery,
   paginatedpostsquery,
+  postheadingsquery,
   allauthorsquery,
   authorsquery,
   postsbyauthorquery,
@@ -66,6 +67,15 @@ export async function getPostBySlug(
     );
   }
   return <Post>{};
+}
+
+export async function getPostHeadings(categorySlug: string, postSlug: string) {
+  if (client) {
+    return (
+      (await client.fetch(postheadingsquery, { categorySlug, postSlug })) || {}
+    );
+  }
+  return [];
 }
 
 export async function getAllPosts(): Promise<Post[]> {
