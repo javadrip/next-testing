@@ -5,8 +5,8 @@ import config from "./client-config";
 import {
   getAll,
   configQuery,
-  singlequery,
-  postquery,
+  singlepostquery,
+  postsquery,
   pathquery,
   paginatedpostsquery,
   allauthorsquery,
@@ -61,14 +61,16 @@ export async function getPostBySlug(
   postSlug: string
 ): Promise<Post> {
   if (client) {
-    return (await client.fetch(singlequery, { categorySlug, postSlug })) || {};
+    return (
+      (await client.fetch(singlepostquery, { categorySlug, postSlug })) || {}
+    );
   }
   return <Post>{};
 }
 
 export async function getAllPosts(): Promise<Post[]> {
   if (client) {
-    return (await client.fetch(postquery)) || [];
+    return (await client.fetch(postsquery)) || [];
   }
   return [];
 }

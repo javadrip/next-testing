@@ -3,7 +3,7 @@ import { groq } from "next-sanity";
 // ============================== POST QUERIES ============================== //
 //UPDATED AND FUCTIONAL
 // Get all posts
-export const postquery = groq`
+export const postsquery = groq`
 *[_type == "post"] | order(publishedAt desc, _createdAt desc) {
   _id,
   _createdAt,
@@ -54,7 +54,7 @@ export const paginatedpostsbycatquery = groq`
 
 // UPDATED AND FUNCTIONAL
 // Single Post
-export const singlequery = groq`
+export const singlepostquery = groq`
 *[_type == "post" && slug.current == $postSlug && $categorySlug in categories[]->slug.current][0] {
   ...,
   body[]{
