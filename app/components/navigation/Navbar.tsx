@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -11,8 +11,41 @@ import NavbarMenu from "./NavbarMenu";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    if (typeof window !== "undefined") {
+      if (window.scrollY > lastScrollY) {
+        // if scroll down hide the navbar
+        setShow(false);
+      } else {
+        // if scroll up show the navbar
+        setShow(true);
+      }
+
+      // remember current page location to use in the next move
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+
+      // cleanup function
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+      };
+    }
+  });
+
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white shadow">
+    <nav
+      className={`fixed z-50 w-full bg-white shadow active transition-[top] ease-in-out delay-150 ${
+        show ? "top-0" : "-top-14"
+      }`}
+    >
       <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
         <Link className="py-4" href="/">
           Next Testing
