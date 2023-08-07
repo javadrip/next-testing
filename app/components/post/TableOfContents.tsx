@@ -21,6 +21,7 @@ export default async function TableOfContents({
 
   const headings = (await headingsData).headings;
 
+  // Smooth scroll to heading
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -35,19 +36,24 @@ export default async function TableOfContents({
       <div className="hidden xl:block sticky top-20 max-w-fit mx-auto mt-4">
         <h1>Table of Contents</h1>
         <ul>
-          {headings.map((heading, index) => (
-            <li key={index}>
-              <a
-                href={`#${speakingurl(heading.children[0].text)}`}
-                onClick={e => {
-                  e.preventDefault();
-                  scrollToHeading(speakingurl(heading.children[0].text));
-                }}
-              >
-                {heading.children[0].text}
-              </a>
-            </li>
-          ))}
+          {headings.map((heading, index) => {
+            const text = heading.children[0].text;
+            const id = speakingurl(text);
+
+            return (
+              <li key={index}>
+                <a
+                  href={`#${id}`}
+                  onClick={e => {
+                    e.preventDefault();
+                    scrollToHeading(id);
+                  }}
+                >
+                  {text}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
