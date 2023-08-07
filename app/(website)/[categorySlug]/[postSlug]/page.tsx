@@ -4,15 +4,19 @@ import { notFound } from "next/navigation";
 import { PortableText } from "@/sanity/plugins/portabletext";
 
 import { parseISO, format } from "date-fns";
+import speakingurl from "speakingurl";
 
 import { getPost, getCategoryPosts } from "@/sanity/sanity-utils";
+import { getPostHeadings } from "@/sanity/client";
 import { urlForImage } from "@/lib/urlFor";
 
 import Container from "@/app/components/container";
 import CategoryLabel from "@/app/components/ui/CategoryLabel";
 import AuthorCard from "@/app/components/post/AuthorCard";
+import TableOfContents from "@/app/components/post/TableOfContents";
 
 import { Post } from "@/types/Post";
+import { Headings } from "@/types/Headings";
 
 type Props = {
   params: {
@@ -46,6 +50,13 @@ export default async function Post({
     : null;
 
   const imageProps = post?.mainImage ? urlForImage(post?.mainImage) : null;
+
+  const headingsData: Promise<Headings> = getPostHeadings(
+    categorySlug,
+    postSlug
+  );
+
+  const headings = (await headingsData).headings;
 
   return (
     <>
@@ -111,10 +122,30 @@ export default async function Post({
         )}
       </div>
 
+      <TableOfContents postSlug={postSlug} categorySlug={categorySlug} />
+
       <Container>
         <article className="mx-auto max-w-screen-md ">
           <div className="prose mx-auto my-3 dark:prose-invert prose-a:text-blue-600">
-            {post.body && <PortableText value={post.body} />}
+            {post.body && (
+              <PortableText
+                value={post.body}
+                components={{
+                  block: {
+                    // Customize block types with ease
+                    h2: ({ children }: { children: React.ReactNode }) => (
+                      // Dynamically change the id of h2 tags to match the text
+                      <h2
+                        id={children ? speakingurl(children.toString()) : ""}
+                        className="text-brand-primary text-2xl font-semibold tracking-tight mt-10 mb-3"
+                      >
+                        {children}
+                      </h2>
+                    ),
+                  },
+                }}
+              />
+            )}
           </div>
           <div className="mb-7 mt-7 flex justify-center">
             <Link
