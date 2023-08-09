@@ -9,6 +9,7 @@ import { PortableText as PortableTextComponent } from "@portabletext/react";
 import Iframe from "react-iframe";
 import getVideoId from "get-video-id";
 import { clsx } from "clsx";
+import speakingurl from "speakingurl";
 
 import { urlForImage } from "@/lib/urlFor";
 
@@ -113,6 +114,18 @@ const components = {
     code: Code,
     embed: IframePreview,
     tables: PortableTextTable,
+  },
+  block: {
+    // Customize block types with ease
+    h2: ({ children }: { children: React.ReactNode }) => (
+      // Dynamically change the id of h2 tags to match the text
+      <h2
+        id={children ? speakingurl(children.toString()) : ""}
+        className="text-brand-primary text-2xl font-semibold tracking-tight mt-10 mb-3"
+      >
+        {children}
+      </h2>
+    ),
   },
   marks: {
     center: (props: any) => <div className="text-center">{props.children}</div>,
