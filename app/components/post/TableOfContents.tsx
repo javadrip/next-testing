@@ -1,6 +1,8 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import React from "react";
+import { useRouter, useParams } from "next/navigation";
+import Link from "next/link";
 
 import { getPostHeadings } from "@/sanity/client";
 import { Headings } from "@/types/Headings";
@@ -13,11 +15,16 @@ import speakingurl from "speakingurl";
 // }
 
 export default async function TableOfContents() {
+  //   {
+  //   postSlug,
+  //   categorySlug,
+  // }: Props
+  const router = useRouter();
   const params = useParams();
 
   const { postSlug, categorySlug } = params;
 
-  const headingsData: Promise<Headings> = getPostHeadings(
+  const headingsData: Promise<Headings> = await getPostHeadings(
     categorySlug,
     postSlug
   );
@@ -32,6 +39,11 @@ export default async function TableOfContents() {
     }
   };
 
+  // const handleClick = (e: any) => {
+  //   const id = speakingurl(e.target.textContent);
+  //   scrollToHeading(id);
+  // };
+
   return (
     // div is necessary for the sticky to work
     <div>
@@ -44,8 +56,11 @@ export default async function TableOfContents() {
             const id = speakingurl(text);
 
             return (
-              <li key={index}>
-                <a
+              <li
+                key={index}
+                // onClick={handleClick}
+              >
+                <Link
                   href={`#${id}`}
                   onClick={e => {
                     e.preventDefault();
@@ -53,7 +68,7 @@ export default async function TableOfContents() {
                   }}
                 >
                   {text}
-                </a>
+                </Link>
               </li>
             );
           })}
