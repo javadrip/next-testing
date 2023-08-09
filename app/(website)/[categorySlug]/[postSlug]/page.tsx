@@ -51,12 +51,12 @@ export default async function Post({
 
   const imageProps = post?.mainImage ? urlForImage(post?.mainImage) : null;
 
-  const headingsData: Promise<Headings> = getPostHeadings(
-    categorySlug,
-    postSlug
-  );
+  // const headingsData: Promise<Headings> = getPostHeadings(
+  //   categorySlug,
+  //   postSlug
+  // );
 
-  const headings = (await headingsData).headings;
+  // const headings = (await headingsData).headings;
 
   return (
     <>
@@ -123,28 +123,10 @@ export default async function Post({
       </div>
 
       <div className="mx-auto px-4 xl:grid xl:grid-cols-[25%_50%_25%]">
-        <TableOfContents postSlug={postSlug} categorySlug={categorySlug} />
+        <TableOfContents />
         <article className="mx-auto max-w-screen-md ">
           <div className="prose mx-auto my-4 dark:prose-invert prose-a:text-blue-600">
-            {post.body && (
-              <PortableText
-                value={post.body}
-                components={{
-                  block: {
-                    // Customize block types with ease
-                    h2: ({ children }: { children: React.ReactNode }) => (
-                      // Dynamically change the id of h2 tags to match the text
-                      <h2
-                        id={children ? speakingurl(children.toString()) : ""}
-                        className="text-brand-primary text-2xl font-semibold tracking-tight mt-10 mb-3"
-                      >
-                        {children}
-                      </h2>
-                    ),
-                  },
-                }}
-              />
-            )}
+            {post.body && <PortableText value={post.body} />}
           </div>
           <div className="mb-7 mt-7 flex justify-center">
             <Link
