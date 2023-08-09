@@ -1,19 +1,22 @@
 "use client";
 
+import { useParams } from "next/navigation";
+
 import { getPostHeadings } from "@/sanity/client";
 import { Headings } from "@/types/Headings";
 
 import speakingurl from "speakingurl";
 
-interface Props {
-  postSlug: string;
-  categorySlug: string;
-}
+// interface Props {
+//   postSlug: string;
+//   categorySlug: string;
+// }
 
-export default async function TableOfContents({
-  postSlug,
-  categorySlug,
-}: Props) {
+export default async function TableOfContents() {
+  const params = useParams();
+
+  const { postSlug, categorySlug } = params;
+
   const headingsData: Promise<Headings> = getPostHeadings(
     categorySlug,
     postSlug
