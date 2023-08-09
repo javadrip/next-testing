@@ -123,7 +123,10 @@ export default async function Post({
       </div>
 
       <div className="mx-auto px-4 xl:grid xl:grid-cols-[25%_50%_25%]">
-        <TableOfContents />
+        <TableOfContents
+        // postSlug={postSlug}
+        // categorySlug={categorySlug}
+        />
         <article className="mx-auto max-w-screen-md ">
           <div className="prose mx-auto my-4 dark:prose-invert prose-a:text-blue-600">
             {post.body && <PortableText value={post.body} />}
