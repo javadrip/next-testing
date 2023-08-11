@@ -21,15 +21,10 @@ const POSTS_PER_PAGE = 3;
 // Using suspense to progressively render the page while the rest of the page loads
 export default async function Author({ params: { authorSlug } }: Props) {
   // Both datasets are requested in parallel
-  // const authorData: Promise<Author> = getAuthor(authorSlug);
   const authorPostsData: Promise<Post[]> = getPaginatedAuthorPostsBySlug(
     authorSlug,
     POSTS_PER_PAGE
   );
-
-  // const author = await authorData;
-  // console.log("author", author);
-  // if (!author) notFound();
 
   const posts = await authorPostsData;
 
