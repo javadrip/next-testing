@@ -17,8 +17,8 @@ module.exports = {
       },
       fontFamily: {
         // to change, update font in _document.js
-        sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
-        serif: ["var(--font-lora)", ...defaultTheme.fontFamily.serif],
+        sans: ["inter", ...defaultTheme.fontFamily.sans],
+        serif: ["lora", ...defaultTheme.fontFamily.serif],
         stock: [defaultTheme.fontFamily.sans],
       },
       aspectRatio: {
