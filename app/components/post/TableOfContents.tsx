@@ -1,35 +1,35 @@
 "use client";
 
 import React from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 
 import { getPostHeadings } from "@/sanity/client";
-import { Headings } from "@/types/Headings";
+import { Headings, Heading } from "@/types/Headings";
 
 import speakingurl from "speakingurl";
 
-// interface Props {
-//   postSlug: string;
-//   categorySlug: string;
-// }
-
-export default async function TableOfContents() {
-  //   {
-  //   postSlug,
-  //   categorySlug,
-  // }: Props
-  const router = useRouter();
+export default function TableOfContents() {
   const params = useParams();
 
   const { postSlug, categorySlug } = params;
 
-  const headingsData: Promise<Headings> = await getPostHeadings(
-    categorySlug,
-    postSlug
-  );
+  const [headings, setHeadings] = useState<Heading[]>();
 
-  const headings = (await headingsData).headings;
+  useEffect(() => {
+    const getHeadings = async () => {
+      let headingsData: Promise<Headings> = await getPostHeadings(
+        categorySlug,
+        postSlug
+      );
+
+      const data = await headingsData;
+      setHeadings(data?.headings);
+    };
+    getHeadings();
+    // Empty dependency array ensures that effect is only run on mount
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Smooth scroll to heading
   const scrollToHeading = (id: string) => {
@@ -51,7 +51,7 @@ export default async function TableOfContents() {
       <div className="hidden xl:block sticky top-20 max-w-fit mx-auto mt-4">
         <h1>Table of Contents</h1>
         <ul>
-          {headings.map((heading, index) => {
+          {headings?.map((heading, index) => {
             const text = heading.children[0].text;
             const id = speakingurl(text);
 
