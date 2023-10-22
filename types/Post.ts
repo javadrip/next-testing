@@ -1,4 +1,4 @@
-import { PortableTextBlock } from "sanity";
+import { PortableTextBlock, Image } from "sanity";
 import { Category } from "./Category";
 import { Author } from "./Author";
 
@@ -16,13 +16,7 @@ export type Post = {
   categorySlug: string;
   excerpt: string;
   author: Author;
-  mainImage: {
-    alt?: string;
-    asset: {
-      _ref: string;
-      url: string;
-    };
-  };
+  mainImage: Image;
   categories: Category[];
   publishedAt: string;
   featured: boolean;
