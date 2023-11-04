@@ -29,5 +29,6 @@ export type Post = {
   estReadingTime: number;
 
   // PortableTextBlock[] is how Sanity stores rich content
+  tldr: PortableTextBlock[];
   body: PortableTextBlock[];
 };
