@@ -90,6 +90,11 @@ export default defineType({
       type: "boolean",
     }),
     defineField({
+      name: "tldr",
+      title: "Too long; didn't read",
+      type: "blockContent",
+    }),
+    defineField({
       name: "body",
       title: "Body",
       type: "blockContent",
