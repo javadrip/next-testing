@@ -6,6 +6,7 @@ import {
   getAll,
   configQuery,
   singlepostquery,
+  tldrquery,
   postsquery,
   pathquery,
   paginatedpostsquery,
@@ -65,6 +66,16 @@ export async function getPostBySlug(
     return (
       (await client.fetch(singlepostquery, { categorySlug, postSlug })) || {}
     );
+  }
+  return <Post>{};
+}
+
+export async function getPostTldr(
+  categorySlug: string,
+  postSlug: string
+): Promise<Post> {
+  if (client) {
+    return (await client.fetch(tldrquery, { categorySlug, postSlug })) || {};
   }
   return <Post>{};
 }
