@@ -16,7 +16,6 @@ const builder = imageUrlBuilder(client);
 // TODO: Give source a type
 export const urlForImage = (source: any): ImageData | undefined => {
   if (!source || !source.asset) return;
-  console.log("source", source);
 
   const dimensions = source?.asset?._ref.split("-")[2];
 

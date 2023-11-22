@@ -16,7 +16,9 @@ export type Post = {
   categorySlug: string;
   excerpt: string;
   author: Author;
-  mainImage: Image;
+  mainImage: Image & {
+    alt: string; // Add the alt property to the mainImage type
+  };
   categories: Category[];
   publishedAt: string;
   featured: boolean;
