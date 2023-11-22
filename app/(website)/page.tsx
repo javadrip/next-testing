@@ -3,16 +3,19 @@ import Link from "next/link";
 
 import type { Post } from "@/types/Post";
 
-import { getAllPosts } from "@/sanity/client";
+import { getAllPosts, getFeaturedPosts } from "@/sanity/client";
 import SectionHeader from "../components/ui/SectionHeader";
 import PostListing from "../components/post/PostListing";
 
 import Container from "../components/container";
 
 export default async function Home() {
+  // TODO: Ask if stacking promises is a good idea
   const postsData: Promise<Post[]> = getAllPosts();
+  const featuredPostsData: Promise<Post[]> = getFeaturedPosts();
 
   const posts = await postsData;
+  const featuredPosts = await featuredPostsData;
 
   // const [posts, setPosts] = useState<Post[]>([]);
   // const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
@@ -63,14 +66,12 @@ export default async function Home() {
         {/* PICKS POSTS TO THE LEFT */}
         <div className="col-span-2 md:col-span-3 lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
           <Suspense fallback={<h2>Loading...</h2>}>
-            {posts.slice(0, 2).map(post => (
+            {featuredPosts.slice(1, 3).map(post => (
               <PostListing
                 key={post._id}
                 post={post}
                 aspect="landscape"
                 fontSize="small"
-                hideAuthor={true}
-                hideDate={true}
                 preloadImage={true}
               />
             ))}
@@ -80,7 +81,7 @@ export default async function Home() {
         {/* FEATURED POST ON THE RIGHT*/}
         <div className="col-span-2 md:col-span-3 lg:col-span-2 row-start-1 md:col-start-1 lg:row-auto">
           <Suspense fallback={<h2>Loading...</h2>}>
-            {posts.slice(2, 3).map(post => (
+            {featuredPosts.slice(0, 1).map(post => (
               <PostListing
                 key={post._id}
                 post={post}
