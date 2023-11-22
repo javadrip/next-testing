@@ -47,19 +47,6 @@ export default async function Home() {
 
   return (
     <Container>
-      {/* <FeaturedPosts posts={featuredPosts} />
-          <Posts posts={posts} /> */}
-
-      {/* <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
-            <Suspense fallback={<h2>Loading...</h2>}>
-              {featuredPosts.map(post => (
-                <PostListing key={post._id} post={post} />
-              ))}
-            </Suspense>
-          </div> */}
-
-      {/* ===================================== GRID COLUMN ONLY ===================================== */}
-
       {/* ABOVE THE FOLD FEATURED POST AREA */}
       <SectionHeader text="Featured" style="large" />
       <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -115,21 +102,7 @@ export default async function Home() {
         </Suspense>
       </div>
 
-      {/* Featured posts */}
-      {/* <div className="grid gap-8 md:grid-cols-2 mt-8">
-        <Suspense fallback={<h2>Loading...</h2>}>
-          {posts.slice(0, 2).map(post => (
-            <PostListing
-              key={post._id}
-              post={post}
-              aspect="landscape"
-              preloadImage={true}
-            />
-          ))}
-        </Suspense>
-      </div> */}
-
-      {/* Latest posts */}
+      {/* LATEST POSTS */}
       <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <Suspense fallback={<h2>Loading...</h2>}>
           {posts.slice(2, 14).map(post => (
