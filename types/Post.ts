@@ -2,6 +2,11 @@ import { PortableTextBlock, Image } from "sanity";
 import { Category } from "./Category";
 import { Author } from "./Author";
 
+// QN: Is this the way to do it?
+interface ImageWithAlt extends Image {
+  alt: string;
+}
+
 export type Post = {
   // All properties with an underscore are generated automatically by Sanity
   _id: string;
@@ -16,9 +21,8 @@ export type Post = {
   categorySlug: string;
   excerpt: string;
   author: Author;
-  mainImage: Image & {
-    alt: string; // Add the alt property to the mainImage type
-  };
+  // QN: Is this the way to do it?
+  mainImage: ImageWithAlt;
   categories: Category[];
   publishedAt: string;
   featured: boolean;
