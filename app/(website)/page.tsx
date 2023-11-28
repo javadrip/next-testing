@@ -53,6 +53,7 @@ export default async function Home() {
         {/* PICKS POSTS TO THE LEFT */}
         <div className="col-span-2 md:col-span-3 lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
           <Suspense fallback={<h2>Loading...</h2>}>
+            {/* Gets the second and third featured posts */}
             {featuredPosts.slice(1, 3).map(post => (
               <PostListing
                 key={post._id}
@@ -68,6 +69,7 @@ export default async function Home() {
         {/* FEATURED POST ON THE RIGHT*/}
         <div className="col-span-2 md:col-span-3 lg:col-span-2 row-start-1 md:col-start-1 lg:row-auto">
           <Suspense fallback={<h2>Loading...</h2>}>
+            {/* Gets the first featured post */}
             {featuredPosts.slice(0, 1).map(post => (
               <PostListing
                 key={post._id}
@@ -86,6 +88,7 @@ export default async function Home() {
       <SectionHeader text="Latest" />
       <div className="col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
         <Suspense fallback={<h2>Loading...</h2>}>
+          {/* TODO: Gets the first 4 most recent posts */}
           {posts.slice(3, 7).map(post => (
             <PostListing
               key={post._id}
@@ -105,6 +108,7 @@ export default async function Home() {
       {/* LATEST POSTS */}
       <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <Suspense fallback={<h2>Loading...</h2>}>
+          {/* TODO: Gets the next 12 most recent posts */}
           {posts.slice(2, 14).map(post => (
             <PostListing key={post._id} post={post} aspect="square" />
           ))}
