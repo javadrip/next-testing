@@ -9,9 +9,12 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import NavbarMenu from "./NavbarMenu";
 
 const Navbar = () => {
+  // State variable and setter for controlling the visibility of the mobile menu.
   const [open, setOpen] = useState(false);
 
+  // State variable and setter for controlling the visibility of the navbar.
   const [show, setShow] = useState(true);
+  // State variable and setter for remembering the last scroll position.
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const controlNavbar = () => {
@@ -62,6 +65,8 @@ const Navbar = () => {
             {!open && <Bars3Icon className="h-8" />}
             {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
           </div>
+          {/* Dynamically sets the right offset for the mobile navigation menu based on the "open" state.
+          If "open" is true, the menu is fully visible (right-0); otherwise, it's off-screen to the right (right-[-100%]). */}
           <ul
             className={`
         md:hidden bg-white top-14 fixed w-full h-full overflow-y-auto py-4 p-4
