@@ -10,40 +10,19 @@ import PostListing from "../components/post/PostListing";
 import Container from "../components/container";
 
 export default async function Home() {
-  // TODO: Ask if stacking promises is a good idea
-  const postsData: Promise<Post[]> = getAllPosts();
-  const featuredPostsData: Promise<Post[]> = getFeaturedPosts();
+  // Use Promise.all() to fetch all posts and featured posts
+  // QN: Is this the way to implement Promise.all()?
+  const [posts, featuredPosts] = await Promise.all([
+    getAllPosts(),
+    getFeaturedPosts(),
+  ]);
 
-  const posts = await postsData;
-  const featuredPosts = await featuredPostsData;
+  // Promises could be stacked this way too, but not ideal:
+  // const postsData: Promise<Post[]> = getAllPosts();
+  // const featuredPostsData: Promise<Post[]> = getFeaturedPosts();
 
-  // const [posts, setPosts] = useState<Post[]>([]);
-  // const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
-
-  /**
-   * Fetches all posts from Sanity
-   * updates post state
-   */
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const postsData = await getAllPosts();
-  //     setPosts(postsData);
-  //   };
-  //   fetchPosts();
-  // }, []);
-
-  /**
-   * Fetches all featured posts from Sanity
-   * updates featuredPost state
-   */
-  // useEffect(() => {
-  //   const fetchFeaturedPosts = async () => {
-  //     // TODO: Create getAllFeaturedPosts function
-  //     const postsData = await getAllFeaturedPosts();
-  //     setPosts(postsData);
-  //   };
-  //   fetchFeaturedPosts();
-  // }, []);
+  // const posts = await postsData;
+  // const featuredPosts = await featuredPostsData;
 
   return (
     <Container>
