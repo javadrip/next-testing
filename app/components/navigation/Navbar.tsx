@@ -42,7 +42,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full bg-white shadow active transition-[top] ease-in-out delay-150 ${
+      // z-40 is required to make sure the navbar is on top of images and videos. z-50 used for ReadingProgressBar.
+      className={`fixed w-full bg-white shadow active transition-[top] ease-in-out delay-150 z-40 ${
         show ? "top-0" : "-top-14"
       }`}
     >
