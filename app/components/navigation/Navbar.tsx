@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-50 w-full bg-white shadow active transition-[top] ease-in-out delay-150 ${
+      className={`fixed w-full bg-white shadow active transition-[top] ease-in-out delay-150 ${
         show ? "top-0" : "-top-14"
       }`}
     >
