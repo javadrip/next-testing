@@ -2,7 +2,6 @@ import { PortableTextBlock, Image } from "sanity";
 import { Category } from "./Category";
 import { Author } from "./Author";
 
-// QN: Is this the way to do it?
 interface ImageWithAlt extends Image {
   alt: string;
 }
@@ -21,7 +20,6 @@ export type Post = {
   categorySlug: string;
   excerpt: string;
   author: Author;
-  // QN: Is this the way to do it?
   mainImage: ImageWithAlt;
   categories: Category[];
   publishedAt: string;
