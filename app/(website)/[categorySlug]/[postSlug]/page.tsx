@@ -127,7 +127,7 @@ export default async function Post({
         // postSlug={postSlug}
         // categorySlug={categorySlug}
         />
-        <article className="mx-auto max-w-screen-md ">
+        <article className="mx-auto max-w-screen-md">
           <div className="prose mx-auto my-4 dark:prose-invert prose-a:text-blue-600">
             {post.body && <PortableText value={post.body} />}
           </div>
