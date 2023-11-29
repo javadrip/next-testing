@@ -1,10 +1,10 @@
 "use client";
 
-import { useReadingProgress } from "@/src/hooks/useReadingProgressbar";
+import useScrollProgress from "@/src/hooks/useScrollProgress";
 import useScrollVisibility from "@/src/hooks/useScrollVisibility";
 
 export default function ReadingProgressBar() {
-  const scrollPercentage = useReadingProgress();
+  const scrollPercentage = useScrollProgress();
   const show = useScrollVisibility();
 
   return (
