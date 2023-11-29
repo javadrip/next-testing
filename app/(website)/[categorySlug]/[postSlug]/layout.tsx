@@ -62,7 +62,7 @@ export default async function Post({
 }) {
   return (
     <>
-      <ReadingProgressBar />
+      {/* <ReadingProgressBar /> */}
       {children}
     </>
   );
