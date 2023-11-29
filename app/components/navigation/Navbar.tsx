@@ -2,46 +2,48 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import NavbarMenu from "./NavbarMenu";
+import useScrollVisibility from "@/src/hooks/useScrollVisibility";
 
 const Navbar = () => {
   // State variable and setter for controlling the visibility of the mobile menu.
   const [open, setOpen] = useState(false);
 
-  // State variable and setter for controlling the visibility of the navbar.
-  const [show, setShow] = useState(true);
-  // State variable and setter for remembering the last scroll position.
-  const [lastScrollY, setLastScrollY] = useState(0);
+  // // State variable and setter for controlling the visibility of the navbar.
+  // const [show, setShow] = useState(true);
+  // // State variable and setter for remembering the last scroll position.
+  // const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlNavbar = () => {
-    if (typeof window !== "undefined") {
-      if (window.scrollY > lastScrollY) {
-        // if scroll down hide the navbar
-        setShow(false);
-      } else {
-        // if scroll up show the navbar
-        setShow(true);
-      }
+  // const controlNavbar = () => {
+  //   if (typeof window !== "undefined") {
+  //     if (window.scrollY > lastScrollY) {
+  //       // if scroll down hide the navbar
+  //       setShow(false);
+  //     } else {
+  //       // if scroll up show the navbar
+  //       setShow(true);
+  //     }
 
-      // remember current page location to use in the next move
-      setLastScrollY(window.scrollY);
-    }
-  };
+  //     // remember current page location to use in the next move
+  //     setLastScrollY(window.scrollY);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     window.addEventListener("scroll", controlNavbar);
 
-      // cleanup function
-      return () => {
-        window.removeEventListener("scroll", controlNavbar);
-      };
-    }
-  });
+  //     // cleanup function
+  //     return () => {
+  //       window.removeEventListener("scroll", controlNavbar);
+  //     };
+  //   }
+  // });
+
+  const show = useScrollVisibility();
 
   return (
     <nav
