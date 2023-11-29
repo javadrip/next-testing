@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function useScrollVisibility() {
-  const [showNavbar, setShowNavbar] = useState(true);
+  const [showComponent, setShowComponent] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const handleScroll = () => {
@@ -10,10 +10,10 @@ export default function useScrollVisibility() {
 
       if (currentScrollY > lastScrollY) {
         // Scrolling down
-        setShowNavbar(false);
+        setShowComponent(false);
       } else {
         // Scrolling up
-        setShowNavbar(true);
+        setShowComponent(true);
       }
 
       setLastScrollY(currentScrollY);
@@ -30,5 +30,5 @@ export default function useScrollVisibility() {
     }
   });
 
-  return showNavbar;
+  return showComponent;
 }

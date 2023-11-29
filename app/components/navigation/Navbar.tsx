@@ -43,14 +43,14 @@ const Navbar = () => {
   //   }
   // });
 
-  const show = useScrollVisibility();
+  const showComponent = useScrollVisibility();
 
   return (
     <nav
       // z-40 is required to make sure the navbar is on top of images and videos. z-50 used for ReadingProgressBar.
       // `transition-[top]` determines how the top property changes over time. It is required to make sure the navbar slides in and out smoothly.
       className={`fixed w-full bg-white shadow active transition-[top] ease-in-out delay-150 z-40 ${
-        show ? "top-0" : "-top-14"
+        showComponent ? "top-0" : "-top-14"
       }`}
     >
       <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
