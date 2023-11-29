@@ -48,49 +48,39 @@ const Navbar = () => {
 
   return (
     <nav
-      // z-40 is required to make sure the navbar is on top of images and videos. z-50 used for ReadingProgressBar.
-      // `transition-[top]` determines how the top property changes over time. It is required to make sure the navbar slides in and out smoothly.
-      className={`fixed w-full bg-white shadow active transition-[top] ease-in-out delay-150 z-40 ${
-        showComponent ? "top-0" : "-top-12"
+      // z-50 is required to make sure the navbar is always on top of other elements, especially images and videos.
+      className={`fixed w-full bg-white shadow active transition-[top] ease-in-out delay-150 z-50 ${
+        showComponent ? "top-0" : "-top-14"
       }`}
     >
       <div
-        style={{
-          backgroundSize: `${scrollPercentage}%`,
-          backgroundRepeat: "no-repeat",
-        }}
-        // `transition-[top]` determines how the top property changes over time. It is required to make sure the navbar slides in and out smoothly.
-        className={`bg-gradient-to-r from-red-500/30 from-30% to-blue-500/50 to-100%`}
+        // For `items-center` to work, height must be specified.
+        className={`flex items-center justify-between h-14 max-w-5xl mx-auto px-6`}
       >
-        <div
-          // For `items-center` to work, height must be specified.
-          className={`flex items-center justify-between h-14 max-w-5xl mx-auto px-6`}
-        >
-          <Link className="py-2" href="/">
-            Next Testing
-          </Link>
-          <div>
-            {/* Desktop nav */}
-            <ul className="md:flex hidden items-center gap-10">
-              <NavbarMenu />
-            </ul>
-            {/* Mobile nav */}
-            <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
-              {open && <XMarkIcon className="h-8" />}
-              {!open && <Bars3Icon className="h-8" />}
-              {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
-            </div>
-            {/* Dynamically sets the right offset for the mobile navigation menu based on the "open" state.
+        <Link className="py-2" href="/">
+          Next Testing
+        </Link>
+        <div>
+          {/* Desktop nav */}
+          <ul className="md:flex hidden items-center gap-10">
+            <NavbarMenu />
+          </ul>
+          {/* Mobile nav */}
+          <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
+            {open && <XMarkIcon className="h-8" />}
+            {!open && <Bars3Icon className="h-8" />}
+            {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
+          </div>
+          {/* Dynamically sets the right offset for the mobile navigation menu based on the "open" state.
           If "open" is true, the menu is fully visible (right-0); otherwise, it's off-screen to the right (right-[-100%]). */}
-            <ul
-              className={`
+          <ul
+            className={`
         md:hidden bg-white top-14 fixed w-full h-full overflow-y-auto py-4 p-4
         duration-500 z-40 ${open ? "right-0" : "right-[-100%]"}
         `}
-            >
-              <NavbarMenu />
-            </ul>
-          </div>
+          >
+            <NavbarMenu />
+          </ul>
         </div>
       </div>
     </nav>
