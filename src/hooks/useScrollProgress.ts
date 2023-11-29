@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useReadingProgress() {
+export default function useScrollProgress() {
   const [scrollPercentage, setScrollPercentage] = useState(0);
 
   useEffect(() => {
