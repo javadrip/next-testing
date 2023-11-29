@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useScrollVisibility = () => {
+export default function useScrollVisibility() {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -31,6 +31,4 @@ const useScrollVisibility = () => {
   });
 
   return showNavbar;
-};
-
-export default useScrollVisibility;
+}
