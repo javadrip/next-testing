@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import Container from "@/app/components/container";
 import CategoryPageBanner from "./CategoryPageBanner";
 import CategoryArchive from "./CategoryArchive";
@@ -26,7 +28,11 @@ export default async function Category({ params: { categorySlug } }: Props) {
   return (
     <Container>
       <CategoryPageBanner categorySlug={categorySlug} />
-      <CategoryArchive posts={posts} categorySlug={categorySlug} />
+      {/* QN: app/(website)/author/[authorSlug]/AuthorPosts.tsx is very similar to this page
+      but why doesn't it have the same "deopted to client-side" warning as this page? */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <CategoryArchive posts={posts} categorySlug={categorySlug} />
+      </Suspense>
     </Container>
   );
 }
