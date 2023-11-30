@@ -8,7 +8,7 @@
 
 /*Custom Styles Here*/
 .navbar-link:hover {
-  @apply py-2 md:py-4;
+  @apply py-2;
   background: linear-gradient(to right, var(--tw-gradient-stops));
   background-repeat: no-repeat;
   background-position: bottom left;
@@ -17,7 +17,7 @@
 }
 
 .navbar-link {
-  @apply py-2 md:py-4;
+  @apply py-2;
   background-position: bottom left;
   background-size: 0% 4px;
 }

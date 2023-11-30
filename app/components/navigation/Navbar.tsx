@@ -2,52 +2,62 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import NavbarMenu from "./NavbarMenu";
+import useScrollProgress from "@/src/hooks/useScrollProgress";
+import useScrollVisibility from "@/src/hooks/useScrollVisibility";
 
 const Navbar = () => {
+  // State variable and setter for controlling the visibility of the mobile menu.
   const [open, setOpen] = useState(false);
 
-  const [show, setShow] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  // // State variable and setter for controlling the visibility of the navbar.
+  // const [show, setShow] = useState(true);
+  // // State variable and setter for remembering the last scroll position.
+  // const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlNavbar = () => {
-    if (typeof window !== "undefined") {
-      if (window.scrollY > lastScrollY) {
-        // if scroll down hide the navbar
-        setShow(false);
-      } else {
-        // if scroll up show the navbar
-        setShow(true);
-      }
+  // const controlNavbar = () => {
+  //   if (typeof window !== "undefined") {
+  //     if (window.scrollY > lastScrollY) {
+  //       // if scroll down hide the navbar
+  //       setShow(false);
+  //     } else {
+  //       // if scroll up show the navbar
+  //       setShow(true);
+  //     }
 
-      // remember current page location to use in the next move
-      setLastScrollY(window.scrollY);
-    }
-  };
+  //     // remember current page location to use in the next move
+  //     setLastScrollY(window.scrollY);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     window.addEventListener("scroll", controlNavbar);
 
-      // cleanup function
-      return () => {
-        window.removeEventListener("scroll", controlNavbar);
-      };
-    }
-  });
+  //     // cleanup function
+  //     return () => {
+  //       window.removeEventListener("scroll", controlNavbar);
+  //     };
+  //   }
+  // });
+  const scrollPercentage = useScrollProgress();
+  const showComponent = useScrollVisibility();
 
   return (
     <nav
-      className={`fixed z-50 w-full bg-white shadow active transition-[top] ease-in-out delay-150 ${
-        show ? "top-0" : "-top-14"
+      // z-50 is required to make sure the navbar is always on top of other elements, especially images and videos.
+      className={`fixed w-full bg-white shadow active transition-[top] ease-in-out delay-150 z-50 ${
+        showComponent ? "top-0" : "-top-14"
       }`}
     >
-      <div className="flex items-center justify-between max-w-5xl mx-auto px-6">
-        <Link className="py-4" href="/">
+      <div
+        // For `items-center` to work, height must be specified.
+        className={`flex items-center justify-between h-14 max-w-5xl mx-auto px-6`}
+      >
+        <Link className="py-2" href="/">
           Next Testing
         </Link>
         <div>
@@ -61,6 +71,8 @@ const Navbar = () => {
             {!open && <Bars3Icon className="h-8" />}
             {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
           </div>
+          {/* Dynamically sets the right offset for the mobile navigation menu based on the "open" state.
+          If "open" is true, the menu is fully visible (right-0); otherwise, it's off-screen to the right (right-[-100%]). */}
           <ul
             className={`
         md:hidden bg-white top-14 fixed w-full h-full overflow-y-auto py-4 p-4

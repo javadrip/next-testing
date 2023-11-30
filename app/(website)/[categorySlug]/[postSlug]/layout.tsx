@@ -3,6 +3,7 @@ import { Metadata } from "next/types";
 
 import { getPost, getCategoryPosts } from "@/sanity/sanity-utils";
 import { PortableText } from "@/sanity/plugins/portabletext";
+import ReadingProgressBar from "@/app/components/post/ReadingProgressBar";
 
 import { Post } from "@/types/Post";
 import category from "@/sanity/schemas/category";
@@ -59,7 +60,12 @@ export default async function Post({
   children: React.ReactNode;
   params: { postSlug: string; categorySlug: string };
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <ReadingProgressBar />
+      {children}
+    </>
+  );
 }
 
 // Enables statically generating routes at build time instead of on-demand at request time
