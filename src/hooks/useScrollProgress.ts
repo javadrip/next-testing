@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// React Hook to get the scroll percentage from the page, returns value from 0 to 100.
 export default function useScrollProgress() {
   const [scrollPercentage, setScrollPercentage] = useState(0);
 

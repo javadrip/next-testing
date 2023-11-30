@@ -3,7 +3,7 @@
 import useScrollProgress from "@/src/hooks/useScrollProgress";
 import useScrollVisibility from "@/src/hooks/useScrollVisibility";
 
-// TODO: Remove this component when progress bar is fully integrated with navbar
+// This component is a progress bar that shows how far the user has scrolled through the post.
 export default function ReadingProgressBar() {
   const scrollPercentage = useScrollProgress();
   const showComponent = useScrollVisibility();

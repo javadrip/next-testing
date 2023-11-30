@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// Hides the component when scrolling down, shows when scrolling up.
 export default function useScrollVisibility() {
   const [showComponent, setShowComponent] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
