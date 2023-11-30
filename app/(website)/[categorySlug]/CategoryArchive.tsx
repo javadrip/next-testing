@@ -79,7 +79,7 @@ export default function CategoryArchive({
       {isValidating && (
         <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
           {/* TODO: Is it okay to use null in fill()? */}
-          {new Array(6).fill(null).map((item, index) => (
+          {new Array(POSTS_PER_PAGE).fill(null).map((item, index) => (
             <div key={index}>
               <SkeletonImg />
             </div>
