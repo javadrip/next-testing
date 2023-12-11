@@ -1,6 +1,10 @@
-import { PortableTextBlock } from "sanity";
+import { PortableTextBlock, Image } from "sanity";
 import { Category } from "./Category";
 import { Author } from "./Author";
+
+interface ImageWithAlt extends Image {
+  alt: string;
+}
 
 export type Post = {
   // All properties with an underscore are generated automatically by Sanity
@@ -16,13 +20,7 @@ export type Post = {
   categorySlug: string;
   excerpt: string;
   author: Author;
-  mainImage: {
-    alt?: string;
-    asset: {
-      _ref: string;
-      url: string;
-    };
-  };
+  mainImage: ImageWithAlt;
   categories: Category[];
   publishedAt: string;
   featured: boolean;

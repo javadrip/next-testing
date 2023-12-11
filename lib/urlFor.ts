@@ -27,8 +27,9 @@ export const urlForImage = (source: any): ImageData | undefined => {
     .image(source)
     .auto("format")
     .width(Math.min(width, 2000))
-    // Adding hotspot info did not work. Also broke other images.
-    // .focalPoint(source?.hotspot?.x, source?.hotspot?.y)
+    // .crop is required for focalPoint and hotspot to work
+    .crop("focalpoint")
+    // .fit("crop")
     .url();
 
   return {
