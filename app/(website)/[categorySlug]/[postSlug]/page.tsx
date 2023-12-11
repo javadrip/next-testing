@@ -14,6 +14,7 @@ import Container from "@/app/components/container";
 import CategoryLabel from "@/app/components/ui/CategoryLabel";
 import AuthorCard from "@/app/components/post/AuthorCard";
 import TableOfContents from "@/app/components/post/TableOfContents";
+import TLDR from "@/app/components/post/TLDR";
 
 import { Post } from "@/types/Post";
 import { Headings } from "@/types/Headings";
@@ -128,6 +129,9 @@ export default async function Post({
         // categorySlug={categorySlug}
         />
         <article className="mx-auto max-w-screen-md ">
+          <TLDR postSlug={postSlug} categorySlug={categorySlug} />
+          {/* prose is a class from tailwindcss https://tailwindcss.com/docs/typography-plugin
+          prose is required for PortableText to render properly */}
           <div className="prose mx-auto my-4 dark:prose-invert prose-a:text-blue-600">
             {post.body && <PortableText value={post.body} />}
           </div>
