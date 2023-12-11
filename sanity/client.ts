@@ -19,6 +19,7 @@ import {
   categorytitlebyslugquery,
   postsbycatquery,
   paginatedpostsbycatquery,
+  featuredpostsquery,
   catquery,
   searchquery,
   limitquery,
@@ -92,6 +93,13 @@ export async function getPostHeadings(categorySlug: string, postSlug: string) {
 export async function getAllPosts(): Promise<Post[]> {
   if (client) {
     return (await client.fetch(postsquery)) || [];
+  }
+  return [];
+}
+
+export async function getFeaturedPosts(): Promise<Post[]> {
+  if (client) {
+    return (await client.fetch(featuredpostsquery)) || [];
   }
   return [];
 }

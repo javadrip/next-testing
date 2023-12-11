@@ -24,6 +24,28 @@ export const postsquery = groq`
 }
 `;
 
+// Get the latest 3 featured posts
+export const featuredpostsquery = groq`
+*[_type == "post" && featured == true] | order(_updatedAt desc, publishedAt desc) [0...3] {
+  _id,
+  _createdAt,
+  publishedAt,
+  mainImage,
+  featured,
+  excerpt,
+  slug,
+  title,
+  author-> {
+    _id,
+    image,
+    slug,
+    name
+  },
+  categories[]->,
+  "categorySlug": categories[0]->slug.current,
+}
+`;
+
 // Get all posts with 0..limit
 export const limitquery = groq`
 *[_type == "post"] | order(publishedAt desc, _createdAt desc) [0..$limit] {

@@ -31,13 +31,19 @@ const ImageComponent = ({ value }: any) => {
   // const {width, height} = getImageDimensions(value)
 
   return (
-    <Image
-      src={urlForImage(value)!}
-      alt={value.alt || "Image"}
-      loading="lazy"
-      className="object-cover"
-      sizes="(max-width: 800px) 100vw, 800px"
-    />
+    <figure>
+      <Image
+        src={urlForImage(value)!}
+        alt={value.alt || "Image"}
+        loading="lazy"
+        className="object-cover"
+        sizes="(max-width: 800px) 100vw, 800px"
+      />
+      <figcaption>
+        <p className="font-semibold">{value.caption}</p>
+        <p>{value.credit}</p>
+      </figcaption>
+    </figure>
   );
 };
 

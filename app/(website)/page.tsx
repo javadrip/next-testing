@@ -3,74 +3,42 @@ import Link from "next/link";
 
 import type { Post } from "@/types/Post";
 
-import { getAllPosts } from "@/sanity/client";
+import { getAllPosts, getFeaturedPosts } from "@/sanity/client";
 import SectionHeader from "../components/ui/SectionHeader";
 import PostListing from "../components/post/PostListing";
 
 import Container from "../components/container";
 
 export default async function Home() {
-  const postsData: Promise<Post[]> = getAllPosts();
+  // Use Promise.all() to fetch all posts and featured posts
+  // QN: Is this the way to implement Promise.all()?
+  const [posts, featuredPosts] = await Promise.all([
+    getAllPosts(),
+    getFeaturedPosts(),
+  ]);
 
-  const posts = await postsData;
+  // Promises could be stacked this way too, but not ideal:
+  // const postsData: Promise<Post[]> = getAllPosts();
+  // const featuredPostsData: Promise<Post[]> = getFeaturedPosts();
 
-  // const [posts, setPosts] = useState<Post[]>([]);
-  // const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
-
-  /**
-   * Fetches all posts from Sanity
-   * updates post state
-   */
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const postsData = await getAllPosts();
-  //     setPosts(postsData);
-  //   };
-  //   fetchPosts();
-  // }, []);
-
-  /**
-   * Fetches all featured posts from Sanity
-   * updates featuredPost state
-   */
-  // useEffect(() => {
-  //   const fetchFeaturedPosts = async () => {
-  //     // TODO: Create getAllFeaturedPosts function
-  //     const postsData = await getAllFeaturedPosts();
-  //     setPosts(postsData);
-  //   };
-  //   fetchFeaturedPosts();
-  // }, []);
+  // const posts = await postsData;
+  // const featuredPosts = await featuredPostsData;
 
   return (
     <Container>
-      {/* <FeaturedPosts posts={featuredPosts} />
-          <Posts posts={posts} /> */}
-
-      {/* <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
-            <Suspense fallback={<h2>Loading...</h2>}>
-              {featuredPosts.map(post => (
-                <PostListing key={post._id} post={post} />
-              ))}
-            </Suspense>
-          </div> */}
-
-      {/* ===================================== GRID COLUMN ONLY ===================================== */}
-
       {/* ABOVE THE FOLD FEATURED POST AREA */}
       <SectionHeader text="Featured" style="large" />
       <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
         {/* PICKS POSTS TO THE LEFT */}
         <div className="col-span-2 md:col-span-3 lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
           <Suspense fallback={<h2>Loading...</h2>}>
-            {posts.slice(0, 2).map(post => (
+            {/* Gets the second and third featured posts */}
+            {featuredPosts.slice(1, 3).map(post => (
               <PostListing
                 key={post._id}
                 post={post}
                 aspect="landscape"
                 fontSize="small"
-                hideAuthor={true}
-                hideDate={true}
                 preloadImage={true}
               />
             ))}
@@ -80,7 +48,8 @@ export default async function Home() {
         {/* FEATURED POST ON THE RIGHT*/}
         <div className="col-span-2 md:col-span-3 lg:col-span-2 row-start-1 md:col-start-1 lg:row-auto">
           <Suspense fallback={<h2>Loading...</h2>}>
-            {posts.slice(2, 3).map(post => (
+            {/* Gets the first featured post */}
+            {featuredPosts.slice(0, 1).map(post => (
               <PostListing
                 key={post._id}
                 post={post}
@@ -98,6 +67,7 @@ export default async function Home() {
       <SectionHeader text="Latest" />
       <div className="col-span-2 md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
         <Suspense fallback={<h2>Loading...</h2>}>
+          {/* TODO: Gets the first 4 most recent posts */}
           {posts.slice(3, 7).map(post => (
             <PostListing
               key={post._id}
@@ -114,23 +84,10 @@ export default async function Home() {
         </Suspense>
       </div>
 
-      {/* Featured posts */}
-      {/* <div className="grid gap-8 md:grid-cols-2 mt-8">
-        <Suspense fallback={<h2>Loading...</h2>}>
-          {posts.slice(0, 2).map(post => (
-            <PostListing
-              key={post._id}
-              post={post}
-              aspect="landscape"
-              preloadImage={true}
-            />
-          ))}
-        </Suspense>
-      </div> */}
-
-      {/* Latest posts */}
+      {/* LATEST POSTS */}
       <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <Suspense fallback={<h2>Loading...</h2>}>
+          {/* TODO: Gets the next 12 most recent posts */}
           {posts.slice(2, 14).map(post => (
             <PostListing key={post._id} post={post} aspect="square" />
           ))}
