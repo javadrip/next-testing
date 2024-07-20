@@ -19,6 +19,9 @@ export const urlForImage = (source: any): ImageData | undefined => {
 
   const dimensions = source?.asset?._ref.split("-")[2];
 
+  const hotspotX = source?.hotspot?.x || 0.5;
+  const hotspotY = source?.hotspot?.y || 0.5;
+
   const [width, height]: number[] = dimensions
     .split("x")
     .map((num: string) => parseInt(num, 10));
@@ -26,10 +29,12 @@ export const urlForImage = (source: any): ImageData | undefined => {
   const url = builder
     .image(source)
     .auto("format")
-    .width(Math.min(width, 2000))
-    // .crop is required for focalPoint and hotspot to work
+    .width(source?.hotspot?.width)
+    .height(source?.hotspot?.height)
+    // .crop, .width, .height and .focalpoint is required for hotspot to work
     .crop("focalpoint")
-    // .fit("crop")
+    .focalPoint(hotspotX, hotspotY)
+    .fit("crop")
     .url();
 
   return {
