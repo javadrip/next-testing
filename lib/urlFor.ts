@@ -29,8 +29,8 @@ export const urlForImage = (source: any): ImageData | undefined => {
   const url = builder
     .image(source)
     .auto("format")
-    .width(source?.hotspot?.width)
-    .height(source?.hotspot?.height)
+    .width(source?.hotspot?.width === 1 ? width : source?.hotspot?.width)
+    .height(source?.hotspot?.height === 1 ? height : source?.hotspot?.height)
     // .crop, .width, .height and .focalpoint is required for hotspot to work
     .crop("focalpoint")
     .focalPoint(hotspotX, hotspotY)
